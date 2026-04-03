@@ -1,0 +1,461 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>stripe支付</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/stripe__/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="data/document.js"></script>
+    <script src="files/stripe__/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Image) -->
+      <div id="u1390" class="ax_default image transition notrs">
+        <img id="u1390_img" class="img " src="images/stripe__/u1390.png"/>
+        <div id="u1390_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1391" class="ax_default box_3 transition notrs">
+        <div id="u1391_div" class=""></div>
+        <div id="u1391_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1392" class="ax_default heading_3 transition notrs">
+        <div id="u1392_div" class=""></div>
+        <div id="u1392_text" class="text ">
+          <p><span>stripe支付</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1393" class="ax_default heading_3 transition notrs">
+        <div id="u1393_div" class=""></div>
+        <div id="u1393_text" class="text ">
+          <p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">1.&nbsp; 首次订阅 / 升级</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">&nbsp; 进入 Pricing 页面，通过顶部的 &quot;Monthly / Yearly&quot; 开关切换查看价格、点击 Pro 或 Pro+ 下方的 &quot;Subscribe&quot; / &quot;Upgrade&quot; 按钮、系统调用后端接口，创建订单，用户跳转至 Stripe 托管支付页面，输入卡号完成支付。支付成功，跳转回 Doratoon 的 &quot;支付成功页”，系统开通相应会员权益。</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">2. 续费 </span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">&nbsp; 用户想要续费，点击同档会员按钮。则直接购买。</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">3.&nbsp; 升级档位：</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">&nbsp; stripe处理差价折算，跳出二次确认弹窗。</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;"><br></span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">- 订阅套餐名称： </span><span style="font-family:&quot;Arial-BoldMT&quot;, &quot;Arial Bold&quot;, &quot;Arial&quot;, sans-serif;font-weight:700;font-size:16px;">Doratoon Pro + </span><span style="font-family:&quot;PingFangSC-Semibold&quot;, &quot;PingFang SC Semibold&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:650;font-size:16px;">订阅</span></p><p style="font-size:16px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">- 套餐价格：</span><span style="font-family:&quot;PingFangSC-Semibold&quot;, &quot;PingFang SC Semibold&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:650;">&nbsp; &nbsp;&nbsp; $23.00 (保留小数点后两位）</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;font-size:16px;">- 今日应付金额</span><span style="font-family:&quot;PingFangSC-Semibold&quot;, &quot;PingFang SC Semibold&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:650;font-size:16px;">：&nbsp; $ 12.00 （应补的差价）</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;">- 付款方式：&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; 展示当前应付款的方式</span></p><p style="font-size:15px;"><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:400;"><br></span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Ellipse) -->
+      <div id="u1394" class="ax_default marker transition notrs">
+        <svg data="images/声音克隆/u495.svg" id="u1394_img" class="img generatedImage">
+
+  <defs>
+    <pattern id="u1394_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+    <mask fill="white" id="u1394_img_cl11">
+      <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -478 -519 )">
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="nonzero" fill="rgba(217, 93, 147, 1)" stroke="none" transform="matrix(1 0 0 1 482 523 )" class="fill" />
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " stroke-width="2" stroke-dasharray="0" stroke="rgba(255, 255, 255, 1)" fill="none" transform="matrix(1 0 0 1 482 523 )" class="stroke" mask="url(#u1394_img_cl11)" />
+  </g>
+  <style>#u1394_img { filter: drop-shadow(1px 1px 2.5px rgba(0, 0, 0, 0.6980392156862745)); }</style>
+        </svg>
+        <div id="u1394_text" class="text ">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Ellipse) -->
+      <div id="u1395" class="ax_default marker transition notrs">
+        <svg data="images/声音克隆/u495.svg" id="u1395_img" class="img generatedImage">
+
+  <defs>
+    <pattern id="u1395_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+    <mask fill="white" id="u1395_img_cl11">
+      <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -478 -519 )">
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="nonzero" fill="rgba(217, 93, 147, 1)" stroke="none" transform="matrix(1 0 0 1 482 523 )" class="fill" />
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " stroke-width="2" stroke-dasharray="0" stroke="rgba(255, 255, 255, 1)" fill="none" transform="matrix(1 0 0 1 482 523 )" class="stroke" mask="url(#u1395_img_cl11)" />
+  </g>
+  <style>#u1395_img { filter: drop-shadow(1px 1px 2.5px rgba(0, 0, 0, 0.6980392156862745)); }</style>
+        </svg>
+        <div id="u1395_text" class="text ">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1396" class="ax_default heading_3 transition notrs">
+        <div id="u1396_div" class=""></div>
+        <div id="u1396_text" class="text ">
+          <p><span>一、背景：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1397" class="ax_default heading_3 transition notrs">
+        <div id="u1397_div" class=""></div>
+        <div id="u1397_text" class="text ">
+          <p><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;">当前系统的支付订阅模块需要进行重构，重新接入</span><span style="font-family:&quot;ArialMT&quot;, &quot;Arial&quot;, sans-serif;"> Stripe </span><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;">支付。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1398" class="ax_default heading_3 transition notrs">
+        <div id="u1398_div" class=""></div>
+        <div id="u1398_text" class="text ">
+          <p><span>二、目标：</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u1399" class="ax_default heading_3 transition notrs">
+        <div id="u1399_div" class=""></div>
+        <div id="u1399_text" class="text ">
+          <p><span>1. 实现 Pro 和 Pro+ 两个等级会员的订阅购买。</span></p><p><span>2. 支持 月付 (Monthly) 和 年付 (Yearly) 两种扣费周期。</span></p><p><span>3. 确保支付流程顺畅，会员权益能够根据支付回调实时生效。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Group) -->
+      <div id="u1400" class="ax_default" data-left="748" data-top="970" data-width="482" data-height="283" layer-opacity="1">
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1401" class="ax_default box_1 transition notrs">
+          <div id="u1401_div" class=""></div>
+          <div id="u1401_text" class="text " style="display:none; visibility: hidden">
+            <p></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Ellipse) -->
+        <div id="u1402" class="ax_default ellipse transition notrs">
+          <svg data="images/stripe__/u1402.svg" id="u1402_img" class="img generatedImage">
+
+  <defs>
+    <pattern id="u1402_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+    <mask fill="white" id="u1402_img_cl23">
+      <path d="M 0 10.5  C 0 4.619999999999999  4.619999999999999 0  10.5 0  C 16.38 0  21 4.619999999999999  21 10.5  C 21 16.38  16.38 21  10.5 21  C 4.619999999999999 21  0 16.38  0 10.5  Z " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -1201 -981 )">
+    <path d="M 0 10.5  C 0 4.619999999999999  4.619999999999999 0  10.5 0  C 16.38 0  21 4.619999999999999  21 10.5  C 21 16.38  16.38 21  10.5 21  C 4.619999999999999 21  0 16.38  0 10.5  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 0)" stroke="none" transform="matrix(1 0 0 1 1201 981 )" class="fill" />
+    <path d="M 0 10.5  C 0 4.619999999999999  4.619999999999999 0  10.5 0  C 16.38 0  21 4.619999999999999  21 10.5  C 21 16.38  16.38 21  10.5 21  C 4.619999999999999 21  0 16.38  0 10.5  Z " stroke-width="0" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 1201 981 )" class="stroke" mask="url(#u1402_img_cl23)" />
+  </g>
+          </svg>
+          <div id="u1402_text" class="text ">
+            <p><span>x</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1403" class="ax_default heading_3 transition notrs">
+          <div id="u1403_div" class=""></div>
+          <div id="u1403_text" class="text ">
+            <p><span>确认套餐更改</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1404" class="ax_default heading_3 transition notrs">
+          <div id="u1404_div" class=""></div>
+          <div id="u1404_text" class="text ">
+            <p><span style="font-family:&quot;Arial-BoldMT&quot;, &quot;Arial Bold&quot;, &quot;Arial&quot;, sans-serif;font-weight:700;">Doratoon Pro + </span><span style="font-family:&quot;PingFangSC-Semibold&quot;, &quot;PingFang SC Semibold&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:650;">订阅</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1405" class="ax_default heading_3 transition notrs">
+          <div id="u1405_div" class=""></div>
+          <div id="u1405_text" class="text ">
+            <p><span>$23.00</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1406" class="ax_default heading_3 transition notrs">
+          <div id="u1406_div" class=""></div>
+          <div id="u1406_text" class="text ">
+            <p><span>今日应付金额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1407" class="ax_default heading_3 transition notrs">
+          <div id="u1407_div" class=""></div>
+          <div id="u1407_text" class="text ">
+            <p><span>$12.00</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1408" class="ax_default heading_3 transition notrs">
+          <div id="u1408_div" class=""></div>
+          <div id="u1408_text" class="text ">
+            <p><span>付款方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1409" class="ax_default heading_3 transition notrs">
+          <div id="u1409_div" class=""></div>
+          <div id="u1409_text" class="text ">
+            <p><span>MASTERCARD *7055</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1410" class="ax_default primary_button transition notrs">
+          <div id="u1410_div" class=""></div>
+          <div id="u1410_text" class="text ">
+            <p><span>立即支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Rectangle) -->
+        <div id="u1411" class="ax_default primary_button transition notrs">
+          <div id="u1411_div" class=""></div>
+          <div id="u1411_text" class="text ">
+            <p><span>取消</span></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Unnamed (Table) -->
+      <div id="u1412" class="ax_default">
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1413" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1413.svg" id="u1413_img" class="img generatedImage" viewbox="0 0 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" class="stroke" />
+          </svg>
+          <div id="u1413_text" class="text ">
+            <p><span>中文</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1414" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1414.svg" id="u1414_img" class="img generatedImage" viewbox="168 0 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 0 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 0 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 0 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 0 )" class="stroke" />
+          </svg>
+          <div id="u1414_text" class="text ">
+            <p><span style="font-family:&quot;PingFangSC-Regular&quot;, &quot;PingFang SC&quot;, sans-serif;">英文</span><span style="font-family:&quot;ArialMT&quot;, &quot;Arial&quot;, sans-serif;"> </span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1415" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1415.svg" id="u1415_img" class="img generatedImage" viewbox="0 30 168 34">
+
+  <path d="M 1 1  L 168 1  L 168 34  L 1 34  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 30 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 34  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 30 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 30 )" class="stroke" />
+          </svg>
+          <div id="u1415_text" class="text ">
+            <p><span style="font-family:&quot;Arial-BoldMT&quot;, &quot;Arial Bold&quot;, &quot;Arial&quot;, sans-serif;font-weight:700;">Doratoon Pro + </span><span style="font-family:&quot;PingFangSC-Semibold&quot;, &quot;PingFang SC Semibold&quot;, &quot;PingFang SC&quot;, sans-serif;font-weight:650;">订阅</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1416" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1416.svg" id="u1416_img" class="img generatedImage" viewbox="168 30 163 34">
+
+  <path d="M 1 1  L 162 1  L 162 34  L 1 34  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 30 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 34  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 30 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 30 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 34  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 30 )" class="stroke" />
+          </svg>
+          <div id="u1416_text" class="text ">
+            <p><span>Doratoon Pro+ Subscription</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1417" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1417.svg" id="u1417_img" class="img generatedImage" viewbox="0 64 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 64 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 64 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 64 )" class="stroke" />
+          </svg>
+          <div id="u1417_text" class="text ">
+            <p><span>今日应付金额</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1418" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1418.svg" id="u1418_img" class="img generatedImage" viewbox="168 64 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 64 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 64 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 64 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 64 )" class="stroke" />
+          </svg>
+          <div id="u1418_text" class="text ">
+            <p><span>Total due today</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1419" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1419.svg" id="u1419_img" class="img generatedImage" viewbox="0 94 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 94 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 94 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 94 )" class="stroke" />
+          </svg>
+          <div id="u1419_text" class="text ">
+            <p><span>付款方式</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1420" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1420.svg" id="u1420_img" class="img generatedImage" viewbox="168 94 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 94 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 94 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 94 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 94 )" class="stroke" />
+          </svg>
+          <div id="u1420_text" class="text ">
+            <p><span>Payment Method</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1421" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1421.svg" id="u1421_img" class="img generatedImage" viewbox="0 124 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 124 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 124 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 124 )" class="stroke" />
+          </svg>
+          <div id="u1421_text" class="text ">
+            <p><span>确认套餐更改</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1422" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1422.svg" id="u1422_img" class="img generatedImage" viewbox="168 124 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 124 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 124 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 124 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 124 )" class="stroke" />
+          </svg>
+          <div id="u1422_text" class="text ">
+            <p><span>Confirm Plan Change</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1423" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1423.svg" id="u1423_img" class="img generatedImage" viewbox="0 154 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 154 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 154 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 154 )" class="stroke" />
+          </svg>
+          <div id="u1423_text" class="text ">
+            <p><span>立即支付</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1424" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1424.svg" id="u1424_img" class="img generatedImage" viewbox="168 154 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 30  L 1 30  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 154 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 154 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 154 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 30  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 154 )" class="stroke" />
+          </svg>
+          <div id="u1424_text" class="text ">
+            <p><span>Pay Now</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1425" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1425.svg" id="u1425_img" class="img generatedImage" viewbox="0 184 168 30">
+
+  <path d="M 1 1  L 168 1  L 168 29  L 1 29  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 0 184 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 29  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 184 )" class="stroke" />
+  <path d="M 0 0.5  L 168 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 184 )" class="stroke" />
+  <path d="M 0 29.5  L 168 29.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 0 184 )" class="stroke" />
+          </svg>
+          <div id="u1425_text" class="text ">
+            <p><span>取消</span></p>
+          </div>
+        </div>
+
+        <!-- Unnamed (Table cell) -->
+        <div id="u1426" class="ax_default table_cell1 transition notrs">
+          <svg data="images/stripe__/u1426.svg" id="u1426_img" class="img generatedImage" viewbox="168 184 163 30">
+
+  <path d="M 1 1  L 162 1  L 162 29  L 1 29  L 1 1  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 168 184 )" class="fill" />
+  <path d="M 0.5 1  L 0.5 29  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 184 )" class="stroke" />
+  <path d="M 0 0.5  L 163 0.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 184 )" class="stroke" />
+  <path d="M 162.5 1  L 162.5 29  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 184 )" class="stroke" />
+  <path d="M 0 29.5  L 163 29.5  " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 168 184 )" class="stroke" />
+          </svg>
+          <div id="u1426_text" class="text ">
+            <p><span>Cancel</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="resources/scripts/axure/ios.js"></script>
+  </body>
+</html>

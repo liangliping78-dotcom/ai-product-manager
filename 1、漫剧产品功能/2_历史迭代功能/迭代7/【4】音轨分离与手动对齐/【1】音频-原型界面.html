@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>漫剧平台 - 专业后期精修中心</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-main: #0a0817;
+            --bg-panel: #110e24;
+            --bg-card: #1c1933;
+            --magenta: #ff00ff;
+            --text-soft: #a6a3c1;
+            --blue-wave: #3b82f6;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            height: 100vh;
+            overflow: hidden;
+            color: #fff;
+            background: radial-gradient(circle at 20% 0%, rgba(255, 0, 255, 0.08), transparent 35%), var(--bg-main);
+            font-family: 'PingFang SC', 'SF Pro Display', sans-serif;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(12px);
+        }
+
+        .bg-magenta { background-color: var(--magenta); }
+
+        .cyber-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .audio-sidebar {
+            background: linear-gradient(180deg, #15102b 0%, #0e0a1f 100%);
+        }
+
+        .audio-tabs {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 4px;
+            padding: 8px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(34, 29, 56, 0.78);
+        }
+
+        .audio-tab {
+            position: relative;
+            border: 0;
+            background: transparent;
+            color: #989ab8;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            padding: 4px 0 8px;
+            cursor: pointer;
+        }
+
+        .audio-tab i { font-size: 14px; }
+
+        .audio-tab.active {
+            color: #f5f5ff;
+        }
+
+        .audio-tab.active::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 24px;
+            height: 2px;
+            border-radius: 999px;
+            background: var(--magenta);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.75);
+        }
+
+        .panel-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255, 255, 255, 0.07);
+            border-radius: 12px;
+        }
+
+        .mixer-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .mixer-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .mixer-title {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .mute-btn {
+            width: 28px;
+            height: 28px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 0, 255, 0.4);
+            background: rgba(255, 0, 255, 0.12);
+            color: #ff76ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .mixer-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .mixer-value {
+            min-width: 56px;
+            text-align: right;
+            font-size: 17px;
+            font-weight: 700;
+            color: #f0f1ff;
+        }
+
+        .mixer-slider {
+            --value: 50%;
+            -webkit-appearance: none;
+            width: 100%;
+            height: 6px;
+            border-radius: 999px;
+            outline: none;
+            background: linear-gradient(90deg, var(--magenta) var(--value), #595f75 var(--value));
+        }
+
+        .mixer-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(20, 16, 36, 0.8);
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .mixer-slider::-moz-range-thumb {
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            border: 2px solid rgba(20, 16, 36, 0.8);
+            background: #ffffff;
+            cursor: pointer;
+        }
+
+        .duck-switch {
+            width: 42px;
+            height: 22px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+            position: relative;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .duck-switch::after {
+            content: "";
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            background: #d6d7e8;
+            transition: all 0.2s ease;
+        }
+
+        .duck-switch.on {
+            background: rgba(255, 0, 255, 0.24);
+            border-color: rgba(255, 0, 255, 0.65);
+        }
+
+        .duck-switch.on::after {
+            left: 22px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.6);
+        }
+
+        .role-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            transition: all 0.2s ease;
+        }
+
+        .role-item.active {
+            border-color: rgba(255, 0, 255, 0.7);
+            box-shadow: 0 0 12px rgba(255, 0, 255, 0.35);
+        }
+
+        .role-avatar {
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            object-fit: cover;
+        }
+
+        .replace-btn {
+            margin-left: auto;
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 0, 255, 0.35);
+            background: rgba(255, 0, 255, 0.1);
+            color: #ff85ff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .replace-btn:hover {
+            border-color: rgba(255, 0, 255, 0.8);
+            box-shadow: 0 0 8px rgba(255, 0, 255, 0.35);
+        }
+
+        .timeline-wrap {
+            height: 320px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            background: #0b0818;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .track-row {
+            height: 33.333%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            position: relative;
+        }
+
+        .track-row:last-child { border-bottom: 0; }
+
+        .timeline-canvas {
+            position: relative;
+            min-width: 100%;
+            height: 100%;
+        }
+
+        .timeline-wave {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            gap: 2px;
+            padding: 0 10px;
+        }
+
+        .bgm-wave {
+            width: 3px;
+            border-radius: 999px;
+            background: var(--blue-wave);
+            opacity: 0.75;
+            box-shadow: 0 0 6px rgba(59, 130, 246, 0.35);
+        }
+
+        .segment-block {
+            position: absolute;
+            top: 10px;
+            height: 34px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            cursor: ew-resize;
+            user-select: none;
+            transition: box-shadow 0.2s ease, border-color 0.2s ease;
+            overflow: visible;
+        }
+
+        .voice-block {
+            background: rgba(255, 0, 255, 0.18);
+            border: 1px solid rgba(255, 0, 255, 0.7);
+        }
+
+        .voice-block .wave-inner {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: flex-end;
+            gap: 2px;
+            padding: 4px 2px;
+            overflow: hidden;
+        }
+
+        .voice-inner-bar {
+            width: 3px;
+            border-radius: 999px;
+            background: #ff00ff;
+            box-shadow: 0 0 7px rgba(255, 0, 255, 0.55);
+        }
+
+        .subtitle-block {
+            background: rgba(179, 94, 255, 0.2);
+            border: 1px solid rgba(194, 126, 255, 0.75);
+            font-size: 12px;
+        }
+
+        .segment-active {
+            box-shadow: 0 0 14px rgba(255, 0, 255, 0.45);
+            border-color: rgba(255, 0, 255, 0.95);
+        }
+
+        .segment-dragging {
+            box-shadow: 0 0 16px rgba(255, 0, 255, 0.62);
+        }
+
+        .segment-delete-btn {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            width: 20px;
+            height: 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(18, 15, 36, 0.88);
+            color: #ffb5ff;
+            font-size: 11px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+
+        .segment-block.segment-active .segment-delete-btn {
+            opacity: 1;
+            pointer-events: auto;
+            border-color: rgba(255, 0, 255, 0.72);
+            box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+        }
+
+        .segment-snap-hit {
+            animation: snapFlash 0.18s ease;
+        }
+
+        @keyframes snapFlash {
+            0% {
+                border-color: rgba(255, 0, 255, 0.75);
+                box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+            }
+            50% {
+                border-color: rgba(255, 255, 255, 0.95);
+                box-shadow: 0 0 16px rgba(255, 0, 255, 0.7);
+            }
+            100% {
+                border-color: rgba(255, 0, 255, 0.75);
+                box-shadow: 0 0 8px rgba(255, 0, 255, 0.3);
+            }
+        }
+
+        .zoom-btn {
+            width: 24px;
+            height: 24px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ddd;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .zoom-btn:hover {
+            color: #ff8eff;
+            border-color: rgba(255, 0, 255, 0.55);
+        }
+
+        .rate-slider {
+            --value-pct: 33.333%;
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 999px;
+            outline: none;
+            background: linear-gradient(
+                90deg,
+                #ff00ff 0%,
+                #ff4dff var(--value-pct),
+                #353252 var(--value-pct),
+                #353252 100%
+            );
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .rate-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.55);
+            cursor: pointer;
+        }
+
+        .rate-slider::-moz-range-thumb {
+            width: 16px;
+            height: 16px;
+            border-radius: 999px;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            background: #ffffff;
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.55);
+            cursor: pointer;
+        }
+
+        .rate-slider::-moz-range-track {
+            height: 8px;
+            border-radius: 999px;
+            background: #353252;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .rate-value {
+            min-width: 52px;
+            text-align: right;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ff00ff;
+        }
+
+        .rate-reset-btn {
+            border: 1px solid rgba(255, 255, 255, 0.16);
+            background: rgba(255, 255, 255, 0.06);
+            color: #f0d7ff;
+            border-radius: 8px;
+            padding: 2px 8px;
+            font-size: 10px;
+            font-weight: 700;
+            line-height: 1.4;
+            transition: all 0.2s ease;
+        }
+
+        .rate-reset-btn:hover {
+            border-color: rgba(255, 0, 255, 0.72);
+            box-shadow: 0 0 8px rgba(255, 0, 255, 0.25);
+            color: #ffe8ff;
+        }
+
+        .add-segment-btn {
+            border: 1px solid rgba(255, 0, 255, 0.35);
+            background: linear-gradient(135deg, rgba(255, 0, 255, 0.2), rgba(255, 255, 255, 0.06));
+            color: #ffe6ff;
+            border-radius: 999px;
+            padding: 2px 7px;
+            font-size: 9px;
+            font-weight: 600;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            min-height: 20px;
+            white-space: nowrap;
+            backdrop-filter: blur(6px);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+            transition: all 0.2s ease;
+        }
+
+        .add-segment-btn i {
+            font-size: 8px;
+        }
+
+        .add-segment-btn:hover {
+            border-color: rgba(255, 0, 255, 0.72);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+            color: #fff2ff;
+            transform: translateY(-1px);
+        }
+
+        .add-segment-btn:active {
+            transform: translateY(0);
+        }
+
+        .shot-card {
+            width: 100%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 8px;
+            text-align: left;
+            opacity: 0.72;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .shot-card:hover {
+            opacity: 0.95;
+            border-color: rgba(255, 0, 255, 0.5);
+        }
+
+        .shot-card.active-shot {
+            opacity: 1;
+            border-color: rgba(255, 0, 255, 0.85);
+            box-shadow: 0 0 14px rgba(255, 0, 255, 0.33);
+            background: rgba(255, 0, 255, 0.08);
+        }
+
+        .timeline-shot-block {
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: rgba(63, 63, 90, 0.6);
+            color: #ddddee;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .timeline-shot-block:hover {
+            border-color: rgba(255, 0, 255, 0.55);
+        }
+
+        .timeline-shot-block.active-shot {
+            border-color: rgba(255, 0, 255, 0.9);
+            box-shadow: 0 0 12px rgba(255, 0, 255, 0.44);
+            background: rgba(255, 0, 255, 0.14);
+            color: #ffe5ff;
+        }
+
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(3, 2, 8, 0.45);
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+            z-index: 70;
+        }
+
+        .drawer-overlay.show {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .voice-drawer {
+            position: fixed;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            width: 380px;
+            max-width: 90vw;
+            background: linear-gradient(180deg, #16102f 0%, #0e0a1f 100%);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            transform: translateX(100%);
+            transition: transform 0.28s ease;
+            z-index: 80;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .voice-drawer.show {
+            transform: translateX(0);
+        }
+
+        .drawer-tab {
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            border-radius: 999px;
+            background: transparent;
+            color: #c6c5dc;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+
+        .drawer-tab.active {
+            border-color: rgba(255, 0, 255, 0.7);
+            color: #ffe4ff;
+            background: rgba(255, 0, 255, 0.18);
+        }
+
+        .voice-card {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .voice-card:hover {
+            border-color: rgba(255, 0, 255, 0.65);
+            box-shadow: 0 0 10px rgba(255, 0, 255, 0.25);
+        }
+
+        .voice-card .play-mini {
+            margin-left: auto;
+            width: 22px;
+            height: 22px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            color: #d3d3e4;
+        }
+    </style>
+</head>
+<body>
+    <header class="h-14 px-6 flex items-center justify-between bg-[#15122a] border-b border-white/10 shrink-0 z-20">
+        <button id="goHomeBtn" type="button" class="group flex items-center gap-3">
+            <i class="fas fa-chevron-left text-gray-500 group-hover:text-white transition-colors"></i>
+            <span class="text-sm font-bold tracking-wide text-gray-100 group-hover:text-white">返回首页</span>
+        </button>
+        <div class="flex items-center gap-5">
+            <div class="bg-black/35 rounded-full px-3 py-1 border border-white/10">
+                <span class="text-xs text-pink-500">✦ 98118</span>
+            </div>
+            <button class="bg-magenta px-7 py-1.5 rounded-lg text-sm font-bold shadow-lg shadow-fuchsia-500/30 hover:opacity-90">导出成品</button>
+        </div>
+    </header>
+
+    <div class="flex flex-1 min-h-0 overflow-hidden">
+        <aside id="shotSidebar" class="w-64 border-r border-white/10 bg-[#0f0c1d] p-4 space-y-4 overflow-y-auto">
+            <h3 class="text-[10px] text-gray-500 font-bold uppercase tracking-widest">分镜轨道</h3>
+            <div id="shotList" class="space-y-3"></div>
+        </aside>
+
+        <main class="flex-1 min-w-0 flex flex-col p-6 items-center bg-black/20">
+            <div class="w-full max-w-4xl aspect-video rounded-2xl overflow-hidden ring-1 ring-white/10 bg-black relative">
+                <img id="mainVideo" src="https://picsum.photos/id/1011/1280/720" class="w-full h-full object-cover" alt="预览画面">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-transparent"></div>
+                <div class="absolute bottom-12 w-full text-center px-16">
+                    <p id="previewSubtitle" class="text-xl font-medium drop-shadow-lg">这座城市，终究还是容不下梦想。</p>
+                </div>
+            </div>
+
+            <div class="w-full max-w-4xl mt-6 glass rounded-2xl p-4 flex items-center gap-4">
+                <button class="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center">
+                    <i class="fas fa-play"></i>
+                </button>
+                <div class="flex-1 space-y-1">
+                    <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
+                        <div class="h-full w-1/3 bg-magenta"></div>
+                    </div>
+                    <div class="flex justify-between text-[10px] text-gray-500 font-mono">
+                        <span>01:22</span>
+                        <span>04:50</span>
+                    </div>
+                </div>
+                <i class="fas fa-volume-up text-gray-400"></i>
+                <i class="fas fa-expand-alt text-gray-400"></i>
+            </div>
+        </main>
+
+        <aside class="w-[340px] border-l border-white/10 audio-sidebar p-5 space-y-5 overflow-y-auto" id="rightSidebar">
+            <div class="audio-tabs" id="audioTabs">
+                <button class="audio-tab active" type="button" data-tab="volume">
+                    <i class="fas fa-volume-high"></i>
+                    <span>音量</span>
+                </button>
+                <button class="audio-tab" type="button" data-tab="role">
+                    <i class="fas fa-user-astronaut"></i>
+                    <span>角色</span>
+                </button>
+                <button class="audio-tab" type="button" data-tab="music">
+                    <i class="fas fa-music"></i>
+                    <span>音乐</span>
+                </button>
+                <button class="audio-tab" type="button" data-tab="story">
+                    <i class="fas fa-clapperboard"></i>
+                    <span>分镜</span>
+                </button>
+                <button class="audio-tab" type="button" data-tab="subtitle">
+                    <i class="fas fa-closed-captioning"></i>
+                    <span>字幕</span>
+                </button>
+            </div>
+
+            <div id="panel-volume" class="tab-panel space-y-4">
+                <div class="panel-card p-4 space-y-4">
+                    <div class="mixer-header">
+                        <div class="mixer-title-wrap">
+                            <button class="mute-btn" type="button" title="静音">
+                                <i class="fas fa-volume-xmark"></i>
+                            </button>
+                            <label class="mixer-title">角色配音</label>
+                        </div>
+                        <span id="vocalsVolVal" class="mixer-value">80%</span>
+                    </div>
+                    <div class="mixer-row">
+                        <input id="vocalsSlider" type="range" min="0" max="100" value="80" class="mixer-slider flex-1" oninput="updateVol('vocals', this.value, this)">
+                    </div>
+                </div>
+
+                <div class="panel-card p-4 space-y-4">
+                    <div class="mixer-header">
+                        <div class="mixer-title-wrap">
+                            <button class="mute-btn" type="button" title="静音">
+                                <i class="fas fa-volume-xmark"></i>
+                            </button>
+                            <label class="mixer-title">背景音乐</label>
+                        </div>
+                        <span id="bgmVolVal" class="mixer-value">40%</span>
+                    </div>
+                    <div class="mixer-row">
+                        <input id="bgmSlider" type="range" min="0" max="100" value="40" class="mixer-slider flex-1" oninput="updateVol('bgm', this.value, this)">
+                    </div>
+                </div>
+
+            </div>
+
+            <div id="panel-role" class="tab-panel hidden space-y-3">
+                <div id="roleList" class="space-y-3"></div>
+            </div>
+
+            <div id="panel-music" class="tab-panel hidden">
+                <div class="panel-card p-4 text-xs text-gray-400 leading-relaxed">
+                    音乐管理面板预留：可在此处添加背景音乐曲库、节奏点、转场淡入淡出参数。
+                </div>
+            </div>
+
+            <div id="panel-story" class="tab-panel hidden">
+                <div class="panel-card p-4 text-xs text-gray-400 leading-relaxed">
+                    分镜记录预留：镜头描述、镜头时长与口型偏移参考。
+                </div>
+            </div>
+
+            <div id="panel-subtitle" class="tab-panel hidden">
+                <div class="panel-card p-4 text-xs text-gray-400 leading-relaxed">
+                    字幕管理预留：样式模板、逐句修订历史、智能断句。
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <div class="timeline-wrap">
+        <div class="h-8 px-2 bg-black/20 border-b border-white/10 flex items-center">
+            <div class="flex-1 h-full relative overflow-hidden">
+                <div id="timelineTicks" class="h-full relative"></div>
+            </div>
+            <div class="ml-2 flex items-center gap-2">
+                <button id="zoomOutBtn" class="zoom-btn" type="button" title="缩小时间轴"><i class="fas fa-minus"></i></button>
+                <button id="zoomInBtn" class="zoom-btn" type="button" title="放大时间轴"><i class="fas fa-plus"></i></button>
+                <span id="zoomLabel" class="text-[10px] text-gray-400 font-mono min-w-[32px] text-right">1.0x</span>
+            </div>
+        </div>
+
+        <div class="flex-1 min-h-0 flex">
+            <div class="w-24 bg-[#120f26] border-r border-white/10 text-[10px] text-gray-500 font-bold flex flex-col">
+                <div class="flex-1 flex items-center justify-center border-b border-white/10">背景音轨</div>
+                <div class="flex-1 flex items-center justify-center border-b border-white/10">人声波形</div>
+                <div class="flex-1 flex items-center justify-between px-2">
+                    <span>字幕轨道</span>
+                    <button id="addSegmentBtn" type="button" class="add-segment-btn" aria-label="新增字幕段落">
+                        <i class="fas fa-plus" aria-hidden="true"></i>
+                        新增
+                    </button>
+                </div>
+            </div>
+
+            <div id="timelineViewport" class="flex-1 min-w-0 overflow-x-auto overflow-y-hidden bg-[#0e0b1d]/60">
+                <div id="timelineCanvas" class="timeline-canvas">
+                    <div id="bgmTrack" class="track-row"><div id="bgmWaveform" class="timeline-wave"></div></div>
+                    <div id="voiceTrack" class="track-row bg-fuchsia-500/5"></div>
+                    <div id="subtitleTrack" class="track-row bg-violet-400/5"></div>
+
+                    <div id="playhead" class="absolute top-0 left-[25%] w-px h-full bg-magenta shadow-[0_0_10px_#ff00ff] pointer-events-none z-20">
+                        <div class="w-3 h-3 bg-magenta rotate-45 -mt-1.5 -ml-1.5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="w-72 bg-[#120f26] border-l border-white/10 p-4">
+                <label class="text-[10px] text-gray-500 block mb-2 font-bold uppercase tracking-widest">语速调节</label>
+                <div class="mb-4 space-y-2">
+                    <div class="flex items-center justify-between">
+                        <span class="text-[10px] text-gray-400">范围：0.5倍 - 2.0倍</span>
+                        <button id="speechRateResetBtn" type="button" class="rate-reset-btn">重置</button>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <input id="speechRateSlider" type="range" class="rate-slider flex-1" min="0.5" max="2.0" step="0.05" value="1.0">
+                        <span id="speechRateValue" class="rate-value">1.00倍</span>
+                    </div>
+                </div>
+
+                <label class="text-[10px] text-gray-500 block mb-2 font-bold uppercase tracking-widest">字幕精修</label>
+                <textarea id="subtitleEditor" class="w-full h-28 bg-black/35 border border-gray-700 rounded-lg p-3 text-xs outline-none focus:border-fuchsia-500 transition leading-relaxed">这座城市，终究还是容不下梦想。</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div id="drawerOverlay" class="drawer-overlay"></div>
+    <aside id="voiceDrawer" class="voice-drawer">
+        <div class="p-4 border-b border-white/10 flex items-center justify-between">
+            <div>
+                <h3 class="text-sm font-bold">音色库</h3>
+                <p id="drawerRoleHint" class="text-[11px] text-gray-400 mt-1">为角色选择新音色</p>
+            </div>
+            <button id="closeDrawerBtn" class="w-8 h-8 rounded-lg border border-white/15 bg-white/5 hover:bg-white/10" type="button">
+                <i class="fas fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="p-4 pb-2 flex items-center gap-2">
+            <button class="drawer-tab active" type="button" data-source="preset">系统预设</button>
+            <button class="drawer-tab" type="button" data-source="clone">我的克隆</button>
+        </div>
+
+        <div id="voiceCardList" class="flex-1 overflow-y-auto p-4 pt-2 space-y-2"></div>
+    </aside>
+
+    <script>
+        const PIXELS_PER_SECOND = 160;
+        const DEFAULT_SHOT_DURATION = 6;
+        const BASE_BLOCK_WIDTH = 230;
+        const MIN_BLOCK_WIDTH = 96;
+        const SNAP_STEP = 8;
+        const SNAP_THRESHOLD = 10;
+        const NEW_SEGMENT_SECONDS = 2;
+
+        const shots = [
+            { id: 'shot-1', title: '分镜 1', frameId: 1011, thumbId: 1011, subtitle: '这座城市，终究还是容不下梦想。', startCode: '00:00', durationSec: 8, frameSequence: [1011, 1012, 1013, 1014] },
+            { id: 'shot-2', title: '分镜 2', frameId: 1025, thumbId: 1025, subtitle: '站在天桥上，她听见了远处的列车。', startCode: '00:08', durationSec: 6, frameSequence: [1025, 1026, 1027, 1028] },
+            { id: 'shot-3', title: '分镜 3', frameId: 1031, thumbId: 1031, subtitle: '雨幕像一层滤镜，把霓虹压成了低语。', startCode: '00:14', durationSec: 7, frameSequence: [1031, 1032, 1033, 1034] },
+            { id: 'shot-4', title: '分镜 4', frameId: 1035, thumbId: 1035, subtitle: '他回头的一瞬，时间像被按下暂停。', startCode: '00:21', durationSec: 5, frameSequence: [1035, 1036, 1037, 1038] },
+            { id: 'shot-5', title: '分镜 5', frameId: 1040, thumbId: 1040, subtitle: '镜头推近，唇形需要与台词再校一帧。', startCode: '00:26', durationSec: 4, frameSequence: [1040, 1041, 1042, 1043] }
+        ];
+
+        const roles = [
+            { id: 'r1', name: '林夏', avatar: 'https://picsum.photos/id/64/80/80', tone: '少女音色' },
+            { id: 'r2', name: '顾沉', avatar: 'https://picsum.photos/id/65/80/80', tone: '青年磁性' },
+            { id: 'r3', name: '旁白', avatar: 'https://picsum.photos/id/66/80/80', tone: '纪录片解说' }
+        ];
+
+        const voiceLibrary = {
+            preset: [
+                { id: 'v1', name: '少女音色', avatar: 'https://picsum.photos/id/91/80/80' },
+                { id: 'v2', name: '元气女声', avatar: 'https://picsum.photos/id/92/80/80' },
+                { id: 'v3', name: '低沉男声', avatar: 'https://picsum.photos/id/93/80/80' },
+                { id: 'v4', name: '电影旁白', avatar: 'https://picsum.photos/id/94/80/80' }
+            ],
+            clone: [
+                { id: 'c1', name: '我的克隆一号', avatar: 'https://picsum.photos/id/55/80/80' },
+                { id: 'c2', name: '我的克隆二号', avatar: 'https://picsum.photos/id/56/80/80' },
+                { id: 'c3', name: '我的克隆三号', avatar: 'https://picsum.photos/id/57/80/80' }
+            ]
+        };
+
+        let timelineZoom = 1;
+        let speechRate = 1;
+        let activeShotId = 'shot-1';
+        let activeSegmentId = 's1';
+        let drawerSource = 'preset';
+        let drawerRoleId = null;
+        let segmentSequence = 5;
+
+        const segments = [
+            {
+                id: 's1',
+                roleId: 'r1',
+                shotId: 'shot-1',
+                text: '这座城市，终究还是容不下梦想。',
+                baseLeft: 48,
+                baseWidth: 280
+            },
+            {
+                id: 's2',
+                roleId: 'r2',
+                shotId: 'shot-2',
+                text: '站在桥上，她听见了远处的列车。',
+                baseLeft: 100,
+                baseWidth: 220
+            },
+            {
+                id: 's3',
+                roleId: 'r3',
+                shotId: 'shot-3',
+                text: '雨幕像一层滤镜，把霓虹压成了低语。',
+                baseLeft: 120,
+                baseWidth: 260
+            },
+            {
+                id: 's4',
+                roleId: 'r2',
+                shotId: 'shot-4',
+                text: '他回头的一瞬，时间像被按下暂停。',
+                baseLeft: 80,
+                baseWidth: 210
+            },
+            {
+                id: 's5',
+                roleId: 'r1',
+                shotId: 'shot-5',
+                text: '镜头推近，唇形需要与台词再校一帧。',
+                baseLeft: 40,
+                baseWidth: 180
+            }
+        ];
+        let dragState = null;
+
+        const mainVideo = document.getElementById('mainVideo');
+        const previewSubtitle = document.getElementById('previewSubtitle');
+        const subtitleEditor = document.getElementById('subtitleEditor');
+        const goHomeBtn = document.getElementById('goHomeBtn');
+
+        const shotList = document.getElementById('shotList');
+
+        const audioTabs = Array.from(document.querySelectorAll('.audio-tab'));
+        const tabPanels = {
+            volume: document.getElementById('panel-volume'),
+            role: document.getElementById('panel-role'),
+            music: document.getElementById('panel-music'),
+            story: document.getElementById('panel-story'),
+            subtitle: document.getElementById('panel-subtitle')
+        };
+
+        const roleList = document.getElementById('roleList');
+
+        const timelineViewport = document.getElementById('timelineViewport');
+        const timelineCanvas = document.getElementById('timelineCanvas');
+        const timelineTicks = document.getElementById('timelineTicks');
+        const bgmWaveform = document.getElementById('bgmWaveform');
+        const voiceTrack = document.getElementById('voiceTrack');
+        const subtitleTrack = document.getElementById('subtitleTrack');
+        const playhead = document.getElementById('playhead');
+        const zoomInBtn = document.getElementById('zoomInBtn');
+        const zoomOutBtn = document.getElementById('zoomOutBtn');
+        const zoomLabel = document.getElementById('zoomLabel');
+
+        const speechRateSlider = document.getElementById('speechRateSlider');
+        const speechRateValue = document.getElementById('speechRateValue');
+        const speechRateResetBtn = document.getElementById('speechRateResetBtn');
+        const addSegmentBtn = document.getElementById('addSegmentBtn');
+
+        const drawerOverlay = document.getElementById('drawerOverlay');
+        const voiceDrawer = document.getElementById('voiceDrawer');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const voiceCardList = document.getElementById('voiceCardList');
+        const drawerRoleHint = document.getElementById('drawerRoleHint');
+        const drawerTabs = Array.from(document.querySelectorAll('.drawer-tab'));
+
+        goHomeBtn.addEventListener('click', () => {
+            if (window.history.length > 1) {
+                window.history.back();
+            } else {
+                window.location.href = './';
+            }
+        });
+
+        function getShotById(shotId) {
+            return shots.find(shot => shot.id === shotId) || null;
+        }
+
+        function setSliderProgress(slider, val) {
+            slider.style.setProperty('--value', val + '%');
+        }
+
+        function updateSpeechRateFill(rate) {
+            const pct = ((rate - 0.5) / (2.0 - 0.5)) * 100;
+            speechRateSlider.style.setProperty('--value-pct', `${Math.max(0, Math.min(100, pct))}%`);
+        }
+
+        function applySpeechRate(rate) {
+            const fixedRate = Math.max(0.5, Math.min(2.0, Math.round(rate * 100) / 100));
+            speechRate = fixedRate;
+            speechRateSlider.value = fixedRate.toFixed(2);
+            speechRateValue.innerText = `${fixedRate.toFixed(2)}倍`;
+            updateSpeechRateFill(fixedRate);
+
+            renderSegments();
+            const active = segments.find(s => s.id === activeSegmentId) || segments[0];
+            if (active) {
+                syncPreview(getSegmentLeft(active), getSegmentWidth(active));
+            }
+        }
+
+        function updateVol(type, val, slider) {
+            const valueEl = document.getElementById(type + 'VolVal');
+            if (valueEl) valueEl.innerText = val + '%';
+            if (slider) setSliderProgress(slider, val);
+        }
+
+        window.updateVol = updateVol;
+        document.querySelectorAll('.mixer-slider').forEach(slider => setSliderProgress(slider, slider.value));
+
+        function switchTab(tabKey) {
+            audioTabs.forEach(btn => btn.classList.toggle('active', btn.dataset.tab === tabKey));
+            Object.keys(tabPanels).forEach(key => tabPanels[key].classList.toggle('hidden', key !== tabKey));
+        }
+
+        audioTabs.forEach(btn => {
+            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
+        });
+
+        function renderRoleList() {
+            roleList.innerHTML = '';
+
+            roles.forEach(role => {
+                const row = document.createElement('div');
+                row.className = 'role-item';
+                row.dataset.roleId = role.id;
+
+                row.innerHTML = `
+                    <img class="role-avatar" src="${role.avatar}" alt="${role.name}">
+                    <div class="min-w-0">
+                        <p class="text-sm font-semibold truncate">${role.name}</p>
+                        <p class="text-[11px] text-gray-400 truncate" data-tone>${role.tone}</p>
+                    </div>
+                    <button class="replace-btn" type="button" title="更换音色">
+                        <i class="fas fa-arrows-rotate"></i>
+                    </button>
+                `;
+
+                row.querySelector('.replace-btn').addEventListener('click', () => openVoiceDrawer(role.id));
+                roleList.appendChild(row);
+            });
+
+            syncRoleHighlight();
+        }
+
+        function renderShotList() {
+            shotList.innerHTML = '';
+
+            shots.forEach(shot => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'shot-card';
+                card.dataset.shotId = shot.id;
+                card.innerHTML = `
+                    <img src="https://picsum.photos/id/${shot.thumbId}/240/135" class="w-full rounded-lg mb-2" alt="${shot.title}">
+                    <div class="px-1 flex items-center">
+                        <span class="text-[10px] font-bold">${shot.title}</span>
+                    </div>
+                    <div class="px-1 mt-1 text-[10px] text-gray-400 font-mono">${shot.startCode}</div>
+                `;
+
+                card.addEventListener('click', () => syncActiveShot(shot.id));
+                shotList.appendChild(card);
+            });
+
+            applyShotActiveStyles();
+        }
+
+        function applyShotActiveStyles() {
+            shotList.querySelectorAll('.shot-card').forEach(card => {
+                card.classList.toggle('active-shot', card.dataset.shotId === activeShotId);
+            });
+        }
+
+        function scrollShotCardIntoView(shotId) {
+            const card = shotList.querySelector(`.shot-card[data-shot-id="${shotId}"]`);
+            if (!card) return;
+            card.scrollIntoView({ behavior: 'smooth', block: 'center', inline: 'nearest' });
+        }
+
+        function getCurrentShot() {
+            return getShotById(activeShotId) || shots[0];
+        }
+
+        function getCurrentShotDuration() {
+            const shot = getCurrentShot();
+            return shot && shot.durationSec ? shot.durationSec : DEFAULT_SHOT_DURATION;
+        }
+
+        function getTimelineBaseWidth() {
+            return Math.round(getCurrentShotDuration() * PIXELS_PER_SECOND);
+        }
+
+        function getTimelineWidth() {
+            return Math.round(getTimelineBaseWidth() * timelineZoom);
+        }
+
+        function getSegmentWidth(segment) {
+            return Math.max(MIN_BLOCK_WIDTH, Math.round((segment.baseWidth / speechRate) * timelineZoom));
+        }
+
+        function getSegmentLeft(segment) {
+            return Math.round(segment.baseLeft * timelineZoom);
+        }
+
+        function getMaxSegmentLeft(segment) {
+            return Math.max(0, getTimelineWidth() - getSegmentWidth(segment) - 12);
+        }
+
+        function getVisibleSegments() {
+            return segments.filter(segment => segment.shotId === activeShotId);
+        }
+
+        function syncActiveShot(shotId, options = {}) {
+            const shot = getShotById(shotId);
+            if (!shot) return;
+
+            const settings = {
+                scrollList: true,
+                resetTimeline: true,
+                movePlayhead: true,
+                updateMedia: true,
+                updateSubtitle: true,
+                ...options
+            };
+
+            activeShotId = shot.id;
+            applyShotActiveStyles();
+
+            if (settings.resetTimeline) {
+                renderTicks();
+                renderBgmWaveform();
+                renderSegments();
+                syncRulerWithScroll();
+                timelineViewport.scrollTo({ left: 0, behavior: 'smooth' });
+            }
+
+            const linkedSegment = getVisibleSegments()[0] || null;
+            if (linkedSegment) {
+                activeSegmentId = linkedSegment.id;
+                applySegmentHighlight();
+                syncRoleHighlight();
+            } else {
+                activeSegmentId = '';
+                applySegmentHighlight();
+            }
+
+            if (settings.movePlayhead) {
+                playhead.style.left = '0px';
+            }
+
+            if (settings.scrollList) scrollShotCardIntoView(shot.id);
+
+            if (settings.updateMedia) {
+                const firstFrame = Array.isArray(shot.frameSequence) && shot.frameSequence.length ? shot.frameSequence[0] : shot.frameId;
+                if (mainVideo.dataset.frame !== String(firstFrame)) {
+                    mainVideo.src = `https://picsum.photos/id/${firstFrame}/1280/720`;
+                    mainVideo.dataset.frame = String(firstFrame);
+                }
+            }
+
+            if (settings.updateSubtitle) {
+                const text = linkedSegment ? linkedSegment.text : shot.subtitle;
+                subtitleEditor.value = text;
+                previewSubtitle.innerText = text;
+            }
+        }
+
+        window.syncActiveShot = syncActiveShot;
+
+        function pad2(n) {
+            return String(n).padStart(2, '0');
+        }
+
+        function renderTicks() {
+            const width = getTimelineWidth();
+            const duration = getCurrentShotDuration();
+            const wholeSeconds = Math.floor(duration);
+            timelineTicks.innerHTML = '';
+            timelineTicks.style.width = width + 'px';
+
+            for (let i = 0; i <= wholeSeconds; i++) {
+                const tick = document.createElement('span');
+                tick.className = 'absolute bottom-1 text-[9px] text-gray-600 font-mono -translate-x-1/2';
+                tick.style.left = Math.round((i / duration) * width) + 'px';
+                tick.innerText = `00:${pad2(i)}`;
+                timelineTicks.appendChild(tick);
+            }
+
+            if (wholeSeconds !== duration) {
+                const endTick = document.createElement('span');
+                endTick.className = 'absolute bottom-1 text-[9px] text-gray-600 font-mono -translate-x-1/2';
+                endTick.style.left = `${width}px`;
+                endTick.innerText = `00:${pad2(Math.round(duration))}`;
+                timelineTicks.appendChild(endTick);
+            }
+        }
+
+        function syncRulerWithScroll() {
+            timelineTicks.style.transform = `translateX(${-timelineViewport.scrollLeft}px)`;
+        }
+
+        function renderBgmWaveform() {
+            bgmWaveform.innerHTML = '';
+            const bars = Math.max(100, Math.floor(getTimelineWidth() / 6));
+            const shot = getCurrentShot();
+            const seed = parseInt(String(shot.id).replace(/\D/g, ''), 10) || 1;
+
+            for (let i = 0; i < bars; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'bgm-wave';
+                const wave = Math.sin((i + seed) * 0.19) * 3 + Math.cos((i + seed * 2) * 0.09) * 2;
+                const h = Math.max(7, Math.min(18, Math.round(10 + wave)));
+                bar.style.height = h + 'px';
+                bgmWaveform.appendChild(bar);
+            }
+        }
+
+        function createVoiceWaveBars(container, width) {
+            container.innerHTML = '';
+            const count = Math.max(18, Math.floor(width / 5));
+
+            for (let i = 0; i < count; i++) {
+                const bar = document.createElement('div');
+                bar.className = 'voice-inner-bar';
+                const mod1 = Math.abs(Math.sin(i * 0.6));
+                const mod2 = Math.sin(i * 0.14);
+                const h = Math.max(8, Math.min(30, Math.round(10 + mod1 * 16 + mod2 * 5)));
+                bar.style.height = h + 'px';
+                container.appendChild(bar);
+            }
+        }
+
+        function getSegmentById(segmentId) {
+            return segments.find(segment => segment.id === segmentId) || null;
+        }
+
+        function getSegmentRects(excludeId = null) {
+            return segments
+                .filter(segment => segment.shotId === activeShotId && segment.id !== excludeId)
+                .map(segment => {
+                    const left = getSegmentLeft(segment);
+                    const width = getSegmentWidth(segment);
+                    return {
+                        id: segment.id,
+                        left,
+                        right: left + width,
+                        width
+                    };
+                })
+                .sort((a, b) => a.left - b.left);
+        }
+
+        function clampSegmentLeftByNeighbors(segmentId, left, width) {
+            const others = getSegmentRects(segmentId);
+            const maxGlobal = Math.max(0, getTimelineWidth() - width - 12);
+            const safeLeft = Math.max(0, Math.min(maxGlobal, left));
+
+            let insertIndex = others.findIndex(item => item.left >= safeLeft);
+            if (insertIndex < 0) insertIndex = others.length;
+
+            const prev = insertIndex > 0 ? others[insertIndex - 1] : null;
+            const next = insertIndex < others.length ? others[insertIndex] : null;
+
+            const minLeft = prev ? prev.right : 0;
+            const maxLeft = next ? next.left - width : maxGlobal;
+
+            if (minLeft > maxLeft) return Math.max(0, Math.min(maxGlobal, minLeft));
+            return Math.max(minLeft, Math.min(maxLeft, safeLeft));
+        }
+
+        function buildSnapCandidates(segmentId, width) {
+            const candidates = [];
+            const timelineWidth = getTimelineWidth();
+            const duration = getCurrentShotDuration();
+
+            candidates.push({ left: 0, key: '分镜起点' });
+            candidates.push({ left: timelineWidth - width, key: '分镜终点' });
+
+            for (let second = 0; second <= Math.floor(duration); second++) {
+                const anchor = (second / duration) * timelineWidth;
+                candidates.push({ left: anchor, key: `秒点:${second}` });
+                candidates.push({ left: anchor - width, key: `秒点右:${second}` });
+            }
+
+            getSegmentRects(segmentId).forEach(item => {
+                candidates.push({ left: item.right, key: `邻块右:${item.id}` });
+                candidates.push({ left: item.left - width, key: `邻块左:${item.id}` });
+            });
+
+            return candidates;
+        }
+
+        function applyMagneticSnap(segmentId, rawLeft, width) {
+            const baseLeft = clampSegmentLeftByNeighbors(segmentId, rawLeft, width);
+            const candidates = buildSnapCandidates(segmentId, width);
+            let best = { left: baseLeft, distance: SNAP_THRESHOLD + 1, key: null };
+
+            candidates.forEach(candidate => {
+                const legalLeft = clampSegmentLeftByNeighbors(segmentId, candidate.left, width);
+                const distance = Math.abs(legalLeft - baseLeft);
+                if (distance <= SNAP_THRESHOLD && distance < best.distance) {
+                    best = { left: legalLeft, distance, key: candidate.key };
+                }
+            });
+
+            return {
+                left: best.left,
+                snapped: !!best.key,
+                snapKey: best.key
+            };
+        }
+
+        function triggerSnapFeedback(segmentId, snapKey) {
+            if (!snapKey) return;
+            document.querySelectorAll(`[data-segment-id="${segmentId}"]`).forEach(node => {
+                node.classList.remove('segment-snap-hit');
+                // 强制重绘，保证重复吸附时动画能再次触发
+                void node.offsetWidth;
+                node.classList.add('segment-snap-hit');
+                setTimeout(() => node.classList.remove('segment-snap-hit'), 180);
+            });
+        }
+
+        function getCurrentPlayheadX() {
+            const inlineLeft = parseFloat(playhead.style.left);
+            if (!Number.isNaN(inlineLeft)) return inlineLeft;
+            return Math.round(getTimelineWidth() * 0.25);
+        }
+
+        function findInsertLeft(preferredLeft, width) {
+            const maxLeft = Math.max(0, getTimelineWidth() - width - 12);
+            const preferred = Math.max(0, Math.min(maxLeft, preferredLeft));
+            const occupied = getSegmentRects();
+
+            if (!occupied.length) return preferred;
+
+            let cursor = 0;
+            for (const block of occupied) {
+                const gapStart = cursor;
+                const gapEnd = block.left;
+                if (gapEnd - gapStart >= width) {
+                    if (preferred >= gapStart && preferred + width <= gapEnd) return preferred;
+                    if (preferred < gapStart) return gapStart;
+                }
+                cursor = Math.max(cursor, block.right);
+            }
+
+            if (maxLeft >= cursor) {
+                return Math.max(preferred, cursor);
+            }
+
+            return maxLeft;
+        }
+
+        function removeSegmentById(segmentId) {
+            const index = segments.findIndex(segment => segment.id === segmentId);
+            if (index < 0) return;
+            const targetShotId = segments[index].shotId;
+
+            segments.splice(index, 1);
+            renderSegments();
+
+            const visible = segments.filter(segment => segment.shotId === targetShotId);
+            if (!visible.length) {
+                activeSegmentId = '';
+                previewSubtitle.innerText = '';
+                subtitleEditor.value = '';
+                return;
+            }
+
+            const fallback = visible[Math.max(0, visible.length - 1)];
+            selectSegment(fallback.id, false);
+        }
+
+        function removeActiveSegment() {
+            if (!activeSegmentId) return;
+            removeSegmentById(activeSegmentId);
+        }
+
+        function addSegmentAtPlayhead() {
+            const defaultBaseWidth = Math.round(PIXELS_PER_SECOND * NEW_SEGMENT_SECONDS);
+            const newBaseWidth = Math.max(MIN_BLOCK_WIDTH, defaultBaseWidth);
+            const visualWidth = Math.max(MIN_BLOCK_WIDTH, Math.round((newBaseWidth / speechRate) * timelineZoom));
+            const preferredLeft = getCurrentPlayheadX();
+            const insertLeft = findInsertLeft(preferredLeft, visualWidth);
+            const newSegment = {
+                id: `s${++segmentSequence}`,
+                roleId: roles[0].id,
+                shotId: activeShotId,
+                text: '新字幕段落',
+                baseLeft: Math.round(insertLeft / timelineZoom),
+                baseWidth: newBaseWidth
+            };
+
+            segments.push(newSegment);
+            renderSegments();
+            selectSegment(newSegment.id, false);
+            syncActiveShot(activeShotId, {
+                scrollList: false,
+                resetTimeline: false,
+                movePlayhead: true,
+                updateMedia: false,
+                updateSubtitle: false
+            });
+        }
+
+        function renderSegments() {
+            voiceTrack.innerHTML = '';
+            subtitleTrack.innerHTML = '';
+
+            getVisibleSegments().forEach(segment => {
+                const width = getSegmentWidth(segment);
+                const left = getSegmentLeft(segment);
+
+                const voice = document.createElement('div');
+                voice.className = 'segment-block voice-block';
+                voice.dataset.segmentId = segment.id;
+                voice.style.left = left + 'px';
+                voice.style.width = width + 'px';
+
+                const innerWave = document.createElement('div');
+                innerWave.className = 'wave-inner';
+                createVoiceWaveBars(innerWave, width);
+                voice.appendChild(innerWave);
+
+                const subtitle = document.createElement('div');
+                subtitle.className = 'segment-block subtitle-block';
+                subtitle.dataset.segmentId = segment.id;
+                subtitle.style.left = left + 'px';
+                subtitle.style.width = width + 'px';
+                subtitle.innerHTML = `<span class="truncate">${segment.text}</span>`;
+
+                const voiceDeleteBtn = document.createElement('button');
+                voiceDeleteBtn.type = 'button';
+                voiceDeleteBtn.className = 'segment-delete-btn';
+                voiceDeleteBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+                voiceDeleteBtn.addEventListener('pointerdown', e => e.stopPropagation());
+                voiceDeleteBtn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    removeSegmentById(segment.id);
+                });
+
+                const subtitleDeleteBtn = document.createElement('button');
+                subtitleDeleteBtn.type = 'button';
+                subtitleDeleteBtn.className = 'segment-delete-btn';
+                subtitleDeleteBtn.innerHTML = '<i class="fas fa-xmark"></i>';
+                subtitleDeleteBtn.addEventListener('pointerdown', e => e.stopPropagation());
+                subtitleDeleteBtn.addEventListener('click', e => {
+                    e.stopPropagation();
+                    removeSegmentById(segment.id);
+                });
+
+                voice.appendChild(voiceDeleteBtn);
+                subtitle.appendChild(subtitleDeleteBtn);
+
+                voice.addEventListener('pointerdown', startDrag);
+                subtitle.addEventListener('pointerdown', startDrag);
+
+                voice.addEventListener('click', () => selectSegment(segment.id, true));
+                subtitle.addEventListener('click', () => selectSegment(segment.id, true));
+
+                voiceTrack.appendChild(voice);
+                subtitleTrack.appendChild(subtitle);
+            });
+
+            applySegmentHighlight();
+        }
+
+        function applySegmentHighlight() {
+            document.querySelectorAll('[data-segment-id]').forEach(el => {
+                const isActive = el.dataset.segmentId === activeSegmentId;
+                el.classList.toggle('segment-active', isActive);
+            });
+        }
+
+        function syncRoleHighlight() {
+            const active = segments.find(s => s.id === activeSegmentId);
+            const activeRoleId = active ? active.roleId : null;
+
+            document.querySelectorAll('.role-item').forEach(row => {
+                row.classList.toggle('active', row.dataset.roleId === activeRoleId);
+            });
+        }
+
+        function selectSegment(segmentId, focusRoleTab = false) {
+            activeSegmentId = segmentId;
+            applySegmentHighlight();
+            syncRoleHighlight();
+
+            const segment = segments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            if (segment.shotId) {
+                syncActiveShot(segment.shotId, {
+                    scrollList: false,
+                    resetTimeline: false,
+                    movePlayhead: false,
+                    updateMedia: false,
+                    updateSubtitle: false
+                });
+            }
+
+            subtitleEditor.value = segment.text;
+            previewSubtitle.innerText = segment.text;
+
+            const left = getSegmentLeft(segment);
+            syncPreview(left, getSegmentWidth(segment));
+            if (focusRoleTab) switchTab('role');
+        }
+
+        function syncPreview(left, width) {
+            const ratio = Math.max(0, Math.min(1, left / Math.max(1, getTimelineWidth() - width - 12)));
+            const shot = getCurrentShot();
+            const frames = Array.isArray(shot.frameSequence) && shot.frameSequence.length ? shot.frameSequence : [shot.frameId];
+            const idx = Math.min(frames.length - 1, Math.max(0, Math.floor(ratio * frames.length)));
+            const frameId = frames[idx];
+
+            if (mainVideo.dataset.frame !== String(frameId)) {
+                mainVideo.src = `https://picsum.photos/id/${frameId}/1280/720`;
+                mainVideo.dataset.frame = String(frameId);
+            }
+
+            playhead.style.left = Math.round(left + width / 2) + 'px';
+        }
+
+        function startDrag(event) {
+            const block = event.currentTarget;
+            const segmentId = block.dataset.segmentId;
+            const segment = segments.find(s => s.id === segmentId);
+            if (!segment) return;
+
+            event.preventDefault();
+            selectSegment(segmentId, false);
+
+            dragState = {
+                segmentId,
+                startClientX: event.clientX,
+                startLeft: getSegmentLeft(segment),
+                lastSnapKey: ''
+            };
+
+            document.querySelectorAll(`[data-segment-id="${segmentId}"]`).forEach(el => {
+                el.classList.add('segment-dragging');
+            });
+
+            window.addEventListener('pointermove', onDragMove);
+            window.addEventListener('pointerup', stopDrag);
+        }
+
+        function onDragMove(event) {
+            if (!dragState) return;
+
+            const segment = segments.find(s => s.id === dragState.segmentId);
+            if (!segment) return;
+
+            const delta = event.clientX - dragState.startClientX;
+            const rawLeft = dragState.startLeft + delta;
+            const steppedLeft = Math.round(rawLeft / SNAP_STEP) * SNAP_STEP;
+            const width = getSegmentWidth(segment);
+            const snapResult = applyMagneticSnap(segment.id, steppedLeft, width);
+            const nextLeft = snapResult.left;
+
+            if (snapResult.snapped && dragState.lastSnapKey !== snapResult.snapKey) {
+                triggerSnapFeedback(segment.id, snapResult.snapKey);
+            }
+            dragState.lastSnapKey = snapResult.snapKey || '';
+
+            segment.baseLeft = Math.round(nextLeft / timelineZoom);
+
+            document.querySelectorAll(`[data-segment-id="${segment.id}"]`).forEach(el => {
+                el.style.left = nextLeft + 'px';
+            });
+
+            syncPreview(nextLeft, width);
+
+            const viewportRect = timelineViewport.getBoundingClientRect();
+            if (event.clientX > viewportRect.right - 24) timelineViewport.scrollLeft += 12;
+            if (event.clientX < viewportRect.left + 24) timelineViewport.scrollLeft -= 12;
+        }
+
+        function stopDrag() {
+            if (!dragState) return;
+
+            document.querySelectorAll(`[data-segment-id="${dragState.segmentId}"]`).forEach(el => {
+                el.classList.remove('segment-dragging');
+            });
+
+            dragState = null;
+            window.removeEventListener('pointermove', onDragMove);
+            window.removeEventListener('pointerup', stopDrag);
+        }
+
+        function applyTimelineZoom(nextZoom) {
+            timelineZoom = Math.max(0.8, Math.min(1.8, Math.round(nextZoom * 10) / 10));
+            const width = getTimelineWidth();
+            timelineCanvas.style.width = width + 'px';
+            zoomLabel.innerText = timelineZoom.toFixed(1) + 'x';
+
+            renderTicks();
+            renderBgmWaveform();
+            renderSegments();
+            syncRulerWithScroll();
+            syncActiveShot(activeShotId, {
+                scrollList: false,
+                resetTimeline: false,
+                movePlayhead: true,
+                updateMedia: false,
+                updateSubtitle: false
+            });
+        }
+
+        zoomInBtn.addEventListener('click', () => applyTimelineZoom(timelineZoom + 0.1));
+        zoomOutBtn.addEventListener('click', () => applyTimelineZoom(timelineZoom - 0.1));
+        timelineViewport.addEventListener('scroll', syncRulerWithScroll);
+        addSegmentBtn.addEventListener('click', addSegmentAtPlayhead);
+
+        document.addEventListener('keydown', event => {
+            if (event.key !== 'Delete') return;
+            if (document.activeElement === subtitleEditor) return;
+            removeActiveSegment();
+        });
+
+        speechRateSlider.addEventListener('input', () => {
+            applySpeechRate(parseFloat(speechRateSlider.value));
+        });
+
+        speechRateResetBtn.addEventListener('click', () => {
+            applySpeechRate(1.0);
+        });
+
+        subtitleEditor.addEventListener('input', function () {
+            const shot = getShotById(activeShotId);
+            if (shot) shot.subtitle = this.value;
+
+            const segment = segments.find(s => s.id === activeSegmentId);
+            if (segment) {
+                segment.text = this.value;
+                const subtitleEl = subtitleTrack.querySelector(`[data-segment-id="${segment.id}"] span`);
+                if (subtitleEl) subtitleEl.innerText = this.value;
+            }
+
+            previewSubtitle.innerText = this.value;
+        });
+
+        function openVoiceDrawer(roleId) {
+            drawerRoleId = roleId;
+            const role = roles.find(r => r.id === roleId);
+            drawerRoleHint.innerText = role ? `为 ${role.name} 选择新音色` : '为角色选择新音色';
+            renderVoiceCards();
+            drawerOverlay.classList.add('show');
+            voiceDrawer.classList.add('show');
+        }
+
+        function closeVoiceDrawer() {
+            drawerOverlay.classList.remove('show');
+            voiceDrawer.classList.remove('show');
+            drawerRoleId = null;
+        }
+
+        function renderVoiceCards() {
+            voiceCardList.innerHTML = '';
+            const list = voiceLibrary[drawerSource] || [];
+
+            list.forEach(voice => {
+                const card = document.createElement('button');
+                card.type = 'button';
+                card.className = 'voice-card w-full text-left';
+                card.innerHTML = `
+                    <img src="${voice.avatar}" class="role-avatar" alt="${voice.name}">
+                    <span class="text-sm font-semibold">${voice.name}</span>
+                    <span class="play-mini"><i class="fas fa-play"></i></span>
+                `;
+
+                card.addEventListener('click', () => {
+                    if (!drawerRoleId) return;
+                    const role = roles.find(r => r.id === drawerRoleId);
+                    if (!role) return;
+
+                    role.tone = voice.name;
+                    renderRoleList();
+                    closeVoiceDrawer();
+                });
+
+                voiceCardList.appendChild(card);
+            });
+        }
+
+        drawerTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                drawerSource = tab.dataset.source;
+                drawerTabs.forEach(t => t.classList.toggle('active', t === tab));
+                renderVoiceCards();
+            });
+        });
+
+        closeDrawerBtn.addEventListener('click', closeVoiceDrawer);
+        drawerOverlay.addEventListener('click', closeVoiceDrawer);
+
+        function init() {
+            renderRoleList();
+            renderShotList();
+            switchTab('volume');
+            applyTimelineZoom(1);
+            applySpeechRate(1.0);
+            selectSegment(activeSegmentId, false);
+            syncActiveShot(activeShotId, {
+                scrollList: false,
+                scrollTimeline: false,
+                movePlayhead: true,
+                updateMedia: true,
+                updateSubtitle: true
+            });
+        }
+
+        init();
+    </script>
+</body>
+</html>

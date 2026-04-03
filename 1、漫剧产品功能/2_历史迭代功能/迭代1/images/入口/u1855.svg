@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" width="59.5px" height="31px" xmlns="http://www.w3.org/2000/svg">
+  <g transform="matrix(1 0 0 1 -605.5 -2249 )">
+    <path d="M 0 2.5  L 34.999999826724725 2.5  " stroke-width="5" stroke-dasharray="0" stroke="rgba(238, 15, 15, 1)" fill="none" transform="matrix(1 0 0 1 608 2262 )" class="stroke" />
+    <path d="M 32 14  L 44 2.5  L 32 -9  L 32 14  Z " fill-rule="nonzero" fill="rgba(238, 15, 15, 1)" stroke="none" transform="matrix(1 0 0 1 608 2262 )" class="arrowhead" />
+  </g>
+</svg>

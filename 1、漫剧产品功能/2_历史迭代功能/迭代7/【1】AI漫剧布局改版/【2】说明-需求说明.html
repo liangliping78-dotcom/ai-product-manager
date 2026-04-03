@@ -1,0 +1,1187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI漫剧首页改版说明</title>
+  <style>
+    :root{
+      --bg:#f3f6fb;
+      --card:#ffffff;
+      --line:#d8e1ee;
+      --text:#1b2431;
+      --sub:#5e6a7d;
+      --blue:#4e7df2;
+      --blue-deep:#3e67d8;
+      --blue-soft:#eef3ff;
+      --green-soft:#e9f8f2;
+      --amber-soft:#fff6e9;
+      --shadow:0 16px 40px rgba(15, 23, 42, 0.08);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"PingFang SC","Microsoft YaHei",sans-serif;
+      background:linear-gradient(180deg,#eef4ff 0,#f7f9fc 220px,#f3f6fb 100%);
+      color:var(--text);
+      line-height:1.7;
+    }
+    .wrap{
+      width:min(1280px,calc(100% - 36px));
+      margin:24px auto 60px;
+    }
+    .hero{
+      background:linear-gradient(135deg,#132033,#21436d 58%,#2e5ed6 100%);
+      color:#fff;
+      border-radius:28px;
+      padding:34px 36px;
+      box-shadow:var(--shadow);
+    }
+    .hero h1{
+      margin:0;
+      font-size:34px;
+      line-height:1.25;
+    }
+    .hero p{
+      margin:10px 0 0;
+      color:rgba(255,255,255,.86);
+      font-size:15px;
+    }
+    .hero-tags{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top:18px;
+    }
+    .hero-tag{
+      display:inline-flex;
+      align-items:center;
+      padding:8px 12px;
+      border-radius:999px;
+      background:rgba(255,255,255,.1);
+      font-size:13px;
+      color:rgba(255,255,255,.92);
+    }
+    .card{
+      margin-top:18px;
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:24px;
+      box-shadow:var(--shadow);
+      padding:24px 26px;
+    }
+    h2{
+      margin:0 0 14px;
+      font-size:24px;
+      line-height:1.3;
+    }
+    h3{
+      margin:24px 0 10px;
+      font-size:18px;
+      line-height:1.4;
+    }
+    h4{
+      margin:22px 0 10px;
+      font-size:16px;
+      line-height:1.5;
+    }
+    p{margin:0 0 8px}
+    ul,ol{margin:8px 0 10px 20px;padding:0}
+    li{margin:4px 0}
+    .toc{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+      gap:10px 14px;
+      list-style:none;
+      padding:0;
+      margin:0;
+    }
+    .toc a{
+      display:block;
+      text-decoration:none;
+      color:var(--text);
+      border:1px solid var(--line);
+      background:#f8fbff;
+      border-radius:16px;
+      padding:12px 14px;
+      font-size:14px;
+    }
+    .toc a:hover{border-color:#bfd0ef;background:#f0f6ff}
+    .summary-table,
+    .list-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:12px;
+      font-size:14px;
+    }
+    .summary-table th,
+    .summary-table td,
+    .list-table th,
+    .list-table td{
+      border:1px solid var(--line);
+      padding:12px 14px;
+      vertical-align:top;
+      text-align:left;
+    }
+    .summary-table thead th,
+    .list-table thead th{
+      background:linear-gradient(180deg,var(--blue),var(--blue-deep));
+      color:#fff;
+      font-weight:700;
+    }
+    .summary-table td:first-child{
+      width:120px;
+      background:#edf3ff;
+      font-weight:700;
+    }
+    .section-block{
+      margin-top:22px;
+      padding-top:18px;
+      border-top:1px dashed #d7e0ec;
+    }
+    .proto-box{
+      margin:12px 0 14px;
+      border:1px solid #31435f;
+      border-radius:24px;
+      min-height:280px;
+      background:
+        radial-gradient(circle at 18% 20%, rgba(0,255,255,.12), transparent 28%),
+        radial-gradient(circle at 82% 24%, rgba(120,119,255,.14), transparent 24%),
+        linear-gradient(180deg,#111827,#090c13 100%);
+      color:rgba(255,255,255,.9);
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 14px 36px rgba(0,0,0,.24);
+      position:relative;
+      overflow:hidden;
+    }
+    .proto-box::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(0deg,rgba(255,255,255,.02),rgba(255,255,255,0)),
+        repeating-linear-gradient(90deg,rgba(255,255,255,.02) 0,rgba(255,255,255,.02) 1px,transparent 1px,transparent 120px);
+      pointer-events:none;
+    }
+    .proto-head{
+      position:relative;
+      z-index:1;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      padding:18px 18px 0;
+      font-size:13px;
+    }
+    .proto-label{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:6px 10px;
+      border-radius:999px;
+      background:rgba(255,255,255,.08);
+    }
+    .proto-canvas{
+      position:relative;
+      z-index:1;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:220px;
+      padding:20px;
+      text-align:center;
+    }
+    .proto-title{
+      font-size:24px;
+      font-weight:700;
+      margin-bottom:8px;
+    }
+    .proto-sub{
+      color:rgba(255,255,255,.7);
+      font-size:14px;
+      max-width:760px;
+      margin:0 auto 14px;
+    }
+    .proto-note{
+      display:inline-block;
+      padding:8px 12px;
+      border-radius:14px;
+      background:rgba(78,125,242,.18);
+      border:1px solid rgba(139,170,255,.28);
+      color:#dfe8ff;
+      font-size:13px;
+    }
+    .detail-table{
+      width:100%;
+      border-collapse:collapse;
+      margin-top:10px;
+      font-size:14px;
+    }
+    .detail-table td{
+      border:1px solid var(--line);
+      padding:11px 14px;
+      vertical-align:top;
+    }
+    .detail-table td:first-child{
+      width:140px;
+      background:linear-gradient(180deg,var(--blue),var(--blue-deep));
+      color:#fff;
+      font-weight:700;
+      white-space:nowrap;
+    }
+    .half{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius:18px;
+      background:#f8fbff;
+      padding:16px 18px;
+    }
+    .mini h4{margin-top:0}
+    .tips{
+      padding:14px 16px;
+      background:var(--green-soft);
+      border:1px solid #cbead8;
+      border-radius:16px;
+      color:#15593f;
+      margin-top:12px;
+      font-size:14px;
+    }
+    .warn{
+      padding:14px 16px;
+      background:var(--amber-soft);
+      border:1px solid #f7d7a5;
+      border-radius:16px;
+      color:#9a5a0f;
+      margin-top:12px;
+      font-size:14px;
+    }
+    .subtle{
+      color:var(--sub);
+      font-size:14px;
+    }
+    .badge{
+      display:inline-block;
+      padding:2px 8px;
+      border-radius:999px;
+      background:#eef3ff;
+      color:#315ac7;
+      font-size:12px;
+      margin-right:6px;
+      margin-bottom:4px;
+    }
+    .footer{
+      margin-top:26px;
+      text-align:center;
+      color:var(--sub);
+      font-size:13px;
+    }
+    @media (max-width: 900px){
+      .wrap{width:min(100% - 20px,1280px);margin:16px auto 34px}
+      .hero,.card{padding:20px 16px}
+      .half{grid-template-columns:1fr}
+      .summary-table,
+      .list-table,
+      .detail-table{display:block;overflow:auto}
+      .detail-table td:first-child{min-width:120px}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>AI漫剧首页改版说明</h1>
+      <p>依据当前原型文件《ai_studio_code (版本1).html》整理，重点输出本次改版新增与调整内容，适用于产品、前端、后端、测试、数据埋点评审。</p>
+      <div class="hero-tags">
+        <span class="hero-tag">文档形态：评审说明 HTML</span>
+        <span class="hero-tag">重点：本次改版点细化</span>
+        <span class="hero-tag">覆盖：首页 / 快速模式 / 专业模式 / 侧边栏模块</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>目录</h2>
+      <ul class="toc">
+        <li><a href="#summary">1. 改版总览</a></li>
+        <li><a href="#create-home">2. 【创作】首页-功能说明</a></li>
+        <li><a href="#quick-mode">3. 【快速模式】工作台-功能说明</a></li>
+        <li><a href="#pro-mode">4. 【专业模式】工作台-功能说明</a></li>
+        <li><a href="#progress-common">5. 【公共生成态】进度与状态说明</a></li>
+        <li><a href="#assets">6. 【资产】-功能说明</a></li>
+        <li><a href="#subjects">7. 【主体库】-功能说明</a></li>
+        <li><a href="#voices">8. 【音色库】-功能说明</a></li>
+        <li><a href="#lang">9. 【语言】-功能说明</a></li>
+        <li><a href="#points">10. 【积分管理】-功能说明</a></li>
+        <li><a href="#profile">11. 【个人中心】-功能说明</a></li>
+        <li><a href="#appendix">12. 补充说明</a></li>
+      </ul>
+    </section>
+
+    <section class="card" id="summary">
+      <h2>1. 改版总览</h2>
+      <p class="subtle">本次重点是创作链路前端体验升级，底层业务逻辑整体复用；快速模式仍为 2 步，专业模式仍为 3 步，资产/主体库/音色库/语言/积分管理/个人中心均复用原逻辑承接。</p>
+      <table class="summary-table">
+        <thead>
+          <tr>
+            <th>功能概述</th>
+            <th>功能概述</th>
+            <th>本次改版点</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>创作</td>
+            <td>
+              1、首页支持提示词输入、风格/模型/规格选择、主体/图片/剧本上传、快速模式与专业模式切换；<br>
+              2、首页下方增加灵感广场，支持分类筛选、查看案例、一键做同款；<br>
+              3、进入工作台后支持上传图片/主体、填写提示词、参数配置、一键生成；<br>
+              4、快速模式为“九宫图预览→视频预览”2步；专业模式为“主体预览→分镜预览→视频预览”3步。
+            </td>
+            <td>
+              1、首页提示词入口改为对话式样式；<br>
+              2、首页下方增加灵感广场；<br>
+              3、点击首页发送按钮后直接进入工作台生成态；<br>
+              4、工作台左侧新增生成进度与阶段展示（剧本、素材、关键帧、合成）；<br>
+              5、工作台左上补充快速模式/专业模式切换与返回首页尖头入口；<br>
+              6、快速模式逻辑仍为2步，专业模式逻辑仍为3步，核心业务逻辑复用，仅前端展示升级；<br>
+              7、快速模式模型固定 STORY LAIHUA 1.0，专业模式模型为 LAIHUA3.0 / LAIHUA 2.0；<br>
+              8、步骤区新增预计消耗积分，左侧新增总积分展示，底部文案统一为“导出视频”；<br>
+              9、生成态取消独立取消按钮，统一改为左侧“取消生成”，点击后停止生成并返回编辑态。
+            </td>
+          </tr>
+          <tr>
+            <td>资产</td>
+            <td>查看已生成/草稿图片资产、视频资产、模板资产，支持复用历史产物。</td>
+            <td>复用原有逻辑，本次无核心业务改动；前端说明与弹层文案按当前首页改版统一风格承接。</td>
+          </tr>
+          <tr>
+            <td>主体库</td>
+            <td>支持选择角色模板、已保存主体，并将主体回填到当前创作草稿。</td>
+            <td>复用原有逻辑，本次无核心业务改动；新增与首页/工作台创作表单统一联动说明。</td>
+          </tr>
+          <tr>
+            <td>音色库</td>
+            <td>支持选择配音音色与旁白风格，可试听并绑定当前项目。</td>
+            <td>复用原有逻辑，本次无核心业务改动；补充视频合成阶段复用说明与异常提示逻辑。</td>
+          </tr>
+          <tr>
+            <td>语言</td>
+            <td>支持切换界面语言与生成语言。</td>
+            <td>复用原有逻辑，本次无核心业务改动；补充“切换不清空草稿、生成语言下次任务生效”说明。</td>
+          </tr>
+          <tr>
+            <td>积分管理</td>
+            <td>支持查看会员权益说明与积分使用情况。</td>
+            <td>复用原有逻辑，本次无核心业务改动；新增创作流程中的积分前置展示与步骤消耗展示。</td>
+          </tr>
+          <tr>
+            <td>个人中心</td>
+            <td>统一管理账号信息、历史项目、订单信息与基础设置。</td>
+            <td>复用原有逻辑，本次无核心业务改动；增加与历史项目继续编辑、导出承接的说明。</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="tips">说明口径：除创作主链路外，其它模块以“前端展示调整 / 文案承接完善 / 逻辑复用”为主，不新增核心后端业务分支。</div>
+    </section>
+
+    <section class="card" id="create-home">
+      <h2>2. 【创作】首页-功能说明</h2>
+
+      <h3>2.1 页面构成</h3>
+      <div class="proto-box">
+        <div class="proto-head">
+          <span class="proto-label">原型占位：首页整体</span>
+          <span>建议替换为：首页全屏截图</span>
+        </div>
+        <div class="proto-canvas">
+          <div>
+            <div class="proto-title">首页原型截图占位</div>
+            <div class="proto-sub">建议截图内容：标题区、快速/专业模式切换、对话式提示词输入框、参数工具条、灵感广场案例区。</div>
+            <div class="proto-note">可替换为：2.1 首页-页面构成截图</div>
+          </div>
+        </div>
+      </div>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>区域</th>
+            <th>内容</th>
+            <th>说明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>顶部创作区</td>
+            <td>模式切换 + 对话式提示词输入框 + 发送按钮 + 字数统计</td>
+            <td>创作启动主入口，发送后直接进入工作台。</td>
+          </tr>
+          <tr>
+            <td>参数工具条</td>
+            <td>风格、模型、规格、主体、图片、剧本</td>
+            <td>参数先在首页配置，再整体带入工作台。</td>
+          </tr>
+          <tr>
+            <td>灵感广场</td>
+            <td>筛选标签、样例卡片、做同款</td>
+            <td>降低创作门槛，为 prompt 提供复用入口。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>2.2 总体业务逻辑</h3>
+      <ol>
+        <li>用户进入首页，默认展示快速模式。</li>
+        <li>用户可在首页完成模式选择、提示词输入与参数配置。</li>
+        <li>系统实时校验提示词合法性，并同步更新字数和可生成状态。</li>
+        <li>若用户点击灵感广场“做同款”，系统自动将案例 prompt 回填到输入框。</li>
+        <li>点击发送后，当前模式、提示词、风格、模型、规格、主体/图片/剧本状态全部带入工作台。</li>
+        <li>进入工作台后默认进入生成态，不再停留首页。</li>
+      </ol>
+
+      <h3>2.3 逐功能说明</h3>
+
+      <div class="section-block">
+        <h4>2.3.1 模式切换</h4>
+        <div class="proto-box">
+          <div class="proto-head">
+            <span class="proto-label">原型占位：首页-模式切换</span>
+            <span>建议替换为：快速模式/专业模式按钮截图</span>
+          </div>
+          <div class="proto-canvas">
+            <div>
+              <div class="proto-title">模式切换截图占位</div>
+              <div class="proto-sub">建议展示：首页顶部快速模式、专业模式按钮，强调当前选中态与切换后的参数差异。</div>
+            </div>
+          </div>
+        </div>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用户可在首页切换快速模式和专业模式，决定后续创作流程、参数上限和工作台步骤结构。</td></tr>
+          <tr><td>用户操作</td><td>点击“快速模式”或“专业模式”按钮进行切换。</td></tr>
+          <tr><td>交互</td><td>切换后立即更新按钮高亮、输入框 placeholder、字数上限、剧本入口显隐、工作台步骤、模型选项、预计生成时长，并给出 toast 提示。</td></tr>
+          <tr><td>限制</td><td>快速模式强调效率，专业模式强调控制；切换时内容保留，但专业切快速若超过上限会被自动截断。</td></tr>
+          <tr><td>前端</td><td>首页与工作台模式状态共用一份 state；所有 `.studio-mode-btn` 同步 active 与 `aria-selected` 状态。</td></tr>
+          <tr><td>后端</td><td>接收 mode 字段，决定走快速工作流还是专业工作流；不需要额外新增模式判断页。</td></tr>
+          <tr><td>校验规则</td><td>快速模式提示词上限 100 字；专业模式提示词上限 1000 字；切换到快速模式时自动裁剪超长内容。</td></tr>
+          <tr><td>补充逻辑</td><td>快速模式工作台为 2 步；专业模式工作台为 3 步；专业模式显示剧本上传入口，快速模式隐藏。</td></tr>
+          <tr><td>测试用例</td><td>1. 快速→专业切换后剧本按钮出现；2. 专业→快速切换后超长提示词被截断；3. 模式切换后工作台步骤数量正确；4. ETA 与按钮文案联动正确。</td></tr>
+          <tr><td>埋点需求</td><td>`homepage_mode_switch`：记录 from_mode、to_mode、prompt_length、has_script、has_image。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.2 提示词输入</h4>
+        <div class="proto-box">
+          <div class="proto-head">
+            <span class="proto-label">原型占位：首页-提示词输入</span>
+            <span>建议替换为：输入框红框截图</span>
+          </div>
+          <div class="proto-canvas">
+            <div>
+              <div class="proto-title">提示词输入截图占位</div>
+              <div class="proto-sub">建议展示：对话式输入框、发送按钮、字数统计、参数工具条与下方灵感广场的相对位置。</div>
+              <div class="proto-note">可替换为：2.3.2 提示词输入截图</div>
+            </div>
+          </div>
+        </div>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>首页输入框是创作启动入口，用户输入创意后点击发送，直接进入工作台生成。</td></tr>
+          <tr><td>用户操作</td><td>在输入框填写提示词，点击发送按钮进入工作台。</td></tr>
+          <tr><td>交互</td><td>输入过程中实时刷新字数计数；首页与工作台输入框内容实时同步；禁用态按钮展示 title 提示原因。</td></tr>
+          <tr><td>限制</td><td>提示词不能为空，且不能包含敏感词。</td></tr>
+          <tr><td>前端</td><td>使用对话式输入框 + 发送按钮 + 字数计数；通过统一 `currentPromptText` 管理首页和工作台输入值。</td></tr>
+          <tr><td>后端</td><td>接收 prompt 作为主生成内容，参与脚本拆解、镜头规划、素材生成与后续成片任务。</td></tr>
+          <tr><td>校验规则</td><td>空值禁止；命中“血腥、暴力、色情、淫秽、违法、仇恨”等词时禁止生成。</td></tr>
+          <tr><td>补充逻辑</td><td>点击发送前若未通过校验，停留首页并提示错误；通过后才进入工作台。</td></tr>
+          <tr><td>测试用例</td><td>1. 空 prompt 禁止发送；2. 敏感词提示正确；3. 首页输入后工作台同步；4. 专业模式大于 100 字但小于 1000 字允许提交。</td></tr>
+          <tr><td>埋点需求</td><td>`homepage_prompt_input`、`homepage_prompt_send`：记录 mode、prompt_length、validation_result、blocked_reason。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.3 风格选择</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用于选择画面整体风格，如日式动漫、国风3D、CG电影、美式动漫、玄幻修仙、皮克斯风、赛博朋克。</td></tr>
+          <tr><td>用户操作</td><td>点击“风格”工具项，打开风格面板，选择具体风格。</td></tr>
+          <tr><td>交互</td><td>风格面板中当前选中项高亮；点击后立即回填到首页工具条与工作台表单。</td></tr>
+          <tr><td>限制</td><td>单次只能选择一个风格。</td></tr>
+          <tr><td>前端</td><td>通过样式弹层展示多个风格卡片，支持 hover 与 click 选中。</td></tr>
+          <tr><td>后端</td><td>生成任务接收 style 字段，用于约束视觉风格；逻辑复用现有风格参数承接。</td></tr>
+          <tr><td>校验规则</td><td>无强校验，默认值为“日式动漫”。</td></tr>
+          <tr><td>补充逻辑</td><td>风格切换不清空 prompt，也不影响上传图片和剧本状态。</td></tr>
+          <tr><td>测试用例</td><td>1. 风格选中后标签正确回填；2. 切换模式后风格保持；3. 返回首页后风格不丢失。</td></tr>
+          <tr><td>埋点需求</td><td>`homepage_style_select`：记录 style_name、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.4 模型选择</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用于选择当前创作模式下可用模型。</td></tr>
+          <tr><td>用户操作</td><td>首页展示模型标签，进入工作台后通过下拉选择模型。</td></tr>
+          <tr><td>交互</td><td>模式切换时模型文案与工作台模型下拉同步切换。</td></tr>
+          <tr><td>限制</td><td>快速模式仅 STORY LAIHUA 1.0；专业模式可选 LAIHUA3.0 / LAIHUA 2.0。</td></tr>
+          <tr><td>前端</td><td>工作台模型 options 根据 currentMode 动态生成；若当前模型不在目标模式列表内则自动重置为首选项。</td></tr>
+          <tr><td>后端</td><td>根据 model 决定调用不同模型链路；业务逻辑复用，不新增页面分支。</td></tr>
+          <tr><td>校验规则</td><td>提交生成时 model 必须属于当前 mode 的可选集合。</td></tr>
+          <tr><td>补充逻辑</td><td>首页主要做轻提示，真正的可切换入口以工作台下拉为准。</td></tr>
+          <tr><td>测试用例</td><td>1. 快速模式只显示 STORY LAIHUA 1.0；2. 专业模式显示两个模型；3. 专业切快速时模型自动回退。</td></tr>
+          <tr><td>埋点需求</td><td>`model_select`：记录 source_page、mode、model_name、previous_model。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.5 规格选择（分辨率 / 比例 / 时长）</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>统一设置清晰度、视频比例、秒数，并在首页工具条中摘要展示。</td></tr>
+          <tr><td>用户操作</td><td>点击规格入口打开规格弹层，选择 540p/720p/1080p、16:9/9:16，拖动时长滑杆。</td></tr>
+          <tr><td>交互</td><td>修改后摘要实时更新为“分辨率 · 比例 · 时长”；工作台表单同步更新。</td></tr>
+          <tr><td>限制</td><td>快速模式时长 4-8 秒；专业模式时长 4-90 秒。</td></tr>
+          <tr><td>前端</td><td>规格弹层中分组控制 + 滑杆控制；切换模式时自动 clamp 非法时长。</td></tr>
+          <tr><td>后端</td><td>接收 resolution、ratio、duration 作为生成任务参数；逻辑复用现有规格配置方案。</td></tr>
+          <tr><td>校验规则</td><td>resolution 仅允许 540p/720p/1080p；ratio 仅允许 16:9/9:16；duration 必须在模式范围内。</td></tr>
+          <tr><td>补充逻辑</td><td>首页设置与工作台设置共享状态，避免二次选择成本。</td></tr>
+          <tr><td>测试用例</td><td>1. 快速模式 duration 最大值为 8；2. 专业模式切换后 duration 最大值变为 90；3. 首页修改后工作台同步。</td></tr>
+          <tr><td>埋点需求</td><td>`spec_change`：记录 resolution、ratio、duration、mode、source_page。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.6 主体选择</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用于打开主体库，选择角色模板或已保存主体，并将主体应用到当前草稿。</td></tr>
+          <tr><td>用户操作</td><td>点击“主体”入口查看主体库内容。</td></tr>
+          <tr><td>交互</td><td>支持 hover 预览、click 固定弹层、点击外部关闭；侧边栏主体库弹层动作支持“回填当前主体”。</td></tr>
+          <tr><td>限制</td><td>生成中建议仅查看，不建议替换主体。</td></tr>
+          <tr><td>前端</td><td>主体入口与侧边栏主体库复用同一承接逻辑；弹层支持固定与关闭状态控制。</td></tr>
+          <tr><td>后端</td><td>主体选择结果以 subject_id / subject_meta 形式回填当前 draft；无新增底层流程。</td></tr>
+          <tr><td>校验规则</td><td>无必填校验；若未选择主体则按默认逻辑生成。</td></tr>
+          <tr><td>补充逻辑</td><td>主体回填后会沿用到分镜与视频生成阶段，保持角色一致性。</td></tr>
+          <tr><td>测试用例</td><td>1. 点击主体库可打开；2. 回填成功后 toast 正确；3. 返回首页主体状态保留。</td></tr>
+          <tr><td>埋点需求</td><td>`subject_library_open`、`subject_apply`：记录 source_page、mode、subject_id。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.7 上传图片</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用户可上传 1-4 张图片作为参考图，辅助生成角色、场景或构图。</td></tr>
+          <tr><td>用户操作</td><td>点击“图片”按钮，选择本地图片。</td></tr>
+          <tr><td>交互</td><td>上传成功后显示“已上传X张”；再次上传按覆盖/替换处理。</td></tr>
+          <tr><td>限制</td><td>最多 4 张；单张最大 10MB；仅支持 JPG/PNG/WEBP；分辨率至少 512×512。</td></tr>
+          <tr><td>前端</td><td>读取本地文件后先做格式、数量、大小与分辨率校验，校验失败保留旧状态并提示。</td></tr>
+          <tr><td>后端</td><td>接收图片资源并挂接到当前草稿；业务逻辑复用现有参考图上传能力。</td></tr>
+          <tr><td>校验规则</td><td>数量 > 4 拦截；格式非法拦截；大小超限拦截；分辨率不足拦截。</td></tr>
+          <tr><td>补充逻辑</td><td>图片上传不影响主体库逻辑，二者并行存在。</td></tr>
+          <tr><td>测试用例</td><td>1. 上传 5 张图片被拦截；2. 上传 11MB 图片被拦截；3. 上传成功后徽标正确；4. 再次上传能替换原状态。</td></tr>
+          <tr><td>埋点需求</td><td>`image_upload_click`、`image_upload_success`、`image_upload_fail`：记录 count、size、fail_reason、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.8 上传剧本</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>专业模式下新增剧本上传入口，用于承接长文本剧情创作。</td></tr>
+          <tr><td>用户操作</td><td>切到专业模式后点击“剧本”按钮上传文件。</td></tr>
+          <tr><td>交互</td><td>上传成功后显示已上传标识，并通过 title 展示文件名；失败时 toast 提示。</td></tr>
+          <tr><td>限制</td><td>仅专业模式显示；支持 txt / md / docx；文件大小不超过 10MB；空文件不允许。</td></tr>
+          <tr><td>前端</td><td>脚本上传入口默认隐藏，专业模式时显示；文件先本地校验再进入提交流程。</td></tr>
+          <tr><td>后端</td><td>接收 script 文件后完成解析并产出剧情摘要或镜头拆解中间结果。</td></tr>
+          <tr><td>校验规则</td><td>扩展名白名单校验 + size 校验 + 空文件校验。</td></tr>
+          <tr><td>补充逻辑</td><td>切回快速模式后剧本入口隐藏，但已上传状态不应直接丢失，回到专业模式可继续看到。</td></tr>
+          <tr><td>测试用例</td><td>1. 快速模式不显示剧本入口；2. 上传 docx 成功；3. 上传 pdf 失败；4. 空文件失败。</td></tr>
+          <tr><td>埋点需求</td><td>`script_upload_click`、`script_upload_success`、`script_upload_fail`：记录 file_ext、file_size、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.9 灵感广场</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>首页新增案例内容区，帮助用户浏览样例、筛选内容来源、快速复用 prompt。</td></tr>
+          <tr><td>用户操作</td><td>点击筛选标签切换案例；悬停卡片查看“做同款”。</td></tr>
+          <tr><td>交互</td><td>筛选后展示数量实时变化；卡片 hover 显示 CTA；点击做同款后 prompt 自动带入输入框。</td></tr>
+          <tr><td>限制</td><td>当前原型展示 8 个样例，筛选分类包括全部 / 平台精选 / 热门趋势 / 官方模板 / 用户精选 / 行业场景。</td></tr>
+          <tr><td>前端</td><td>通过 data-source 做本地过滤；不跳页、不刷新；仅更新当前展示列表与结果数量。</td></tr>
+          <tr><td>后端</td><td>正式版建议通过案例接口返回 source、cover、title、prompt、热度等字段；当前原型为静态数据。</td></tr>
+          <tr><td>校验规则</td><td>无强校验；若样例缺少 prompt，不允许执行做同款。</td></tr>
+          <tr><td>补充逻辑</td><td>做同款只回填 prompt，不直接自动生成，仍由用户点击发送启动工作台。</td></tr>
+          <tr><td>测试用例</td><td>1. 点击筛选后数量变化正确；2. 做同款后 prompt 正确回填；3. 做同款后输入框焦点正确落在末尾。</td></tr>
+          <tr><td>埋点需求</td><td>`inspiration_filter_click`、`inspiration_card_click`、`inspiration_make_same`：记录 filter_type、card_id、source。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>2.3.10 发送进入工作台</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>点击首页发送按钮后，直接从首页进入工作台，并默认进入生成态。</td></tr>
+          <tr><td>用户操作</td><td>在完成提示词与基础参数设置后点击发送按钮。</td></tr>
+          <tr><td>交互</td><td>首页淡出、工作台淡入；当前模式和草稿全部保留；进入后左侧先展示生成进度面板。</td></tr>
+          <tr><td>限制</td><td>仅在 prompt 合法时允许进入。</td></tr>
+          <tr><td>前端</td><td>通过隐藏/显示 landing-view 与 workbench-view 切换页面状态，不新开页面。</td></tr>
+          <tr><td>后端</td><td>正式版建议先创建草稿/任务，再进入工作台；当前原型以本地状态模拟承接。</td></tr>
+          <tr><td>校验规则</td><td>复用 prompt 校验规则。</td></tr>
+          <tr><td>补充逻辑</td><td>进入工作台后自动调用 openWorkbenchGeneration，直接展示左侧进度状态。</td></tr>
+          <tr><td>测试用例</td><td>1. 发送成功后直接进入工作台；2. 当前 mode 保持一致；3. 左侧不是编辑态而是生成态；4. 右侧步骤正确。</td></tr>
+          <tr><td>埋点需求</td><td>`homepage_enter_workbench`：记录 mode、prompt_length、has_image、has_script、style、model、resolution、ratio、duration。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="quick-mode">
+      <h2>3. 【快速模式】工作台-功能说明</h2>
+
+      <h3>3.1 左侧：首页带入参数表</h3>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>带入参数</th>
+            <th>来源</th>
+            <th>进入工作台后的表现</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>mode</td><td>首页快速模式</td><td>工作台左上 Tab 高亮“快速模式”，右侧展示 2 步流程。</td></tr>
+          <tr><td>prompt</td><td>首页输入框 / 灵感广场做同款</td><td>同步到工作台提示词输入框。</td></tr>
+          <tr><td>style</td><td>首页风格</td><td>继续作为当前草稿风格使用。</td></tr>
+          <tr><td>model</td><td>首页模型</td><td>固定为 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>resolution / ratio / duration</td><td>首页规格</td><td>带入工作台左侧配置区；duration 范围为 4-8 秒。</td></tr>
+          <tr><td>imageCount</td><td>首页图片上传状态</td><td>工作台“上传图片 / 主体”入口下方文案同步显示。</td></tr>
+          <tr><td>script</td><td>快速模式无剧本入口</td><td>工作台仍按快速模式逻辑，不展示剧本承接。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>3.2 总体业务逻辑</h3>
+      <ol>
+        <li>快速模式进入工作台后，右侧展示 2 步：九宫图预览 → 视频预览。</li>
+        <li>左侧默认先展示生成进度面板；用户取消生成后返回编辑态。</li>
+        <li>编辑态中可继续调整图片/主体、提示词、模型、时长、清晰度、宽高比后再次生成。</li>
+        <li>右侧步骤逻辑与原有 2 步流程复用，仅将关键帧预览更新为九宫图预览，并新增预计消耗积分展示。</li>
+      </ol>
+
+      <h3>3.3 逐功能说明</h3>
+
+      <div class="section-block">
+        <h4>3.3.1 快速模式切换</h4>
+        <div class="proto-box">
+          <div class="proto-head">
+            <span class="proto-label">原型占位：工作台-快速模式</span>
+            <span>建议替换为：左上模式 Tab + 右侧步骤条截图</span>
+          </div>
+          <div class="proto-canvas">
+            <div>
+              <div class="proto-title">快速模式截图占位</div>
+              <div class="proto-sub">建议展示：工作台左上快速模式高亮、右侧两步步骤条、左侧表单或进度区。</div>
+            </div>
+          </div>
+        </div>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用于在工作台内保持或切换到快速模式，承接两步工作流。</td></tr>
+          <tr><td>用户操作</td><td>点击左上“快速模式”Tab。</td></tr>
+          <tr><td>交互</td><td>Tab 高亮、右侧只显示九宫图预览与视频预览两步；脚本上传入口仍隐藏。</td></tr>
+          <tr><td>限制</td><td>时长最大 8 秒；模型固定 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>前端</td><td>复用 toggleMode + applyModeLogic，隐藏专业模式视图，显示 quick-tabs 与 quick-view-steps。</td></tr>
+          <tr><td>后端</td><td>逻辑复用快速工作流，无需新增核心接口。</td></tr>
+          <tr><td>校验规则</td><td>切入快速模式时，duration 自动 clamp 到 8 秒内；提示词自动裁剪到 100 字。</td></tr>
+          <tr><td>补充逻辑</td><td>快速模式步骤逻辑不变，仅前端展示升级为“九宫图预览”。</td></tr>
+          <tr><td>测试用例</td><td>1. 专业→快速时步骤从 3 步变 2 步；2. 模型自动切回 STORY LAIHUA 1.0；3. 时长超过 8 秒被压缩。</td></tr>
+          <tr><td>埋点需求</td><td>`workbench_mode_switch`：记录 from_mode、to_mode、source=workbench。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.2 返回首页尖头</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>工作台左上显示一个返回尖头，hover 展示“返回首页”，点击后回到首页。</td></tr>
+          <tr><td>用户操作</td><td>悬停查看提示，点击尖头返回首页。</td></tr>
+          <tr><td>交互</td><td>默认只展示图标；hover/focus 时展示 tooltip“返回首页”；点击后首页显现，草稿保留。</td></tr>
+          <tr><td>限制</td><td>返回首页不清空当前 prompt、参数、图片或剧本状态。</td></tr>
+          <tr><td>前端</td><td>通过 `handleSidebarNav('create')` 返回 landing-view；按钮为轻量 icon button，不单独占一行。</td></tr>
+          <tr><td>后端</td><td>无需新增接口；正式版若存在 draftId，可继续沿用草稿。</td></tr>
+          <tr><td>校验规则</td><td>无。</td></tr>
+          <tr><td>补充逻辑</td><td>返回首页会给 toast：“当前提示词与草稿已保留，可继续调整后再生成。”</td></tr>
+          <tr><td>测试用例</td><td>1. hover 有 tooltip；2. 点击后工作台隐藏首页显示；3. prompt 与参数保留。</td></tr>
+          <tr><td>埋点需求</td><td>`workbench_return_home_click`：记录 mode、generate_state、progress_pct。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.3 取消生成</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>生成态左侧头部按钮为“取消生成”，用于停止当前任务并返回编辑态。</td></tr>
+          <tr><td>用户操作</td><td>点击左侧进度面板头部“取消生成”。</td></tr>
+          <tr><td>交互</td><td>停止进度演示，进度面板隐藏，编辑表单重新显示，并弹出“已取消生成”提示。</td></tr>
+          <tr><td>限制</td><td>当前界面中不再保留独立底部“取消生成”按钮。</td></tr>
+          <tr><td>前端</td><td>点击执行 `closeWorkbenchGeneration(true)`；重置进度条与阶段状态。</td></tr>
+          <tr><td>后端</td><td>正式版应调用 cancel task 接口；当前原型为前端模拟停止。</td></tr>
+          <tr><td>校验规则</td><td>无。</td></tr>
+          <tr><td>补充逻辑</td><td>返回编辑态后，左上模式 Tab 仍显示，便于继续改参数再生成。</td></tr>
+          <tr><td>测试用例</td><td>1. 点击后回到编辑态；2. 进度归零；3. 底部无重复取消按钮；4. toast 内容正确。</td></tr>
+          <tr><td>埋点需求</td><td>`generate_cancel_click`：记录 mode、progress_pct、phase_name、has_image。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.4 上传图片 / 主体</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>工作台左侧通过统一入口承接图片上传与主体库打开。</td></tr>
+          <tr><td>用户操作</td><td>点击“上传图片 / 主体”，在菜单中选择“图片”或“主体库”。</td></tr>
+          <tr><td>交互</td><td>点击展开菜单，点击图片触发本地上传，点击主体库打开主体库弹层。</td></tr>
+          <tr><td>限制</td><td>图片校验规则与首页一致；主体库逻辑复用现有主体承接方案。</td></tr>
+          <tr><td>前端</td><td>通过下拉菜单承接 upload_action=image / subject。</td></tr>
+          <tr><td>后端</td><td>图片上传与主体回填均复用现有资源能力。</td></tr>
+          <tr><td>校验规则</td><td>图片规则同首页。</td></tr>
+          <tr><td>补充逻辑</td><td>已有图片上传状态时，入口下方文案改为“已上传 X 张，点击可替换图片”。</td></tr>
+          <tr><td>测试用例</td><td>1. 点击菜单展开收起正确；2. 点击图片触发上传；3. 点击主体库打开弹层。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_upload_menu_open`、`wb_upload_action_click`：记录 action_type、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.5 提示词输入</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>工作台中继续编辑 prompt，用于二次调整生成结果。</td></tr>
+          <tr><td>用户操作</td><td>输入、修改、点击垃圾桶清空。</td></tr>
+          <tr><td>交互</td><td>字数计数实时变化；清空后生成按钮禁用；与首页输入内容双向同步。</td></tr>
+          <tr><td>限制</td><td>快速模式上限 100 字。</td></tr>
+          <tr><td>前端</td><td>统一复用 `syncPrompt()` 同步首页/工作台值。</td></tr>
+          <tr><td>后端</td><td>作为重新生成任务的 prompt 主体。</td></tr>
+          <tr><td>校验规则</td><td>空值与敏感词规则复用首页。</td></tr>
+          <tr><td>补充逻辑</td><td>工作台不新增额外 prompt 字段，避免双份草稿状态。</td></tr>
+          <tr><td>测试用例</td><td>1. 工作台改 prompt 首页同步；2. 垃圾桶清空后按钮禁用；3. 敏感词拦截仍生效。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_prompt_input`、`wb_prompt_clear`：记录 prompt_length、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.6 模型选择</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>快速模式下工作台模型下拉仅展示 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>用户操作</td><td>查看下拉内容，可保持默认。</td></tr>
+          <tr><td>交互</td><td>无多选分支，主要用于对齐当前模式模型口径。</td></tr>
+          <tr><td>限制</td><td>仅 1 个模型。</td></tr>
+          <tr><td>前端</td><td>下拉 options 由 currentMode=quick 时动态生成单项。</td></tr>
+          <tr><td>后端</td><td>直连快速模式模型服务。</td></tr>
+          <tr><td>校验规则</td><td>提交值必须为 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>补充逻辑</td><td>切换到专业模式后此字段自动更新为专业模式模型集合。</td></tr>
+          <tr><td>测试用例</td><td>1. 快速模式只能选单模型；2. 切专业后模型列表变化。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_model_view`：可选；若有点击则记录 `wb_model_select`。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.7 时长设置</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>通过滑杆配置视频秒数。</td></tr>
+          <tr><td>用户操作</td><td>拖动时长滑杆。</td></tr>
+          <tr><td>交互</td><td>中间数值与两侧范围值实时更新。</td></tr>
+          <tr><td>限制</td><td>快速模式最短 4 秒，最长 8 秒。</td></tr>
+          <tr><td>前端</td><td>range 控件随 mode 变化更新 min/max/value。</td></tr>
+          <tr><td>后端</td><td>duration 作为任务时长参数。</td></tr>
+          <tr><td>校验规则</td><td>4 ≤ duration ≤ 8。</td></tr>
+          <tr><td>补充逻辑</td><td>切换模式时如果旧值不合法自动回归边界值。</td></tr>
+          <tr><td>测试用例</td><td>1. 最大值 8；2. 切专业后最大值变 90；3. 旧值越界被修正。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_duration_change`：记录 duration、mode。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.8 清晰度 / 3.3.9 宽高比</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>配置输出清晰度与视频画幅。</td></tr>
+          <tr><td>用户操作</td><td>通过下拉选择清晰度和宽高比。</td></tr>
+          <tr><td>交互</td><td>切换后左侧配置立即生效，并同步到首页工具条规格摘要。</td></tr>
+          <tr><td>限制</td><td>清晰度仅 540p/720p/1080p；宽高比仅 16:9 / 9:16。</td></tr>
+          <tr><td>前端</td><td>工作台下拉与首页规格状态共用 studioState。</td></tr>
+          <tr><td>后端</td><td>进入生成任务作为最终输出参数。</td></tr>
+          <tr><td>校验规则</td><td>仅允许白名单值。</td></tr>
+          <tr><td>补充逻辑</td><td>右侧九宫图与视频占位可按 ratio 后续扩展不同布局。</td></tr>
+          <tr><td>测试用例</td><td>1. 下拉值同步首页；2. 页面切回首页仍保留设置；3. 非法值不允许提交。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_resolution_change`、`wb_ratio_change`。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.10 一键生成 + 3.3.11 左侧总积分</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用户在编辑态点击“一键生成漫剧（50积分）”发起任务；左侧展示总积分用于成本预期管理。</td></tr>
+          <tr><td>用户操作</td><td>查看总积分，点击生成按钮。</td></tr>
+          <tr><td>交互</td><td>若 prompt 非法则按钮禁用；成功点击后进入生成进度态；总积分区域默认展示“🎺 总积分 97169”。</td></tr>
+          <tr><td>限制</td><td>当前原型未做实时扣减，仅做展示。</td></tr>
+          <tr><td>前端</td><td>生成按钮根据校验状态切 disabled；总积分为展示型信息块。</td></tr>
+          <tr><td>后端</td><td>正式版建议创建任务前先校验用户剩余积分是否足够。</td></tr>
+          <tr><td>校验规则</td><td>prompt 校验通过才允许生成；积分不足应在正式版后端返回错误。</td></tr>
+          <tr><td>补充逻辑</td><td>快速模式按钮文案保留 50 积分提示，增强成本感知。</td></tr>
+          <tr><td>测试用例</td><td>1. 空 prompt 禁用；2. 点击后进入生成态；3. 总积分样式正确显示。</td></tr>
+          <tr><td>埋点需求</td><td>`generate_click`：记录 mode、cost=50、total_points、has_image、style、model。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>3.3.12 步骤条 / 3.3.13 九宫图预览 / 3.3.14 视频预览 / 3.3.15 导出视频</h4>
+        <div class="half">
+          <div class="mini">
+            <h4>快速模式步骤条</h4>
+            <ul>
+              <li>Step 1：九宫图预览，预计消耗积分 20。</li>
+              <li>Step 2：视频预览，预计消耗积分 30。</li>
+              <li>步骤状态分为：当前步骤 / 待生成 / 已完成。</li>
+            </ul>
+          </div>
+          <div class="mini">
+            <h4>底部状态栏</h4>
+            <ul>
+              <li>生成队列：默认展示“空闲”。</li>
+              <li>预计渲染：快速模式默认约 25s。</li>
+              <li>按钮文案统一为“导出视频”。</li>
+            </ul>
+          </div>
+        </div>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>右侧用于展示快速模式两步工作流；九宫图用于确认镜头，视频预览用于承接成片，底部可导出视频。</td></tr>
+          <tr><td>用户操作</td><td>点击步骤卡切换查看区域；生成完成后点击导出视频。</td></tr>
+          <tr><td>交互</td><td>步骤卡切换时高亮选中态；九宫图区域默认 9 宫格占位，支持单镜头重生成入口占位；视频区在九宫图确认后承接生成结果。</td></tr>
+          <tr><td>限制</td><td>快速模式逻辑仍为 2 步，不新增新业务环节；当前原型播放器与导出为占位展示。</td></tr>
+          <tr><td>前端</td><td>复用 quick-tabs + quick-view-steps 结构；“关键帧预览”已改为“九宫图预览”；步骤区新增预计消耗积分。</td></tr>
+          <tr><td>后端</td><td>逻辑复用快速模式原有生成链路；导出视频可复用既有导出接口。</td></tr>
+          <tr><td>校验规则</td><td>导出应在任务成功后可用；原型阶段先展示按钮，不做实际锁定。</td></tr>
+          <tr><td>补充逻辑</td><td>底部按钮文案统一由“导出4K视频”调整为“导出视频”，与当前页面能力保持一致。</td></tr>
+          <tr><td>测试用例</td><td>1. Step1 文案为九宫图预览；2. 步骤成本显示正确；3. 底部按钮文案为导出视频；4. ETA 为 ~25s。</td></tr>
+          <tr><td>埋点需求</td><td>`quick_step_click`、`quick_frame_regenerate_click`、`export_video_click`。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="pro-mode">
+      <h2>4. 【专业模式】工作台-功能说明</h2>
+
+      <h3>4.1 左侧：首页带入参数表</h3>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>带入参数</th>
+            <th>来源</th>
+            <th>进入工作台后的表现</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>mode</td><td>首页专业模式</td><td>工作台左上 Tab 高亮“专业模式”，右侧展示 3 步流程。</td></tr>
+          <tr><td>prompt</td><td>首页长文本提示词</td><td>同步到工作台输入框，支持最长 1000 字。</td></tr>
+          <tr><td>script</td><td>首页剧本上传</td><td>继续保留已上传文件状态，用于分镜与成片生成。</td></tr>
+          <tr><td>model</td><td>首页模型</td><td>可选 LAIHUA3.0 / LAIHUA 2.0。</td></tr>
+          <tr><td>resolution / ratio / duration</td><td>首页规格</td><td>带入工作台左侧配置区；duration 范围 4-90 秒。</td></tr>
+          <tr><td>subject / image</td><td>首页主体/图片</td><td>继续参与主体预览与分镜生成。</td></tr>
+        </tbody>
+      </table>
+
+      <h3>4.2 总体业务逻辑</h3>
+      <ol>
+        <li>专业模式进入工作台后，右侧展示 3 步：主体预览 → 分镜预览 → 视频预览。</li>
+        <li>核心业务逻辑复用原有专业链路，不新增步骤，仅新增前端步骤条和积分展示。</li>
+        <li>左侧同样先展示生成态；取消生成后回到编辑态，可继续补充 prompt、时长或素材。</li>
+      </ol>
+
+      <h3>4.3 逐功能说明</h3>
+
+      <div class="section-block">
+        <h4>4.3.1 专业模式切换</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>用于切换到专业工作流，突出长 prompt、剧本、主体一致性与分镜控制。</td></tr>
+          <tr><td>用户操作</td><td>点击首页或工作台中的“专业模式”。</td></tr>
+          <tr><td>交互</td><td>右侧步骤由 2 步切换为 3 步；工作台显示专业模式预览分层；首页显示剧本入口。</td></tr>
+          <tr><td>限制</td><td>专业模式提示词最大 1000 字；duration 最大 90 秒。</td></tr>
+          <tr><td>前端</td><td>复用 toggleMode + applyModeLogic，显示 pro-tabs 与 pro-view-tabs。</td></tr>
+          <tr><td>后端</td><td>逻辑复用原有专业工作流。</td></tr>
+          <tr><td>校验规则</td><td>model 必须属于 LAIHUA3.0 / LAIHUA 2.0；duration 必须在 4-90 内。</td></tr>
+          <tr><td>补充逻辑</td><td>切换为专业模式后发送按钮与 ETA 逻辑同步切换。</td></tr>
+          <tr><td>测试用例</td><td>1. 切换后步骤数变 3；2. prompt 上限变 1000；3. 剧本入口显示。</td></tr>
+          <tr><td>埋点需求</td><td>`workbench_mode_switch`：to_mode=pro。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>4.3.2 模型选择</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>专业模式工作台支持选择 LAIHUA3.0 或 LAIHUA 2.0。</td></tr>
+          <tr><td>用户操作</td><td>通过模型下拉进行切换。</td></tr>
+          <tr><td>交互</td><td>切换后当前模型标签更新，继续作为当前任务参数。</td></tr>
+          <tr><td>限制</td><td>专业模式不展示 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>前端</td><td>根据 WORKBENCH_MODELS.pro 动态渲染下拉列表。</td></tr>
+          <tr><td>后端</td><td>根据模型版本走不同专业生成配置。</td></tr>
+          <tr><td>校验规则</td><td>值只能为 LAIHUA3.0 或 LAIHUA 2.0。</td></tr>
+          <tr><td>补充逻辑</td><td>切回快速模式时自动切回 STORY LAIHUA 1.0。</td></tr>
+          <tr><td>测试用例</td><td>1. 专业模式显示两个模型；2. 值切换后持久化；3. 切回快速自动回退。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_model_select`：记录 previous_model、current_model、mode=pro。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>4.3.3 时长 / 清晰度 / 宽高比 / 3.3.4 剧本上传</h4>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>专业模式下可承接长时长、更复杂分镜与剧本输入。</td></tr>
+          <tr><td>用户操作</td><td>调整时长、清晰度、宽高比；必要时上传剧本。</td></tr>
+          <tr><td>交互</td><td>工作台配置区与首页状态一致；剧本状态延续显示。</td></tr>
+          <tr><td>限制</td><td>duration 最大 90 秒；剧本规则与首页一致。</td></tr>
+          <tr><td>前端</td><td>复用统一表单结构，仅专业模式打开后显示更长时间范围与 3 步流程。</td></tr>
+          <tr><td>后端</td><td>剧本内容参与主体、分镜与视频阶段的结构化拆解。</td></tr>
+          <tr><td>校验规则</td><td>duration ∈ [4,90]；script 扩展名白名单校验。</td></tr>
+          <tr><td>补充逻辑</td><td>专业模式强调控制力，因此与主体一致性、分镜预览联动更强。</td></tr>
+          <tr><td>测试用例</td><td>1. 专业模式 duration 可到 90；2. 上传剧本后状态保留；3. 返回首页后仍保留。</td></tr>
+          <tr><td>埋点需求</td><td>`wb_duration_change`、`script_upload_success`、`script_upload_fail`。</td></tr>
+        </table>
+      </div>
+
+      <div class="section-block">
+        <h4>4.3.5 一键生成 + 3 步步骤条 + 主体/分镜/视频预览</h4>
+        <div class="proto-box">
+          <div class="proto-head">
+            <span class="proto-label">原型占位：专业模式工作台</span>
+            <span>建议替换为：右侧 3 步步骤条与内容区截图</span>
+          </div>
+          <div class="proto-canvas">
+            <div>
+              <div class="proto-title">专业模式截图占位</div>
+              <div class="proto-sub">建议展示：主体预览、分镜预览、视频预览三步，步骤条上方的预计消耗积分，以及左侧配置区。</div>
+            </div>
+          </div>
+        </div>
+        <table class="detail-table">
+          <tr><td>功能说明</td><td>专业模式右侧工作流为主体预览 → 分镜预览 → 视频预览，逻辑复用原有 3 步流程，仅做前端分层与状态增强。</td></tr>
+          <tr><td>用户操作</td><td>点击步骤条切换查看主体区、分镜区、视频区；点击一键生成触发专业工作流。</td></tr>
+          <tr><td>交互</td><td>每个步骤显示 Step 序号与预计消耗积分；主体预览区内展示单独进度条百分比；分镜区为双卡占位；视频区为播放器占位。</td></tr>
+          <tr><td>限制</td><td>步骤顺序与原逻辑保持一致，不新增新业务环节。</td></tr>
+          <tr><td>前端</td><td>使用 pro-tabs + pro-content-subject/storyboard/video；进度条通过 `setProGenProgress` 同步阶段。</td></tr>
+          <tr><td>后端</td><td>继续按专业工作流生成主体一致性、分镜结果与最终视频，接口逻辑复用。</td></tr>
+          <tr><td>校验规则</td><td>同专业模式通用校验。</td></tr>
+          <tr><td>补充逻辑</td><td>步骤成本展示：主体预览 20、分镜预览 30、视频预览 50；底部统一为“导出视频”。</td></tr>
+          <tr><td>测试用例</td><td>1. 步骤条为 3 步；2. 标题与成本正确；3. 主体区有独立进度条；4. 底部按钮文案为导出视频。</td></tr>
+          <tr><td>埋点需求</td><td>`pro_step_click`、`generate_click`、`export_video_click`、`pro_preview_view`。</td></tr>
+        </table>
+      </div>
+    </section>
+
+    <section class="card" id="progress-common">
+      <h2>5. 【公共生成态】进度与状态说明</h2>
+      <div class="proto-box">
+        <div class="proto-head">
+          <span class="proto-label">原型占位：左侧生成进度</span>
+          <span>建议替换为：左侧生成进度面板截图</span>
+        </div>
+        <div class="proto-canvas">
+          <div>
+            <div class="proto-title">生成进度截图占位</div>
+            <div class="proto-sub">建议展示：生成进度标题、取消生成按钮、百分比、阶段文案、阶段列表、阶段节点状态。</div>
+          </div>
+        </div>
+      </div>
+      <p>左侧生成态为快速模式与专业模式共用的公共承接区，核心目的是把“当前生成到哪一步了”讲清楚，并允许用户中断返回编辑态。</p>
+      <table class="list-table">
+        <thead>
+          <tr>
+            <th>进度区模块</th>
+            <th>状态说明</th>
+            <th>展示文案</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>总进度</td>
+            <td>0%-100%</td>
+            <td>显示总进度百分比与跑动进度条。</td>
+          </tr>
+          <tr>
+            <td>当前阶段</td>
+            <td>随百分比切换</td>
+            <td>等待开始生成 / 剧本拆解 / 素材生成 / 关键帧组装 / 合成导出 / 生成完成。</td>
+          </tr>
+          <tr>
+            <td>阶段脚注</td>
+            <td>阶段说明</td>
+            <td>解析设定与镜头 / 补齐主体和场景 / 收束构图和节奏 / 准备最终输出。</td>
+          </tr>
+          <tr>
+            <td>阶段列表</td>
+            <td>待开始 / 进行中 / 已完成</td>
+            <td>剧本拆解、素材生成、关键帧组装、合成导出。</td>
+          </tr>
+          <tr>
+            <td>ETA</td>
+            <td>按阶段变化</td>
+            <td>未开始 / 约22s / 约16s / 约9s / 约3s / 已完成。</td>
+          </tr>
+        </tbody>
+      </table>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>公共生成态用于统一管理工作台左侧“生成中”状态。</td></tr>
+        <tr><td>用户操作</td><td>用户主要查看进度；如需中断，点击“取消生成”。</td></tr>
+        <tr><td>交互</td><td>根据进度百分比自动刷新当前阶段、阶段列表、步骤条状态、ETA 与百分比文本。</td></tr>
+        <tr><td>限制</td><td>当前原型为前端模拟进度，非真实异步任务。</td></tr>
+        <tr><td>前端</td><td>通过 `startWorkbenchDemoProgress / stopWorkbenchDemoProgress / setProGenProgress` 统一更新所有状态节点。</td></tr>
+        <tr><td>后端</td><td>正式版建议提供标准任务进度接口，返回 phase_code、phase_text、progress_pct、eta。</td></tr>
+        <tr><td>校验规则</td><td>无。</td></tr>
+        <tr><td>补充逻辑</td><td>ESC 可作为返回编辑态快捷键；取消生成后 progress 重置为 0。</td></tr>
+        <tr><td>测试用例</td><td>1. 进度推进时阶段自动变化；2. 取消后所有阶段重置；3. 快速/专业右侧步骤条状态同步变化。</td></tr>
+        <tr><td>埋点需求</td><td>`generate_progress_view`、`generate_progress_phase_change`、`generate_cancel_click`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="assets">
+      <h2>6. 【资产】-功能说明</h2>
+      <div class="proto-box">
+        <div class="proto-head">
+          <span class="proto-label">原型占位：资产弹层</span>
+          <span>建议替换为：侧边栏点击资产后的弹层截图</span>
+        </div>
+        <div class="proto-canvas">
+          <div>
+            <div class="proto-title">资产模块截图占位</div>
+            <div class="proto-sub">建议展示：侧边栏资产入口、弹层标题、图片资产/视频资产动作按钮。</div>
+          </div>
+        </div>
+      </div>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>用于查看当前账号下的图片资产、视频资产、模板资产，支持复用历史结果，不打断当前创作。</td></tr>
+        <tr><td>用户操作</td><td>点击侧边栏“资产”，在弹层中选择“查看图片资产”或“查看视频资产”。</td></tr>
+        <tr><td>交互</td><td>打开资产说明弹层；当前原型点击动作后以 toast 提示承接。</td></tr>
+        <tr><td>限制</td><td>本次无核心业务改动，复用原有资产逻辑。</td></tr>
+        <tr><td>前端</td><td>资产入口只新增与首页改版统一风格的弹层承接，不打断当前草稿。</td></tr>
+        <tr><td>后端</td><td>复用已有资产列表接口；正式版需返回图片、视频、模板三类资产。</td></tr>
+        <tr><td>校验规则</td><td>无。</td></tr>
+        <tr><td>补充逻辑</td><td>后续可将资产直接回填到创作工作台，当前原型先保留说明性承接。</td></tr>
+        <tr><td>测试用例</td><td>1. 点击资产打开弹层；2. 点击图片资产/视频资产弹出对应 toast；3. 关闭弹层不影响草稿。</td></tr>
+        <tr><td>埋点需求</td><td>`side_nav_click`、`asset_dialog_open`、`asset_action_click`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="subjects">
+      <h2>7. 【主体库】-功能说明</h2>
+      <div class="proto-box">
+        <div class="proto-head">
+          <span class="proto-label">原型占位：主体库弹层</span>
+          <span>建议替换为：主体库入口与回填动作截图</span>
+        </div>
+        <div class="proto-canvas">
+          <div>
+            <div class="proto-title">主体库截图占位</div>
+            <div class="proto-sub">建议展示：首页主体按钮、工作台上传菜单中的主体库入口、侧边栏主体库弹层。</div>
+          </div>
+        </div>
+      </div>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>支持选择平台主体模板或已保存主体，并回填到当前草稿。</td></tr>
+        <tr><td>用户操作</td><td>可从首页主体入口、工作台上传菜单、侧边栏主体库三处进入。</td></tr>
+        <tr><td>交互</td><td>点击“回填当前主体”后提示“主体已回填”，后续分镜与视频生成复用该主体。</td></tr>
+        <tr><td>限制</td><td>生成中建议只查看，不建议中途替换主体。</td></tr>
+        <tr><td>前端</td><td>主体库入口多处复用同一弹层动作；支持 hover 查看与 click 固定。</td></tr>
+        <tr><td>后端</td><td>复用原主体库数据源，回填时将 subject_id 绑定到当前 draft。</td></tr>
+        <tr><td>校验规则</td><td>无必填。</td></tr>
+        <tr><td>补充逻辑</td><td>本次无核心逻辑改动，重点在于首页与工作台的入口统一。</td></tr>
+        <tr><td>测试用例</td><td>1. 三处入口均能打开主体库；2. 回填后 toast 正确；3. 回填后再次生成主体继续生效。</td></tr>
+        <tr><td>埋点需求</td><td>`subject_library_open`、`subject_apply`、`subject_history_view`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="voices">
+      <h2>8. 【音色库】-功能说明</h2>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>支持选择配音音色与旁白风格，并绑定到当前项目，供视频合成阶段复用。</td></tr>
+        <tr><td>用户操作</td><td>点击侧边栏“音色库”，选择“绑定当前音色”或“试听热门音色”。</td></tr>
+        <tr><td>交互</td><td>绑定后 toast 提示“当前项目已绑定示例音色，视频阶段可继续使用”。</td></tr>
+        <tr><td>限制</td><td>当前原型主要保留入口与说明，不承接真实试听流程。</td></tr>
+        <tr><td>前端</td><td>音色库入口复用弹层承接，不新增独立页面。</td></tr>
+        <tr><td>后端</td><td>复用原音色库与绑定逻辑；正式版若模型不支持音色需返回能力校验提示。</td></tr>
+        <tr><td>校验规则</td><td>若当前模型不支持配音，系统在正式版生成前再次提醒。</td></tr>
+        <tr><td>补充逻辑</td><td>本次无核心逻辑改动，重点在于与创作项目绑定关系说明补齐。</td></tr>
+        <tr><td>测试用例</td><td>1. 点击音色库弹层打开；2. 绑定音色成功；3. 试听入口提示正确。</td></tr>
+        <tr><td>埋点需求</td><td>`voice_library_open`、`voice_bind_click`、`voice_preview_click`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="lang">
+      <h2>9. 【语言】-功能说明</h2>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>支持切换界面语言与生成语言，界面语言即时生效，生成语言在下次提交任务时生效。</td></tr>
+        <tr><td>用户操作</td><td>点击侧边栏“语言”，选择切换到简体中文或 English。</td></tr>
+        <tr><td>交互</td><td>切换后 toast 提示语言状态；当前草稿保持不变。</td></tr>
+        <tr><td>限制</td><td>生成中不建议修改项目语言，避免前后内容不一致。</td></tr>
+        <tr><td>前端</td><td>语言入口复用说明弹层；原型先用 toast 承接状态反馈。</td></tr>
+        <tr><td>后端</td><td>正式版建议区分 ui_lang 与 generation_lang 两个字段。</td></tr>
+        <tr><td>校验规则</td><td>切换语言不清空 prompt、图片、剧本和其它配置。</td></tr>
+        <tr><td>补充逻辑</td><td>本次无核心逻辑改动，重点是语言切换规则说明更完整。</td></tr>
+        <tr><td>测试用例</td><td>1. 切换简中提示正确；2. 切换英文提示正确；3. 切换后草稿不丢失。</td></tr>
+        <tr><td>埋点需求</td><td>`lang_dialog_open`、`lang_switch_click`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="points">
+      <h2>10. 【积分管理】-功能说明</h2>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>展示会员权益、剩余积分、积分明细与高优先级生成能力，并在创作链路中强化积分感知。</td></tr>
+        <tr><td>用户操作</td><td>点击侧边栏“积分管理/会员中心”，查看权益说明或积分明细。</td></tr>
+        <tr><td>交互</td><td>首页侧边栏和工作台左侧均展示积分信息；步骤条显示预计消耗积分；生成按钮显示积分消耗文案。</td></tr>
+        <tr><td>限制</td><td>当前原型不做真实积分扣减，仅做展示。</td></tr>
+        <tr><td>前端</td><td>新增工作台左侧“🎺 总积分 97169”展示；步骤卡新增预计消耗积分；底部状态栏保留导出视频。</td></tr>
+        <tr><td>后端</td><td>正式版建议在任务创建前做积分充足性校验，并返回 cost、balance、权益信息。</td></tr>
+        <tr><td>校验规则</td><td>原型无积分扣减校验；正式版需校验余额是否足够发起任务。</td></tr>
+        <tr><td>补充逻辑</td><td>本次无核心业务改动，但积分展示从会员中心延展到了创作链路本身。</td></tr>
+        <tr><td>测试用例</td><td>1. 左侧总积分显示正确；2. 步骤成本显示正确；3. 会员中心动作提示正确。</td></tr>
+        <tr><td>埋点需求</td><td>`member_dialog_open`、`member_benefit_click`、`member_points_click`、`generate_cost_exposure`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="profile">
+      <h2>11. 【个人中心】-功能说明</h2>
+      <table class="detail-table">
+        <tr><td>功能说明</td><td>统一管理账号信息、历史项目、订单信息与基础设置，后续承接继续编辑与重新导出。</td></tr>
+        <tr><td>用户操作</td><td>点击侧边栏头像或个人中心入口。</td></tr>
+        <tr><td>交互</td><td>当前原型打开说明弹层，提供“查看历史项目”“查看订单信息”动作。</td></tr>
+        <tr><td>限制</td><td>当前原型不展开真实列表页。</td></tr>
+        <tr><td>前端</td><td>个人中心入口延续首页改版整体风格，采用弹层说明承接。</td></tr>
+        <tr><td>后端</td><td>复用历史项目、订单、账号信息接口；正式版需提供项目继续编辑入口。</td></tr>
+        <tr><td>校验规则</td><td>无。</td></tr>
+        <tr><td>补充逻辑</td><td>与首页改版相关的主要是“历史项目可继续编辑并重新导出”的承接说明。</td></tr>
+        <tr><td>测试用例</td><td>1. 点击头像打开个人中心说明；2. 历史项目按钮提示正确；3. 订单信息按钮提示正确。</td></tr>
+        <tr><td>埋点需求</td><td>`profile_open`、`profile_projects_click`、`profile_orders_click`。</td></tr>
+      </table>
+    </section>
+
+    <section class="card" id="appendix">
+      <h2>12. 补充说明</h2>
+      <div class="half">
+        <div class="mini">
+          <h4>12.1 本次必须覆盖的新增内容清单</h4>
+          <ul>
+            <li>首页对话式提示词输入框。</li>
+            <li>首页灵感广场 + 分类筛选 + 做同款。</li>
+            <li>首页发送直接进入工作台生成态。</li>
+            <li>工作台左上快速模式 / 专业模式 Tab 恢复。</li>
+            <li>工作台返回首页尖头 + hover 提示。</li>
+            <li>左侧公共生成进度面板。</li>
+            <li>左侧“取消生成”替代原“返回编辑”。</li>
+            <li>快速模式：九宫图预览 → 视频预览。</li>
+            <li>专业模式：主体预览 → 分镜预览 → 视频预览。</li>
+            <li>步骤卡预计消耗积分。</li>
+            <li>左侧新增总积分展示。</li>
+            <li>底部按钮统一为导出视频。</li>
+            <li>快速/专业模式模型范围调整。</li>
+            <li>试用样例入口已删除，不再写入当前说明。</li>
+          </ul>
+        </div>
+        <div class="mini">
+          <h4>12.2 建议后续补充项</h4>
+          <ul>
+            <li>真实任务态：排队中 / 生成中 / 失败 / 取消 / 完成。</li>
+            <li>真实积分扣减、积分不足、任务重试说明。</li>
+            <li>真实截图替换当前文档中的“原型占位图”。</li>
+            <li>真实埋点字段文档，如 user_id、draft_id、task_id、source_page、ab_bucket。</li>
+            <li>真实接口字段定义和错误码表。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="warn">当前文档重点是“本次改版点细化说明”，页面结构、表格口径、前后端/测试/埋点已按当前原型新增内容全量覆盖；正式评审前建议补入对应原型截图替换占位块。</div>
+    </section>
+
+    <div class="footer">输出依据：/Users/laihuaqianhai/Desktop/产品经理文件/1、漫剧产品功能/2_历史迭代功能/迭代7/4、漫剧首页改版/ai_studio_code (版本1).html 当前页面逻辑整理。</div>
+  </div>
+</body>
+</html>

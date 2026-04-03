@@ -1,0 +1,995 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI 漫剧 - 主体预览</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-1: #0b0720;
+            --bg-2: #120735;
+            --card-bg: rgba(36, 40, 68, 0.92);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f2f4ff;
+            --text-sub: #aeb4d6;
+            --text-muted: #8b91b1;
+            --primary-gradient: linear-gradient(90deg, #ff53d9 0%, #7b42ff 100%);
+            --button-gradient: linear-gradient(90deg, #f7ce64 0%, #ff4fd8 35%, #6647ff 100%);
+            --tag-yellow: #f2cd53;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+            margin: 0;
+        }
+
+        body {
+            color: var(--text-main);
+            font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+            background:
+                radial-gradient(1200px 600px at -5% -10%, #2d0a58 0%, transparent 60%),
+                radial-gradient(900px 500px at 95% 110%, #2f0858 0%, transparent 55%),
+                linear-gradient(180deg, var(--bg-2) 0%, #070714 52%, #09071b 100%);
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background-image:
+                radial-gradient(1px 1px at 20% 30%, rgba(255, 255, 255, 0.22), transparent),
+                radial-gradient(1px 1px at 70% 10%, rgba(255, 255, 255, 0.17), transparent),
+                radial-gradient(1px 1px at 85% 60%, rgba(255, 255, 255, 0.15), transparent),
+                radial-gradient(1px 1px at 40% 75%, rgba(255, 255, 255, 0.15), transparent);
+            opacity: 0.5;
+            z-index: -1;
+        }
+
+        .topbar {
+            height: 76px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            background: rgba(8, 7, 21, 0.74);
+            backdrop-filter: blur(6px);
+            position: sticky;
+            top: 0;
+            z-index: 60;
+        }
+
+        .topbar-inner {
+            max-width: 1360px;
+            height: 100%;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .back-link {
+            color: #f4f6ff;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 32px;
+            line-height: 1;
+            text-decoration: none;
+        }
+
+        .back-link span {
+            font-size: 32px;
+        }
+
+        .stepper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .step-pill {
+            min-width: 162px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #c6cbe8;
+            font-size: 26px;
+            font-weight: 600;
+            padding: 0 18px;
+        }
+
+        .step-pill.active {
+            background: var(--primary-gradient);
+            color: #fff;
+            border-color: transparent;
+        }
+
+        .step-num {
+            min-width: 56px;
+            height: 32px;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #b7bcda;
+            font-size: 22px;
+            font-weight: 700;
+            padding: 0 18px;
+        }
+
+        .top-actions {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .coin-pill {
+            min-width: 106px;
+            height: 42px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            color: #ff9edf;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 24px;
+            font-weight: 700;
+            background: rgba(20, 19, 41, 0.9);
+            padding: 0 14px;
+        }
+
+        .generate-btn {
+            height: 44px;
+            border-radius: 12px;
+            border: none;
+            padding: 0 22px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(90deg, #f7cb67 0%, #ff5bc9 35%, #5f47ff 100%);
+        }
+
+        .page-wrap {
+            max-width: 1360px;
+            margin: 28px auto 48px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            gap: 24px;
+            align-items: start;
+        }
+
+        .left-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .info-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 26px 28px 24px;
+            position: relative;
+            box-shadow: 0 18px 48px rgba(0, 0, 0, 0.25);
+        }
+
+        .section-tag {
+            position: absolute;
+            top: -8px;
+            left: 0;
+            height: 32px;
+            border-radius: 0 999px 999px 0;
+            background: var(--tag-yellow);
+            color: #43380c;
+            display: inline-flex;
+            align-items: center;
+            padding: 0 14px;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+        .card-content {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 468px);
+            gap: 26px;
+            margin-top: 8px;
+        }
+
+        .field-block {
+            margin-bottom: 22px;
+        }
+
+        .field-block:last-child {
+            margin-bottom: 0;
+        }
+
+        .field-title {
+            font-size: 26px;
+            font-weight: 700;
+            color: #f5f7ff;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .field-text {
+            margin: 0;
+            color: var(--text-sub);
+            font-size: 20px;
+            line-height: 1.7;
+            letter-spacing: 0.1px;
+        }
+
+        .extracted-tags {
+            display: block;
+            margin-top: 4px;
+            font-size: 14px;
+            font-style: italic;
+            color: #8f99bf;
+            line-height: 1.5;
+            letter-spacing: 0;
+        }
+
+        .preview-col {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .preview-title {
+            color: #f4f6ff;
+            font-size: 24px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .subject-view-grid {
+            width: 100%;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .subject-view-item {
+            position: relative;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4.2;
+        }
+
+        .subject-view-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .action-row {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .action-btn {
+            height: 44px;
+            border-radius: 10px;
+            border: 1px solid transparent;
+            padding: 0 18px;
+            font-size: 24px;
+            font-weight: 700;
+            color: #e7ebff;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(143, 149, 183, 0.3);
+        }
+
+        .action-btn.primary {
+            min-width: 128px;
+            background: var(--button-gradient);
+            color: #fff;
+        }
+
+        .action-btn.square {
+            width: 58px;
+            padding: 0;
+        }
+
+        .right-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            position: sticky;
+            top: 96px;
+        }
+
+        .side-card {
+            background: rgba(29, 33, 58, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 16px 38px rgba(0, 0, 0, 0.35);
+        }
+
+        .side-title {
+            margin: 0;
+            color: #f8f8ff;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        .side-desc {
+            margin: 6px 0 0;
+            color: #9ea4c6;
+            font-size: 12px;
+            line-height: 1.6;
+        }
+
+        .view-grid {
+            margin-top: 12px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .in-card-view-grid {
+            width: 100%;
+            margin-top: 0;
+            position: relative;
+        }
+
+        .in-card-view-grid::after {
+            content: "૮ ˶ᵔ ᵕ ᵔ˶ ა AI 正在对齐视角...";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            padding: 4px 10px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #ffeaff;
+            background: rgba(17, 12, 34, 0.72);
+            border: 1px solid rgba(255, 129, 216, 0.45);
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+            white-space: nowrap;
+            pointer-events: none;
+            z-index: 30;
+        }
+
+        .view-container {
+            position: relative;
+            background: #000;
+            border: 1px solid rgba(255, 255, 255, 0.28);
+            border-radius: 14px;
+            overflow: hidden;
+            aspect-ratio: 3 / 4.2;
+        }
+
+        .mask-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            cursor: crosshair;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .view-container:hover .mask-canvas {
+            pointer-events: auto;
+        }
+
+        .floating-toolbar {
+            position: absolute;
+            bottom: 8px;
+            left: 50%;
+            transform: translateX(-50%) translateY(18px);
+            background: rgba(20, 20, 30, 0.92);
+            border: 1px solid #454a66;
+            border-radius: 10px;
+            display: flex;
+            padding: 6px;
+            gap: 8px;
+            opacity: 0;
+            transition: all 0.25s;
+            z-index: 100;
+        }
+
+        .view-container:hover .floating-toolbar {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .tool-btn {
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            border: none;
+            background: transparent;
+            color: #fff;
+            transition: 0.2s;
+        }
+
+        .tool-btn:hover {
+            background: #3d3d5c;
+            color: #ff33cc;
+        }
+
+        .tool-btn.active {
+            background: #ff33cc;
+            color: #fff;
+        }
+
+        .view-label {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            padding: 3px 10px;
+            border-radius: 8px;
+            background: rgba(0, 0, 0, 0.58);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            color: #fff;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        #inpaint-popup {
+            position: absolute;
+            background: #1a1a2e;
+            border: 1px solid #ff33cc;
+            padding: 16px;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9);
+            display: none;
+            z-index: 200;
+            width: 340px;
+        }
+
+        .ai-glow {
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 2px #ff33cc;
+                opacity: 0.7;
+            }
+
+            to {
+                text-shadow: 0 0 10px #ff33cc;
+                opacity: 1;
+            }
+        }
+
+        input::placeholder,
+        textarea::placeholder {
+            color: #4b5563;
+        }
+
+        .floating-add {
+            position: fixed;
+            bottom: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            border: none;
+            color: #fff;
+            font-size: 28px;
+            line-height: 1;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(180deg, #d450ff 0%, #5a47ff 100%);
+            box-shadow: 0 14px 34px rgba(83, 58, 255, 0.52);
+            z-index: 40;
+        }
+
+        @media (max-width: 1280px) {
+            .topbar {
+                height: auto;
+            }
+
+            .topbar-inner {
+                min-height: 76px;
+                padding: 10px 14px;
+                flex-wrap: wrap;
+            }
+
+            .back-link,
+            .back-link span {
+                font-size: 24px;
+            }
+
+            .step-pill {
+                font-size: 18px;
+                min-width: 120px;
+            }
+
+            .step-num {
+                font-size: 16px;
+                min-width: 42px;
+            }
+
+            .coin-pill,
+            .generate-btn {
+                font-size: 18px;
+            }
+
+            .page-wrap {
+                grid-template-columns: 1fr;
+            }
+
+            .right-stack {
+                position: static;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .card-content {
+                grid-template-columns: 1fr;
+            }
+
+            .field-title {
+                font-size: 20px;
+            }
+
+            .field-text {
+                font-size: 15px;
+            }
+
+            .extracted-tags {
+                font-size: 12px;
+            }
+
+            .preview-col {
+                width: 100%;
+            }
+
+            .action-btn {
+                font-size: 16px;
+                height: 40px;
+            }
+
+            .action-btn.square {
+                width: 44px;
+            }
+
+            .view-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .in-card-view-grid::after {
+                font-size: 10px;
+                padding: 4px 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="topbar">
+        <div class="topbar-inner">
+            <a href="#" class="back-link" aria-label="返回首页">
+                <i class="fas fa-angle-left"></i>
+                <span>返回首页</span>
+            </a>
+
+            <div class="stepper" aria-label="步骤状态">
+                <span class="step-pill active">第一步: 主体预览</span>
+                <span class="step-num">02</span>
+                <span class="step-num">03</span>
+            </div>
+
+            <div class="top-actions">
+                <div class="coin-pill">
+                    <i class="fas fa-gem text-pink-400 text-[12px]"></i>
+                    <span>98155</span>
+                </div>
+                <button class="generate-btn" type="button">生成分镜</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="page-wrap">
+        <section class="left-stack">
+            <article class="info-card">
+                <span class="section-tag">临时人物</span>
+                <div class="card-content">
+                    <div>
+                        <div class="field-block">
+                            <h3 class="field-title">人物名称:</h3>
+                            <p class="field-text">天台上的少女</p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">简要描述:</h3>
+                            <p class="field-text">
+                                普通高中女生，性情内向敏感，喜欢独自思考，今天来就是为了暂时分享喧嚣与压力，享受宁静与夕阳的温暖。
+                            </p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">外观描述:</h3>
+                            <p class="field-text">
+                                黑色及肩短发，身着松垮的浅色毛衣和深蓝色校裙，脚穿白色帆布鞋，背着浅粉色书包，神情略带忧郁，正望向遥远的落日。
+                                <span class="extracted-tags">🏷️#高马尾、#蓝色皮夹克、#右手持剑</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="preview-col">
+                        <h4 class="preview-title">三视图:</h4>
+                        <div class="view-grid in-card-view-grid">
+                            <div class="view-container" id="container-front">
+                                <img src="https://image.pollinations.ai/prompt/anime%20girl%20front%20view%20standing%20school%20uniform%20shorthair?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="Front 正面">
+                                <canvas class="mask-canvas" id="canvas-front"></canvas>
+                                <div class="view-label">正面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-side">
+                                <img src="https://image.pollinations.ai/prompt/anime%20girl%20side%20view%20standing%20school%20uniform%20shorthair?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="Side 侧面">
+                                <canvas class="mask-canvas" id="canvas-side"></canvas>
+                                <div class="view-label">侧面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-back">
+                                <img src="https://image.pollinations.ai/prompt/anime%20girl%20back%20view%20standing%20school%20uniform%20shorthair?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="Back 背面">
+                                <canvas class="mask-canvas" id="canvas-back"></canvas>
+                                <div class="view-label">背面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button class="action-btn primary" type="button">
+                        <i class="fas fa-pen-to-square"></i>
+                        <span>编辑</span>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="删除">
+                        <i class="fas fa-trash-can"></i>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="重试">
+                        <i class="fas fa-rotate-right"></i>
+                    </button>
+                </div>
+            </article>
+
+            <article class="info-card">
+                <span class="section-tag">临时物品</span>
+                <div class="card-content">
+                    <div>
+                        <div class="field-block">
+                            <h3 class="field-title">物品名称:</h3>
+                            <p class="field-text">发光的玉符</p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">简要描述:</h3>
+                            <p class="field-text">
+                                古旧的护身玉符，常被主角随身携带，在关键时刻会散发柔和蓝光。
+                            </p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">外观描述:</h3>
+                            <p class="field-text">
+                                椭圆形白玉，表面雕有精美云纹，通体半透明，中心泛着微弱青色光晕，边缘微微发蓝，神秘且克制。
+                                <span class="extracted-tags">🏷️#高马尾、#蓝色皮夹克、#右手持剑</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="preview-col">
+                        <h4 class="preview-title">三视图:</h4>
+                        <div class="view-grid in-card-view-grid">
+                            <div class="view-container" id="container-item-front">
+                                <img src="https://image.pollinations.ai/prompt/glowing%20jade%20pendant%20front%20view%20on%20dark%20cloth%20anime%20style?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="物品正面">
+                                <canvas class="mask-canvas" id="canvas-item-front"></canvas>
+                                <div class="view-label">正面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-item-side">
+                                <img src="https://image.pollinations.ai/prompt/glowing%20jade%20pendant%20side%20view%20on%20dark%20cloth%20anime%20style?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="物品侧面">
+                                <canvas class="mask-canvas" id="canvas-item-side"></canvas>
+                                <div class="view-label">侧面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-item-back">
+                                <img src="https://image.pollinations.ai/prompt/glowing%20jade%20pendant%20back%20view%20on%20dark%20cloth%20anime%20style?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="物品背面">
+                                <canvas class="mask-canvas" id="canvas-item-back"></canvas>
+                                <div class="view-label">背面</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button class="action-btn primary" type="button">
+                        <i class="fas fa-pen-to-square"></i>
+                        <span>编辑</span>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="删除">
+                        <i class="fas fa-trash-can"></i>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="重试">
+                        <i class="fas fa-rotate-right"></i>
+                    </button>
+                </div>
+            </article>
+
+            <article class="info-card">
+                <span class="section-tag">临时场景</span>
+                <div class="card-content">
+                    <div>
+                        <div class="field-block">
+                            <h3 class="field-title">场景名称:</h3>
+                            <p class="field-text">日落时分的屋顶天台</p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">简要描述:</h3>
+                            <p class="field-text">
+                                城市学校教学楼顶层，开阔且安静，夕阳沿着护栏边缘洒下金色光线，空气里有一点晚风和远处城市噪音。
+                            </p>
+                        </div>
+
+                        <div class="field-block">
+                            <h3 class="field-title">外观描述:</h3>
+                            <p class="field-text">
+                                空旷的楼顶平台，金色晚霞洒在灰色地砖上，有两道防护栏和几盆被夕阳染橘红的小植物，紫色调里有几把闲置的椅子，营造出安静与温柔的心情氛围。
+                                <span class="extracted-tags">🏷️#高马尾、#蓝色皮夹克、#右手持剑</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="preview-col">
+                        <h4 class="preview-title">三视图:</h4>
+                        <div class="view-grid in-card-view-grid">
+                            <div class="view-container" id="container-scene-main">
+                                <img src="https://image.pollinations.ai/prompt/school%20rooftop%20main%20view%20at%20sunset%20anime%20background?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="主景图">
+                                <canvas class="mask-canvas" id="canvas-scene-main"></canvas>
+                                <div class="view-label">主景图</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-scene-long">
+                                <img src="https://image.pollinations.ai/prompt/school%20rooftop%20long%20shot%20at%20sunset%20anime%20background?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="远景图">
+                                <canvas class="mask-canvas" id="canvas-scene-long"></canvas>
+                                <div class="view-label">远景图</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+
+                            <div class="view-container" id="container-scene-top">
+                                <img src="https://image.pollinations.ai/prompt/school%20rooftop%20top%20view%20at%20sunset%20anime%20background?width=320&height=448&nologo=true" class="w-full h-full object-cover" alt="俯视图">
+                                <canvas class="mask-canvas" id="canvas-scene-top"></canvas>
+                                <div class="view-label">俯视图</div>
+                                <div class="floating-toolbar">
+                                    <button class="tool-btn active" type="button" title="画笔模式（悬停图片直接涂抹）"><i class="fas fa-paint-brush"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="action-row">
+                    <button class="action-btn primary" type="button">
+                        <i class="fas fa-pen-to-square"></i>
+                        <span>编辑</span>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="删除">
+                        <i class="fas fa-trash-can"></i>
+                    </button>
+                    <button class="action-btn square" type="button" aria-label="重试">
+                        <i class="fas fa-rotate-right"></i>
+                    </button>
+                </div>
+            </article>
+
+            
+        </section>
+    </main>
+
+    <button type="button" class="floating-add" aria-label="新增">
+        <i class="fas fa-plus"></i>
+    </button>
+
+    <div id="inpaint-popup">
+        <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                <i class="fas fa-wand-magic-sparkles text-pink-500 ai-glow"></i>
+            </div>
+            <div>
+                <h4 class="text-xs font-bold text-white tracking-tight">局部精准重绘</h4>
+                <p class="text-[9px] text-gray-500">AI 将针对涂抹区域进行语义修正</p>
+            </div>
+        </div>
+
+        <div class="flex flex-col gap-3">
+            <textarea id="prompt-input" rows="2" placeholder="输入修改指令，例如：将毛衣颜色改为粉色" class="bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-xs w-full focus:outline-none focus:border-pink-500 text-gray-200 resize-none"></textarea>
+
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-1.5 text-[10px] text-gray-400">
+                    <i class="fas fa-coins text-yellow-500"></i>
+                    <span>消耗 5 积分</span>
+                </div>
+                <button onclick="submitInpaint()" class="px-6 py-2 rounded-lg text-xs font-bold text-white hover:scale-105 transition active:scale-95 shadow-lg shadow-pink-500/30" style="background: var(--primary-gradient);">
+                    立即重绘
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvases = [
+            { id: 'front', label: '正面' },
+            { id: 'side', label: '侧面' },
+            { id: 'back', label: '背面' },
+            { id: 'scene-main', label: '主景图' },
+            { id: 'scene-long', label: '远景图' },
+            { id: 'scene-top', label: '俯视图' },
+            { id: 'item-front', label: '物品正面' },
+            { id: 'item-side', label: '物品侧面' },
+            { id: 'item-back', label: '物品背面' }
+        ];
+        const canvasLabelMap = Object.fromEntries(canvases.map((item) => [item.id, item.label]));
+        let isDrawing = false;
+        let hasPainted = false;
+        let activeCanvas = null;
+
+        canvases.forEach((item) => {
+            const id = item.id;
+            const c = document.getElementById(`canvas-${id}`);
+            const container = document.getElementById(`container-${id}`);
+            if (!c || !container) return;
+            const ctx = c.getContext('2d');
+
+            const updateSize = () => {
+                c.width = container.offsetWidth;
+                c.height = container.offsetHeight;
+            };
+            window.addEventListener('resize', updateSize);
+            updateSize();
+
+            const getPoint = (e) => {
+                const rect = c.getBoundingClientRect();
+                return {
+                    x: e.clientX - rect.left,
+                    y: e.clientY - rect.top
+                };
+            };
+
+            const beginStroke = (e) => {
+                const { x, y } = getPoint(e);
+                isDrawing = true;
+                hasPainted = false;
+                activeCanvas = id;
+                ctx.beginPath();
+                ctx.moveTo(x, y);
+                ctx.strokeStyle = 'rgba(255, 51, 204, 0.45)';
+                ctx.lineWidth = 30;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+            };
+
+            const drawStroke = (e) => {
+                if (!isDrawing || activeCanvas !== id) return;
+                const { x, y } = getPoint(e);
+                ctx.lineTo(x, y);
+                ctx.stroke();
+                hasPainted = true;
+            };
+
+            c.addEventListener('mousedown', beginStroke);
+
+            c.addEventListener('mousemove', (e) => {
+                if (e.buttons === 1 && (!isDrawing || activeCanvas !== id)) {
+                    beginStroke(e);
+                }
+                drawStroke(e);
+            });
+
+            c.addEventListener('mouseleave', (e) => {
+                if (!isDrawing || activeCanvas !== id) return;
+                drawStroke(e);
+                finishStroke(e.pageX, e.pageY);
+            });
+        });
+
+        document.addEventListener('mouseup', (e) => {
+            if (!isDrawing) return;
+            finishStroke(e.pageX, e.pageY);
+        });
+
+        function finishStroke(x, y) {
+            isDrawing = false;
+            if (hasPainted) {
+                showPopup(x, y);
+            }
+        }
+
+        function showPopup(x, y) {
+            const popup = document.getElementById('inpaint-popup');
+            popup.style.display = 'block';
+
+            const posX = (x + 350 > window.innerWidth) ? x - 360 : x + 20;
+            const posY = (y + 200 > window.innerHeight) ? y - 210 : y - 50;
+
+            popup.style.left = `${posX}px`;
+            popup.style.top = `${posY}px`;
+            document.getElementById('prompt-input').focus();
+        }
+
+        function submitInpaint() {
+            const prompt = document.getElementById('prompt-input').value;
+            if (prompt) {
+                const activeLabel = canvasLabelMap[activeCanvas] || activeCanvas;
+                alert(`AI 重绘指令已提交 [视角: ${activeLabel}]\n目标: ${prompt}\n\n正在调度 GPU 资源...`);
+                document.getElementById('inpaint-popup').style.display = 'none';
+                clearMask(activeCanvas);
+            }
+        }
+
+        function clearMask(id) {
+            const c = document.getElementById(`canvas-${id}`);
+            const ctx = c.getContext('2d');
+            ctx.clearRect(0, 0, c.width, c.height);
+            document.getElementById('inpaint-popup').style.display = 'none';
+        }
+    </script>
+</body>
+</html>

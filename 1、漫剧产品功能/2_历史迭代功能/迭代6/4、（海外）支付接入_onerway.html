@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <title>（海外）支付接入 onerway</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <link href="resources/css/axure_rp_page.css" type="text/css" rel="stylesheet"/>
+    <link href="data/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="files/（海外）支付接入_onerway/styles.css" type="text/css" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    <script src="resources/scripts/jquery-3.7.1.min.js"></script>
+    <script src="resources/scripts/axure/axQuery.js"></script>
+    <script src="resources/scripts/axure/globals.js"></script>
+    <script src="resources/scripts/axutils.js"></script>
+    <script src="resources/scripts/axure/annotation.js"></script>
+    <script src="resources/scripts/axure/axQuery.std.js"></script>
+    <script src="resources/scripts/axure/doc.js"></script>
+    <script src="resources/scripts/messagecenter.js"></script>
+    <script src="resources/scripts/axure/events.js"></script>
+    <script src="resources/scripts/axure/recording.js"></script>
+    <script src="resources/scripts/axure/action.js"></script>
+    <script src="resources/scripts/axure/expr.js"></script>
+    <script src="resources/scripts/axure/geometry.js"></script>
+    <script src="resources/scripts/axure/flyout.js"></script>
+    <script src="resources/scripts/axure/model.js"></script>
+    <script src="resources/scripts/axure/repeater.js"></script>
+    <script src="resources/scripts/axure/sto.js"></script>
+    <script src="resources/scripts/axure/utils.temp.js"></script>
+    <script src="resources/scripts/axure/variables.js"></script>
+    <script src="resources/scripts/axure/drag.js"></script>
+    <script src="resources/scripts/axure/move.js"></script>
+    <script src="resources/scripts/axure/visibility.js"></script>
+    <script src="resources/scripts/axure/style.js"></script>
+    <script src="resources/scripts/axure/adaptive.js"></script>
+    <script src="resources/scripts/axure/tree.js"></script>
+    <script src="resources/scripts/axure/init.temp.js"></script>
+    <script src="resources/scripts/axure/legacy.js"></script>
+    <script src="resources/scripts/axure/viewer.js"></script>
+    <script src="resources/scripts/axure/math.js"></script>
+    <script src="resources/scripts/axure/jquery.nicescroll.min.js"></script>
+    <script src="data/document.js"></script>
+    <script src="files/（海外）支付接入_onerway/data.js"></script>
+    <script type="text/javascript">
+      $axure.utils.getTransparentGifPath = function() { return 'resources/images/transparent.gif'; };
+      $axure.utils.getOtherPath = function() { return 'resources/Other.html'; };
+      $axure.utils.getReloadPath = function() { return 'resources/reload.html'; };
+    </script>
+  </head>
+  <body>
+    <div id="base" class="">
+
+      <!-- Unnamed (Image) -->
+      <div id="u454" class="ax_default image transition notrs">
+        <img id="u454_img" class="img " src="images/（海外）支付接入_onerway/u454.png"/>
+        <div id="u454_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u455" class="ax_default box_3 transition notrs">
+        <div id="u455_div" class=""></div>
+        <div id="u455_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u456" class="ax_default heading_3 transition notrs">
+        <div id="u456_div" class=""></div>
+        <div id="u456_text" class="text ">
+          <p><span>接入onerway支付</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u457" class="ax_default heading_3 transition notrs">
+        <div id="u457_div" class=""></div>
+        <div id="u457_text" class="text ">
+          <p><span>1.支付方式新增onerway。</span></p><p><span>&nbsp; 触发条件：系统通过 用户访问 IP 自动识别物理地理位置。</span></p><p><span>&nbsp; 生效地区：包含 6 个东南亚国家：印尼 (ID)、菲律宾 (PH)、马来西亚 (MY)、新加坡 (SG)、越南 (VN)、泰国 (TH)。</span></p><p><span><br></span></p><p><span>2.&nbsp; 需求文档：https://iwfrvtzly5n.feishu.cn/wiki/RLkGwEtCgiWHGOkt1HVc1SBEn9B</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u458" class="ax_default heading_3 transition notrs">
+        <div id="u458_div" class=""></div>
+        <div id="u458_text" class="text ">
+          <p><span>支付展示逻辑</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u459" class="ax_default heading_3 transition notrs">
+        <div id="u459_div" class=""></div>
+        <div id="u459_text" class="text ">
+          <p><span>1. 若识别为上述地区 IP，在收银台“支付方式”区域默认勾选为 Onerway 支付入口。</span></p><p><span><br></span></p><p><span>2. 若非上述地区，保持原有支付方式。</span></p><p><span><br></span></p><p><span>3. UI调整：</span></p><p><span>&nbsp; - Logo 展示区： 当识别为东南亚 IP 时，原有的 Visa/Mastercard 等 Logo 区域应替换/增加为以下本地支付工具图标。：DANA (印尼), GCash (菲律宾), QRIS (印尼聚合), Maya (菲律宾), OVO (印尼)。</span></p><p><span>&nbsp; - 支付按钮： 点击底部 [Pay Now / 去支付] 按钮。</span></p><p><span>&nbsp; - 跳转逻辑： 无需站内二次确认，点击后直接重定向至 Onerway 托管的收银台页面进行支付。</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Ellipse) -->
+      <div id="u460" class="ax_default marker transition notrs">
+        <svg data="images/九宫格功能/u300.svg" id="u460_img" class="img generatedImage">
+
+  <defs>
+    <pattern id="u460_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+    <mask fill="white" id="u460_img_cl16">
+      <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -1184 -1393 )">
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="nonzero" fill="rgba(217, 93, 147, 1)" stroke="none" transform="matrix(1 0 0 1 1188 1397 )" class="fill" />
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " stroke-width="2" stroke-dasharray="0" stroke="rgba(255, 255, 255, 1)" fill="none" transform="matrix(1 0 0 1 1188 1397 )" class="stroke" mask="url(#u460_img_cl16)" />
+  </g>
+  <style>#u460_img { filter: drop-shadow(1px 1px 2.5px rgba(0, 0, 0, 0.6980392156862745)); }</style>
+        </svg>
+        <div id="u460_text" class="text ">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Ellipse) -->
+      <div id="u461" class="ax_default marker transition notrs">
+        <svg data="images/九宫格功能/u300.svg" id="u461_img" class="img generatedImage">
+
+  <defs>
+    <pattern id="u461_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+    <mask fill="white" id="u461_img_cl16">
+      <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="evenodd" />
+    </mask>
+  </defs>
+  <g transform="matrix(1 0 0 1 -1184 -1393 )">
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " fill-rule="nonzero" fill="rgba(217, 93, 147, 1)" stroke="none" transform="matrix(1 0 0 1 1188 1397 )" class="fill" />
+    <path d="M 0 8  C 0 3.5199999999999996  3.5199999999999996 0  8 0  C 12.48 0  16 3.5199999999999996  16 8  C 16 12.48  12.48 16  8 16  C 3.5199999999999996 16  0 12.48  0 8  Z " stroke-width="2" stroke-dasharray="0" stroke="rgba(255, 255, 255, 1)" fill="none" transform="matrix(1 0 0 1 1188 1397 )" class="stroke" mask="url(#u461_img_cl16)" />
+  </g>
+  <style>#u461_img { filter: drop-shadow(1px 1px 2.5px rgba(0, 0, 0, 0.6980392156862745)); }</style>
+        </svg>
+        <div id="u461_text" class="text ">
+          <p><span>1</span></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Image) -->
+      <div id="u462" class="ax_default image transition notrs">
+        <img id="u462_img" class="img " src="images/（海外）支付接入_onerway/u462.png"/>
+        <div id="u462_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Rectangle) -->
+      <div id="u463" class="ax_default box_1 transition notrs">
+        <div id="u463_div" class=""></div>
+        <div id="u463_text" class="text " style="display:none; visibility: hidden">
+          <p></p>
+        </div>
+      </div>
+
+      <!-- Unnamed (Radio button) -->
+      <div id="u464" class="ax_default radio_button selected">
+        <label id="u464_input_label" for="u464_input" style="position: absolute; left: 0px;">
+          <svg data="images/（海外）支付接入_onerway/u464.svg" id="u464_img" class="img ">
+
+  <defs>
+    <pattern id="u464_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+  </defs>
+  <g transform="matrix(1 0 0 1 -475 -206 )">
+    <path d="M 6.5 0  C 10.14 0  13 2.8599999999999994  13 6.5  C 13 10.14  10.14 13  6.5 13  C 2.8599999999999994 13  0 10.14  0 6.5  C 0 2.8599999999999994  2.8599999999999994 0  6.5 0  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 475 206 )" class="fill" />
+    <path d="M 6.5 0.5  C 9.86 0.5  12.5 3.1399999999999997  12.5 6.5  C 12.5 9.86  9.86 12.5  6.5 12.5  C 3.1399999999999997 12.5  0.5 9.86  0.5 6.5  C 0.5 3.1399999999999997  3.1399999999999997 0.5  6.5 0.5  Z " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 475 206 )" class="stroke" stroke-dashoffset="0.5" />
+    <path d="M 6.5 9.75  C 4.68 9.75  3.25 8.32  3.25 6.5  C 3.25 4.68  4.68 3.25  6.5 3.25  C 8.32 3.25  9.75 4.68  9.75 6.5  C 9.75 8.32  8.32 9.75  6.5 9.75  " fill-rule="nonzero" fill="rgba(121, 121, 121, 1)" stroke="none" transform="matrix(1 0 0 1 475 206 )" class="stroke btn_check" />
+  </g>
+          </svg>
+          <div id="u464_text" class="text ">
+            <p><span>支付方式一</span></p>
+          </div>
+        </label>
+        <input id="u464_input" type="radio" value="radio" name="u464" checked/>
+      </div>
+
+      <!-- Unnamed (Radio button) -->
+      <div id="u465" class="ax_default radio_button">
+        <label id="u465_input_label" for="u465_input" style="position: absolute; left: 0px;">
+          <svg data="images/（海外）支付接入_onerway/u465.svg" id="u465_img" class="img ">
+
+  <defs>
+    <pattern id="u465_img_bgp" patternUnits="userSpaceOnUse" alignment="0 0" imageRepeat="None" />
+  </defs>
+  <g transform="matrix(1 0 0 1 -475 -243 )">
+    <path d="M 6.5 0  C 10.14 0  13 2.8599999999999994  13 6.5  C 13 10.14  10.14 13  6.5 13  C 2.8599999999999994 13  0 10.14  0 6.5  C 0 2.8599999999999994  2.8599999999999994 0  6.5 0  Z " fill-rule="nonzero" fill="rgba(255, 255, 255, 1)" stroke="none" transform="matrix(1 0 0 1 475 243 )" class="fill" />
+    <path d="M 6.5 0.5  C 9.86 0.5  12.5 3.1399999999999997  12.5 6.5  C 12.5 9.86  9.86 12.5  6.5 12.5  C 3.1399999999999997 12.5  0.5 9.86  0.5 6.5  C 0.5 3.1399999999999997  3.1399999999999997 0.5  6.5 0.5  Z " stroke-width="1" stroke-dasharray="0" stroke="rgba(121, 121, 121, 1)" fill="none" transform="matrix(1 0 0 1 475 243 )" class="stroke" stroke-dashoffset="0.5" />
+    <path d="M 6.5 9.75  C 4.68 9.75  3.25 8.32  3.25 6.5  C 3.25 4.68  4.68 3.25  6.5 3.25  C 8.32 3.25  9.75 4.68  9.75 6.5  C 9.75 8.32  8.32 9.75  6.5 9.75  " fill-rule="nonzero" fill="rgba(121, 121, 121, 1)" stroke="none" transform="matrix(1 0 0 1 475 243 )" class="stroke btn_check" />
+  </g>
+          </svg>
+          <div id="u465_text" class="text ">
+            <p><span>支付方式二</span></p>
+          </div>
+        </label>
+        <input id="u465_input" type="radio" value="radio" name="u465"/>
+      </div>
+    </div>
+    <script src="resources/scripts/axure/ios.js"></script>
+  </body>
+</html>
