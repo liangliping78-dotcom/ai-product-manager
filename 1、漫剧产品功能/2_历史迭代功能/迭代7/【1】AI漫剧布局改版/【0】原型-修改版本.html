@@ -1677,6 +1677,2140 @@
             }
         }
 
+        /* ========= Quick preview mock cards ========= */
+        .qm-preview-card{
+            position: relative;
+            z-index: 1;
+            height: 100%;
+            min-height: 0;
+            border-radius: 24px;
+            padding: 18px 18px 84px;
+            background: linear-gradient(180deg, #28293f 0%, #24263b 100%);
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 24px 54px rgba(0,0,0,0.22);
+            overflow: hidden;
+        }
+        .qm-preview-card::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(115% 110% at 0% 0%, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.00) 42%),
+                radial-gradient(85% 110% at 100% 20%, rgba(139,92,246,0.10) 0%, rgba(139,92,246,0.00) 38%);
+        }
+        .qm-storyboard-board{
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 2px;
+            padding: 2px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #11131d;
+        }
+        .qm-frame{
+            position: relative;
+            aspect-ratio: 1.8 / 1;
+            overflow: hidden;
+            background: #0d1018;
+        }
+        .qm-frame::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 50% 42%, rgba(255,255,255,0.00) 40%, rgba(0,0,0,0.38) 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.00) 24%, rgba(0,0,0,0.10) 72%, rgba(0,0,0,0.24) 100%);
+        }
+        .qm-frame::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            pointer-events: none;
+            opacity: .14;
+            mix-blend-mode: soft-light;
+            background-image: linear-gradient(transparent 50%, rgba(255,255,255,0.06) 50%);
+            background-size: 100% 4px;
+        }
+        .qm-frame-canvas{
+            position: absolute;
+            inset: 0;
+            filter: saturate(1.16);
+        }
+        .qm-frame-canvas::before,
+        .qm-frame-canvas::after,
+        .qm-frame-subject::before,
+        .qm-frame-subject::after,
+        .qm-frame-accent::before,
+        .qm-frame-accent::after{
+            content: "";
+            position: absolute;
+            display: block;
+        }
+        .qm-frame-subject,
+        .qm-frame-accent{
+            position: absolute;
+            display: block;
+        }
+        .qm-frame-index{
+            position: absolute;
+            top: 8px;
+            left: 10px;
+            z-index: 3;
+            font-size: clamp(1.9rem, 1.8vw, 2.7rem);
+            line-height: 1;
+            font-weight: 900;
+            color: #ffffff;
+            text-shadow: 0 4px 16px rgba(0,0,0,0.56);
+            letter-spacing: -0.05em;
+        }
+        .qm-frame-sign{
+            position: absolute;
+            z-index: 3;
+            padding: 3px 7px;
+            border-radius: 10px;
+            font-size: 10px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: rgba(248,250,255,0.94);
+            border: 1px solid rgba(255,255,255,0.10);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.24);
+        }
+        .qm-frame-sign.is-pink{ background: rgba(255,79,216,0.22); }
+        .qm-frame-sign.is-cyan{ background: rgba(34,211,238,0.22); }
+        .qm-frame-sign.is-purple{ background: rgba(123,92,255,0.22); }
+
+        .qm-frame-1 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 34%, rgba(122,231,255,0.88), rgba(122,231,255,0.00) 34%),
+                radial-gradient(circle at 80% 20%, rgba(255,93,216,0.40), rgba(255,93,216,0.00) 18%),
+                linear-gradient(180deg, rgba(70,95,149,0.95) 0%, rgba(23,29,52,0.98) 58%, rgba(10,12,22,1) 100%);
+        }
+        .qm-frame-1 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(40,52,79,0.92) 0 13%, transparent 13% 28%, rgba(36,48,76,0.86) 28% 39%, transparent 39% 62%, rgba(46,35,72,0.82) 62% 74%, transparent 74% 88%, rgba(43,31,66,0.90) 88% 100%),
+                linear-gradient(180deg, transparent 62%, rgba(61,170,255,0.14) 100%);
+            opacity: .84;
+        }
+        .qm-frame-1 .qm-frame-canvas::after{
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 26%;
+            background: linear-gradient(180deg, rgba(119,214,255,0.00) 0%, rgba(73,144,214,0.18) 35%, rgba(5,6,10,0.78) 100%);
+        }
+        .qm-frame-1 .qm-frame-subject{
+            right: 13%;
+            bottom: 10%;
+            width: 14%;
+            height: 44%;
+            background: linear-gradient(180deg, rgba(20,26,44,0.16) 0%, rgba(20,24,41,0.94) 22%, rgba(8,10,17,1) 100%);
+            border-radius: 42% 42% 18% 18% / 20% 20% 12% 12%;
+            transform: skewX(-7deg);
+        }
+        .qm-frame-1 .qm-frame-subject::before{
+            left: 12%;
+            top: -18%;
+            width: 62%;
+            height: 28%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(18,23,38,0.96), rgba(5,8,15,1));
+        }
+        .qm-frame-1 .qm-frame-subject::after{
+            left: -34%;
+            bottom: 2%;
+            width: 82%;
+            height: 52%;
+            background: linear-gradient(135deg, rgba(40,47,72,0.94), rgba(11,14,23,0.00));
+            clip-path: polygon(0 0, 100% 8%, 78% 100%, 0 78%);
+        }
+        .qm-frame-1 .qm-frame-accent{
+            left: 8%;
+            bottom: 5%;
+            width: 78%;
+            height: 18%;
+            filter: blur(5px);
+            background: linear-gradient(90deg, rgba(122,231,255,0.00) 0%, rgba(122,231,255,0.26) 42%, rgba(255,93,216,0.20) 76%, rgba(255,93,216,0.00) 100%);
+        }
+
+        .qm-frame-2 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 22%, rgba(255,162,199,0.42), rgba(255,162,199,0.00) 18%),
+                radial-gradient(circle at 36% 20%, rgba(120,244,255,0.50), rgba(120,244,255,0.00) 22%),
+                linear-gradient(180deg, rgba(81,108,160,0.92) 0%, rgba(38,39,82,0.98) 55%, rgba(16,17,34,1) 100%);
+        }
+        .qm-frame-2 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(26,36,60,0.66) 0 24%, transparent 24% 32%, rgba(39,30,68,0.62) 32% 48%, transparent 48% 66%, rgba(29,35,62,0.66) 66% 100%),
+                radial-gradient(circle at 86% 30%, rgba(255,79,216,0.24), rgba(255,79,216,0.00) 18%);
+        }
+        .qm-frame-2 .qm-frame-subject{
+            left: 36%;
+            top: 18%;
+            width: 30%;
+            height: 58%;
+            border-radius: 50% 50% 42% 42% / 30% 30% 42% 42%;
+            background: linear-gradient(180deg, rgba(10,14,27,0.98) 0%, rgba(8,10,18,1) 100%);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.04);
+        }
+        .qm-frame-2 .qm-frame-subject::before{
+            left: 16%;
+            top: 10%;
+            width: 68%;
+            height: 34%;
+            border-radius: 999px 999px 46% 46%;
+            background: radial-gradient(circle at 50% 28%, rgba(73,85,139,0.54), rgba(4,6,12,0.00) 54%), linear-gradient(180deg, rgba(15,19,33,0.96), rgba(4,6,12,1));
+        }
+        .qm-frame-2 .qm-frame-subject::after{
+            left: -4%;
+            bottom: 0;
+            width: 108%;
+            height: 36%;
+            background: linear-gradient(180deg, rgba(31,46,84,0.10), rgba(29,35,57,0.90));
+            clip-path: polygon(18% 0, 82% 0, 100% 100%, 0 100%);
+        }
+        .qm-frame-2 .qm-frame-accent{
+            left: 34%;
+            top: 26%;
+            width: 36%;
+            height: 24%;
+            border-radius: 999px;
+            box-shadow:
+                -30px 8px 0 0 rgba(177,150,88,0.72),
+                30px 8px 0 0 rgba(177,150,88,0.72),
+                -30px 8px 0 8px rgba(37,76,100,0.78),
+                30px 8px 0 8px rgba(37,76,100,0.78);
+        }
+
+        .qm-frame-3 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 82% 22%, rgba(123,214,255,0.52), rgba(123,214,255,0.00) 18%),
+                radial-gradient(circle at 72% 18%, rgba(255,79,216,0.46), rgba(255,79,216,0.00) 20%),
+                linear-gradient(180deg, rgba(92,104,161,0.90) 0%, rgba(35,37,72,0.98) 52%, rgba(13,16,30,1) 100%);
+        }
+        .qm-frame-3 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(38,45,74,0.82) 0 16%, transparent 16% 28%, rgba(48,31,82,0.74) 28% 44%, transparent 44% 70%, rgba(37,44,72,0.76) 70% 100%);
+        }
+        .qm-frame-3 .qm-frame-subject{
+            left: 48%;
+            bottom: 8%;
+            width: 16%;
+            height: 52%;
+            background: linear-gradient(180deg, rgba(19,21,36,0.26), rgba(17,20,34,0.94) 24%, rgba(8,10,16,1));
+            border-radius: 42% 42% 16% 16% / 18% 18% 12% 12%;
+        }
+        .qm-frame-3 .qm-frame-subject::before{
+            left: 18%;
+            top: -16%;
+            width: 64%;
+            height: 28%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(17,20,35,0.96), rgba(5,7,14,1));
+        }
+        .qm-frame-3 .qm-frame-subject::after{
+            left: 18%;
+            top: 40%;
+            width: 64%;
+            height: 24%;
+            content: "3";
+            display: grid;
+            place-items: center;
+            color: rgba(255,79,216,0.86);
+            font-size: 34px;
+            font-weight: 900;
+            text-shadow: 0 0 12px rgba(255,79,216,0.26);
+        }
+        .qm-frame-3 .qm-frame-accent{
+            left: 66%;
+            bottom: 10%;
+            width: 12%;
+            height: 46%;
+            background: linear-gradient(180deg, rgba(255,79,216,0.14), rgba(255,79,216,0.34));
+            filter: blur(10px);
+        }
+
+        .qm-frame-4 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 42% 32%, rgba(128,232,255,0.86), rgba(128,232,255,0.00) 28%),
+                radial-gradient(circle at 76% 18%, rgba(255,154,193,0.32), rgba(255,154,193,0.00) 16%),
+                linear-gradient(180deg, rgba(83,108,156,0.94) 0%, rgba(28,36,60,0.98) 54%, rgba(9,11,18,1) 100%);
+        }
+        .qm-frame-4 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(33,44,70,0.78) 0 13%, transparent 13% 28%, rgba(34,46,74,0.78) 28% 40%, transparent 40% 62%, rgba(48,36,74,0.72) 62% 76%, transparent 76% 90%, rgba(41,30,64,0.82) 90% 100%);
+        }
+        .qm-frame-4 .qm-frame-subject{
+            left: 42%;
+            bottom: 8%;
+            width: 14%;
+            height: 54%;
+            background: linear-gradient(180deg, rgba(17,21,36,0.16), rgba(21,25,42,0.96) 24%, rgba(8,10,17,1));
+            border-radius: 40% 40% 16% 16% / 18% 18% 10% 10%;
+            transform: skewX(-12deg);
+        }
+        .qm-frame-4 .qm-frame-subject::before{
+            left: 18%;
+            top: -16%;
+            width: 60%;
+            height: 24%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(18,20,34,0.96), rgba(6,8,14,1));
+        }
+        .qm-frame-4 .qm-frame-subject::after{
+            right: -26%;
+            bottom: 8%;
+            width: 42%;
+            height: 64%;
+            background: linear-gradient(180deg, rgba(255,79,216,0.82), rgba(255,79,216,0.00));
+            filter: blur(3px);
+            clip-path: polygon(0 0, 100% 12%, 58% 100%, 0 78%);
+        }
+        .qm-frame-4 .qm-frame-accent{
+            left: 16%;
+            right: 8%;
+            bottom: 8%;
+            height: 18%;
+            filter: blur(5px);
+            background: linear-gradient(90deg, rgba(117,222,255,0.00) 0%, rgba(117,222,255,0.26) 44%, rgba(255,166,206,0.18) 72%, rgba(255,166,206,0.00) 100%);
+        }
+
+        .qm-frame-5 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 38% 26%, rgba(255,119,174,0.34), rgba(255,119,174,0.00) 20%),
+                radial-gradient(circle at 72% 20%, rgba(255,153,86,0.32), rgba(255,153,86,0.00) 16%),
+                linear-gradient(180deg, rgba(87,88,140,0.92) 0%, rgba(39,24,56,0.96) 50%, rgba(15,10,19,1) 100%);
+        }
+        .qm-frame-5 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(38,24,50,0.90) 0 22%, transparent 22% 54%, rgba(64,36,56,0.76) 54% 78%, transparent 78% 90%, rgba(37,21,45,0.84) 90% 100%);
+        }
+        .qm-frame-5 .qm-frame-subject{
+            left: 38%;
+            bottom: 8%;
+            width: 16%;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(24,21,32,0.20), rgba(30,26,37,0.94) 24%, rgba(10,8,12,1));
+            border-radius: 42% 42% 16% 16% / 18% 18% 10% 10%;
+        }
+        .qm-frame-5 .qm-frame-subject::before{
+            left: 12%;
+            top: -18%;
+            width: 62%;
+            height: 28%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(17,14,21,0.98), rgba(5,4,8,1));
+        }
+        .qm-frame-5 .qm-frame-subject::after{
+            left: 24%;
+            bottom: 0;
+            width: 64%;
+            height: 68%;
+            background: linear-gradient(180deg, rgba(93,63,109,0.24), rgba(24,19,28,0.92));
+            clip-path: polygon(6% 0, 94% 0, 100% 100%, 0 100%);
+        }
+        .qm-frame-5 .qm-frame-accent{
+            left: 8%;
+            top: 16%;
+            width: 24%;
+            height: 14%;
+            border-radius: 12px;
+            background:
+                linear-gradient(90deg, rgba(255,98,163,0.95), rgba(255,85,85,0.90)),
+                linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.00));
+            box-shadow: 0 0 20px rgba(255,74,144,0.34);
+        }
+        .qm-frame-5 .qm-frame-accent::before{
+            left: 18%;
+            right: 18%;
+            top: 50%;
+            height: 2px;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.66);
+        }
+        .qm-frame-5 .qm-frame-accent::after{
+            left: 50%;
+            top: 18%;
+            bottom: 18%;
+            width: 2px;
+            transform: translateX(-50%);
+            background: rgba(255,255,255,0.66);
+        }
+
+        .qm-frame-6 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 20%, rgba(118,238,255,0.42), rgba(118,238,255,0.00) 22%),
+                radial-gradient(circle at 66% 18%, rgba(255,79,216,0.42), rgba(255,79,216,0.00) 18%),
+                linear-gradient(180deg, rgba(84,113,162,0.94) 0%, rgba(43,46,88,0.98) 52%, rgba(14,14,29,1) 100%);
+        }
+        .qm-frame-6 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(42,52,88,0.46) 0 26%, transparent 26% 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.06) 0 16%, transparent 16% 100%);
+        }
+        .qm-frame-6 .qm-frame-subject{
+            left: 42%;
+            top: 18%;
+            width: 28%;
+            height: 56%;
+            border-radius: 50% 50% 42% 42% / 30% 30% 42% 42%;
+            background: linear-gradient(180deg, rgba(11,15,30,0.98), rgba(7,10,18,1));
+        }
+        .qm-frame-6 .qm-frame-subject::before{
+            left: 16%;
+            top: 10%;
+            width: 68%;
+            height: 36%;
+            border-radius: 999px 999px 42% 42%;
+            background: radial-gradient(circle at 52% 22%, rgba(88,105,171,0.52), rgba(0,0,0,0.00) 58%), linear-gradient(180deg, rgba(14,17,31,0.96), rgba(6,8,14,1));
+        }
+        .qm-frame-6 .qm-frame-subject::after{
+            left: 18%;
+            bottom: 2%;
+            width: 64%;
+            height: 30%;
+            background: linear-gradient(180deg, rgba(48,61,112,0.16), rgba(25,31,55,0.94));
+            clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+        }
+        .qm-frame-6 .qm-frame-accent{
+            right: 16%;
+            top: 20%;
+            width: 14%;
+            height: 7%;
+            transform: rotate(20deg);
+            border-radius: 4px;
+            background: linear-gradient(180deg, rgba(255,213,107,0.94), rgba(255,183,64,0.82));
+            box-shadow:
+                -44px 18px 0 0 rgba(255,213,107,0.94),
+                -88px 40px 0 0 rgba(255,213,107,0.92),
+                -132px 62px 0 0 rgba(255,213,107,0.88);
+        }
+        .qm-frame-6 .qm-frame-accent::before{
+            inset: 22% 16%;
+            border-radius: 999px;
+            background: rgba(139,41,71,0.26);
+        }
+
+        .qm-frame-7 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 24%, rgba(127,232,255,0.78), rgba(127,232,255,0.00) 30%),
+                radial-gradient(circle at 68% 18%, rgba(255,170,120,0.24), rgba(255,170,120,0.00) 16%),
+                linear-gradient(180deg, rgba(86,115,166,0.94) 0%, rgba(33,37,72,0.98) 55%, rgba(10,12,21,1) 100%);
+        }
+        .qm-frame-7 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(35,46,76,0.80) 0 18%, transparent 18% 32%, rgba(48,34,73,0.74) 32% 48%, transparent 48% 68%, rgba(38,46,76,0.76) 68% 82%, transparent 82% 100%);
+        }
+        .qm-frame-7 .qm-frame-subject{
+            left: 44%;
+            bottom: 8%;
+            width: 14%;
+            height: 58%;
+            background: linear-gradient(180deg, rgba(20,24,40,0.14), rgba(19,22,38,0.96) 26%, rgba(8,10,16,1));
+            border-radius: 42% 42% 16% 16% / 18% 18% 10% 10%;
+        }
+        .qm-frame-7 .qm-frame-subject::before{
+            left: 18%;
+            top: -16%;
+            width: 60%;
+            height: 24%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(18,21,35,0.96), rgba(6,8,14,1));
+        }
+        .qm-frame-7 .qm-frame-subject::after{
+            right: -18%;
+            bottom: 8%;
+            width: 28%;
+            height: 30%;
+            background: linear-gradient(180deg, rgba(255,197,96,0.90), rgba(255,197,96,0.00));
+            filter: blur(2px);
+        }
+        .qm-frame-7 .qm-frame-accent{
+            left: 26%;
+            top: 26%;
+            width: 12%;
+            height: 6%;
+            transform: rotate(-22deg);
+            border-radius: 4px;
+            background: linear-gradient(180deg, rgba(255,213,107,0.92), rgba(255,188,70,0.80));
+            box-shadow:
+                46px -10px 0 0 rgba(255,213,107,0.92),
+                92px -2px 0 0 rgba(255,213,107,0.90),
+                138px -12px 0 0 rgba(255,213,107,0.84),
+                26px 46px 0 0 rgba(255,213,107,0.88);
+        }
+        .qm-frame-7 .qm-frame-accent::before{
+            inset: 22% 16%;
+            border-radius: 999px;
+            background: rgba(139,41,71,0.24);
+        }
+
+        .qm-frame-8 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 22%, rgba(124,236,255,0.46), rgba(124,236,255,0.00) 22%),
+                radial-gradient(circle at 82% 18%, rgba(255,79,216,0.38), rgba(255,79,216,0.00) 18%),
+                linear-gradient(180deg, rgba(93,109,169,0.92) 0%, rgba(40,35,84,0.98) 55%, rgba(13,12,30,1) 100%);
+        }
+        .qm-frame-8 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(47,35,80,0.72) 0 14%, transparent 14% 26%, rgba(36,48,76,0.76) 26% 44%, transparent 44% 58%, rgba(48,32,77,0.72) 58% 74%, transparent 74% 86%, rgba(36,48,76,0.76) 86% 100%);
+        }
+        .qm-frame-8 .qm-frame-subject{
+            left: 40%;
+            top: 20%;
+            width: 20%;
+            height: 54%;
+            border-radius: 50% 50% 44% 44% / 28% 28% 42% 42%;
+            background: linear-gradient(180deg, rgba(11,15,28,0.98), rgba(7,10,18,1));
+        }
+        .qm-frame-8 .qm-frame-subject::before{
+            left: 16%;
+            top: 12%;
+            width: 68%;
+            height: 32%;
+            border-radius: 999px 999px 42% 42%;
+            background: radial-gradient(circle at 52% 22%, rgba(88,105,171,0.46), rgba(0,0,0,0.00) 58%), linear-gradient(180deg, rgba(15,18,31,0.96), rgba(6,8,14,1));
+        }
+        .qm-frame-8 .qm-frame-subject::after{
+            left: 6%;
+            bottom: 0;
+            width: 88%;
+            height: 34%;
+            background: linear-gradient(180deg, rgba(44,73,128,0.18), rgba(29,41,78,0.96));
+            clip-path: polygon(8% 0, 92% 0, 100% 100%, 0 100%);
+        }
+        .qm-frame-8 .qm-frame-accent{
+            left: 12%;
+            top: 18%;
+            width: 14%;
+            height: 42%;
+            background: linear-gradient(180deg, rgba(34,211,238,0.32), rgba(34,211,238,0.00));
+            filter: blur(10px);
+        }
+
+        .qm-frame-9 .qm-frame-canvas{
+            background:
+                radial-gradient(circle at 50% 32%, rgba(122,231,255,0.72), rgba(122,231,255,0.00) 32%),
+                radial-gradient(circle at 26% 18%, rgba(255,170,120,0.18), rgba(255,170,120,0.00) 12%),
+                radial-gradient(circle at 72% 18%, rgba(255,79,216,0.28), rgba(255,79,216,0.00) 14%),
+                linear-gradient(180deg, rgba(78,104,151,0.94) 0%, rgba(28,35,59,0.98) 56%, rgba(9,11,18,1) 100%);
+        }
+        .qm-frame-9 .qm-frame-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(38,46,74,0.80) 0 14%, transparent 14% 28%, rgba(46,34,72,0.72) 28% 42%, transparent 42% 60%, rgba(36,48,74,0.76) 60% 74%, transparent 74% 88%, rgba(45,32,68,0.80) 88% 100%);
+        }
+        .qm-frame-9 .qm-frame-subject{
+            left: 49%;
+            bottom: 8%;
+            width: 12%;
+            height: 54%;
+            background: linear-gradient(180deg, rgba(19,21,36,0.12), rgba(17,20,34,0.94) 24%, rgba(8,10,16,1));
+            border-radius: 42% 42% 16% 16% / 18% 18% 10% 10%;
+        }
+        .qm-frame-9 .qm-frame-subject::before{
+            left: 18%;
+            top: -16%;
+            width: 60%;
+            height: 24%;
+            border-radius: 999px;
+            background: linear-gradient(180deg, rgba(18,20,34,0.96), rgba(6,8,14,1));
+        }
+        .qm-frame-9 .qm-frame-subject::after{
+            left: -26%;
+            bottom: 0;
+            width: 152%;
+            height: 18%;
+            filter: blur(4px);
+            background: linear-gradient(90deg, rgba(122,231,255,0.00) 0%, rgba(122,231,255,0.20) 40%, rgba(255,79,216,0.16) 70%, rgba(255,79,216,0.00) 100%);
+        }
+        .qm-storyboard-actions,
+        .qm-video-actions{
+            position: absolute;
+            left: 18px;
+            right: 84px;
+            bottom: 18px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            z-index: 2;
+        }
+        .qm-gradient-btn,
+        .qm-muted-btn{
+            height: 52px;
+            border: 0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease, opacity .18s ease;
+        }
+        .qm-gradient-btn:hover,
+        .qm-muted-btn:hover,
+        .qm-fab:hover,
+        .qm-video-play:hover{
+            transform: translateY(-1px);
+        }
+        .qm-gradient-btn{
+            flex: 1 1 auto;
+            color: #ffffff;
+            background: linear-gradient(90deg, #ffc966 0%, #f355cf 46%, #5f39ff 100%);
+            box-shadow: 0 16px 32px rgba(83,57,255,0.20);
+        }
+        .qm-muted-btn{
+            flex: 0 0 96px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.88);
+            background: rgba(78,82,108,0.80);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .qm-muted-btn svg,
+        .qm-fab svg{
+            width: 20px;
+            height: 20px;
+        }
+        .qm-fab{
+            position: absolute;
+            right: 18px;
+            bottom: 18px;
+            z-index: 2;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.94);
+            background: rgba(10,11,19,0.88);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.24);
+            cursor: pointer;
+            transition: transform .18s ease, background .18s ease;
+        }
+        .qm-video-stage{
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+            border-radius: 22px;
+            aspect-ratio: 16 / 9;
+            background: linear-gradient(180deg, rgba(246,240,222,0.98) 0%, rgba(137,153,126,0.98) 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.22);
+        }
+        .qm-video-stage::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0.00) 20%, rgba(0,0,0,0.08) 100%),
+                radial-gradient(circle at 18% 16%, rgba(255,242,195,0.84), rgba(255,242,195,0.00) 34%);
+            pointer-events: none;
+        }
+        .qm-video-scene{
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            background:
+                linear-gradient(90deg, rgba(255,244,208,0.98) 0%, rgba(246,240,221,0.76) 22%, rgba(186,198,180,0.38) 46%, rgba(68,85,67,0.18) 100%),
+                linear-gradient(180deg, rgba(238,232,210,0.98) 0%, rgba(169,183,162,0.92) 58%, rgba(78,97,73,1) 100%);
+        }
+        .qm-video-scene::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.36) 0 2%, rgba(255,255,255,0.00) 2% 12%, rgba(255,255,255,0.18) 12% 14%, rgba(255,255,255,0.00) 14% 20%, rgba(255,255,255,0.10) 20% 22%, rgba(255,255,255,0.00) 22% 100%),
+                radial-gradient(circle at 20% 78%, rgba(255,255,255,0.30), rgba(255,255,255,0.00) 18%);
+            opacity: .82;
+        }
+        .qm-video-scene::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 38%;
+            background:
+                linear-gradient(180deg, rgba(255,255,255,0.00) 0%, rgba(255,255,255,0.10) 16%, rgba(97,121,112,0.24) 42%, rgba(66,83,70,0.78) 100%);
+        }
+        .qm-video-trunk,
+        .qm-video-rock,
+        .qm-video-deer,
+        .qm-video-plant,
+        .qm-video-leaf,
+        .qm-video-moth{
+            position: absolute;
+            display: block;
+        }
+
+        .qm-video-trunk{
+            bottom: -6%;
+            width: 12%;
+            height: 108%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(70,56,40,0.76), rgba(123,89,56,0.94) 35%, rgba(84,68,47,0.88) 72%, rgba(44,34,24,0.86) 100%);
+            box-shadow: inset 8px 0 18px rgba(255,214,140,0.18), inset -8px 0 16px rgba(0,0,0,0.22);
+        }
+        .qm-video-trunk.is-1{ left: 36%; transform: rotate(5deg); }
+        .qm-video-trunk.is-2{ left: 56%; width: 10%; transform: rotate(10deg); }
+        .qm-video-trunk.is-3{ left: 74%; width: 11%; transform: rotate(-8deg); }
+        .qm-video-rock{
+            bottom: 14%;
+            border-radius: 999px 999px 24px 24px;
+            box-shadow: inset 0 -20px 24px rgba(15,36,28,0.24), inset 10px 10px 20px rgba(255,255,255,0.14);
+        }
+        .qm-video-rock.is-left{
+            left: 4%;
+            width: 24%;
+            height: 20%;
+            background: linear-gradient(180deg, rgba(188,201,146,0.92), rgba(109,136,101,0.96));
+            transform: rotate(-10deg);
+        }
+        .qm-video-rock.is-mid{
+            left: 32%;
+            width: 30%;
+            height: 26%;
+            background: linear-gradient(180deg, rgba(177,192,140,0.96), rgba(93,120,88,0.98));
+            transform: rotate(-9deg);
+        }
+        .qm-video-rock.is-right{
+            right: -2%;
+            width: 26%;
+            height: 20%;
+            background: linear-gradient(180deg, rgba(176,196,140,0.92), rgba(92,117,86,0.98));
+            transform: rotate(-8deg);
+        }
+        .qm-video-rock::before{
+            content: "";
+            position: absolute;
+            inset: 8% 12% 18% 8%;
+            border-radius: inherit;
+            background: linear-gradient(180deg, rgba(91,137,73,0.78), rgba(34,61,43,0.00));
+        }
+        .qm-video-water{
+            position: absolute;
+            left: -8%;
+            right: -2%;
+            bottom: 0;
+            height: 34%;
+            background:
+                radial-gradient(circle at 30% 38%, rgba(255,248,216,0.82), rgba(255,248,216,0.00) 26%),
+                linear-gradient(180deg, rgba(228,236,234,0.12) 0%, rgba(210,230,232,0.48) 20%, rgba(116,146,144,0.62) 54%, rgba(84,108,104,0.92) 100%);
+            clip-path: polygon(0 42%, 14% 34%, 28% 38%, 42% 30%, 54% 40%, 66% 34%, 80% 44%, 100% 32%, 100% 100%, 0 100%);
+            box-shadow: inset 0 12px 18px rgba(255,255,255,0.10);
+        }
+        .qm-video-water::before{
+            content: "";
+            position: absolute;
+            left: 2%;
+            right: 2%;
+            bottom: 18%;
+            height: 16%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.22), rgba(255,255,255,0.02) 60%, rgba(255,255,255,0.18));
+            filter: blur(2px);
+        }
+        .qm-video-deer{
+            width: 8%;
+            height: 20%;
+            background: linear-gradient(180deg, rgba(76,77,59,0.88), rgba(52,54,41,0.96));
+            clip-path: polygon(34% 6%, 44% 0, 52% 16%, 62% 0, 74% 10%, 58% 22%, 66% 36%, 58% 38%, 60% 58%, 74% 100%, 56% 100%, 48% 68%, 42% 68%, 36% 100%, 20% 100%, 26% 58%, 28% 42%, 14% 38%, 20% 26%, 28% 18%);
+            opacity: .84;
+        }
+        .qm-video-deer.is-left{ left: 0%; top: 16%; transform: scale(1.2); }
+        .qm-video-deer.is-center{ left: 22%; top: 20%; transform: scale(.9); opacity: .60; }
+        .qm-video-plant{
+            right: 8%;
+            bottom: 8%;
+            width: 18%;
+            height: 44%;
+        }
+        .qm-video-plant::before,
+        .qm-video-plant::after{
+            content: "";
+            position: absolute;
+            bottom: 0;
+            width: 34%;
+            height: 94%;
+            border-radius: 999px 999px 0 999px;
+            background: linear-gradient(180deg, rgba(57,76,50,0.92), rgba(27,48,35,0.98));
+            transform-origin: bottom center;
+            box-shadow: inset 0 6px 12px rgba(255,255,255,0.10);
+        }
+        .qm-video-plant::before{ left: 8%; transform: rotate(-16deg); }
+        .qm-video-plant::after{ right: 0; height: 76%; transform: rotate(18deg); }
+        .qm-video-leaf{
+            right: 18%;
+            top: 14%;
+            width: 4%;
+            height: 9%;
+            border-radius: 999px 999px 999px 12px;
+            background: linear-gradient(180deg, rgba(255,231,132,0.92), rgba(227,180,84,0.72));
+            box-shadow:
+                -14px 44px 0 0 rgba(255,231,132,0.84),
+                30px 18px 0 0 rgba(255,231,132,0.78);
+            transform: rotate(22deg);
+        }
+        .qm-video-moth{
+            left: 50%;
+            bottom: 22%;
+            width: 12%;
+            height: 10%;
+            transform: translateX(-50%);
+            background:
+                radial-gradient(circle at 24% 50%, rgba(244,247,248,0.86), rgba(244,247,248,0.00) 36%),
+                radial-gradient(circle at 76% 50%, rgba(244,247,248,0.86), rgba(244,247,248,0.00) 36%);
+            filter: drop-shadow(0 3px 8px rgba(0,0,0,0.16));
+        }
+        .qm-video-moth::before{
+            left: 46%;
+            top: 4%;
+            width: 8%;
+            height: 92%;
+            border-radius: 999px;
+            background: rgba(58,46,36,0.92);
+        }
+        .qm-video-moth::after{
+            left: 44%;
+            top: -14%;
+            width: 12%;
+            height: 24%;
+            border-radius: 999px 999px 0 0;
+            border-top: 1px solid rgba(58,46,36,0.92);
+            border-left: 1px solid rgba(58,46,36,0.92);
+            transform: rotate(-16deg);
+        }
+        .qm-video-play{
+            position: absolute;
+            left: 22px;
+            top: 58%;
+            z-index: 2;
+            width: 82px;
+            height: 82px;
+            transform: translateY(-50%);
+            border: 0;
+            border-radius: 999px;
+            background: rgba(118,131,112,0.84);
+            display: grid;
+            place-items: center;
+            box-shadow: 0 18px 36px rgba(0,0,0,0.16);
+            cursor: pointer;
+            transition: transform .18s ease;
+        }
+        .qm-video-play svg{
+            width: 26px;
+            height: 26px;
+            margin-left: 4px;
+            color: #ffffff;
+        }
+        .qm-video-status{
+            position: absolute;
+            left: 22px;
+            bottom: 26px;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+        }
+        .qm-video-status svg{
+            width: 28px;
+            height: 28px;
+            filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+        }
+        .qm-video-time{
+            font-size: 15px;
+            font-weight: 700;
+            text-shadow: 0 3px 12px rgba(0,0,0,0.20);
+        }
+        .qm-video-progress{
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 14px;
+            z-index: 2;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.16);
+            overflow: visible;
+        }
+        .qm-video-progress::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 16px;
+            height: 16px;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            background: #eb3cf1;
+            box-shadow: 0 0 0 4px rgba(235,60,241,0.16);
+        }
+        .qm-video-metrics{
+            position: relative;
+            z-index: 1;
+            margin-top: 18px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            border-radius: 22px;
+            overflow: hidden;
+            background: rgba(45,48,74,0.86);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        .qm-video-metric{
+            position: relative;
+            padding: 22px 12px;
+            text-align: center;
+        }
+        .qm-video-metric + .qm-video-metric::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 22%;
+            bottom: 22%;
+            width: 1px;
+            background: rgba(255,255,255,0.10);
+        }
+        .qm-video-metric-label{
+            font-size: 13px;
+            font-weight: 700;
+            color: rgba(213,219,255,0.80);
+        }
+        .qm-video-metric-value{
+            margin-top: 8px;
+            font-size: 18px;
+            font-weight: 900;
+            color: #ffffff;
+        }
+        @media (max-width: 1440px){
+            .qm-preview-card{
+                padding: 16px 16px 80px;
+            }
+            .qm-storyboard-actions,
+            .qm-video-actions{
+                left: 16px;
+                right: 76px;
+                bottom: 16px;
+            }
+            .qm-gradient-btn,
+            .qm-muted-btn{
+                height: 48px;
+                font-size: 15px;
+            }
+            .qm-muted-btn{
+                flex-basis: 88px;
+            }
+            .qm-video-play{
+                width: 74px;
+                height: 74px;
+            }
+        }
+        @media (max-width: 1024px){
+            .qm-preview-card{
+                height: auto;
+                min-height: 560px;
+            }
+        }
+        @media (max-width: 720px){
+            .qm-preview-card{
+                padding: 14px 14px 76px;
+                min-height: auto;
+            }
+            .qm-storyboard-actions,
+            .qm-video-actions{
+                right: 70px;
+                gap: 12px;
+            }
+            .qm-gradient-btn,
+            .qm-muted-btn{
+                height: 44px;
+                font-size: 14px;
+            }
+            .qm-video-metrics{
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .qm-video-metric:nth-child(3)::before{
+                display: none;
+            }
+        }
+
+        /* ========= Pro preview cards ========= */
+        .pm-library-shell{
+            height: auto;
+            min-height: 100%;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+        .pm-stage-reference{
+            height: auto;
+            min-height: 100%;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+        .pm-stage-reference-frame{
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: linear-gradient(180deg, rgba(41,44,71,0.98) 0%, rgba(38,41,66,0.98) 100%);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.20);
+        }
+        .pm-stage-reference-frame img{
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+        .pm-library-stack{
+            display: flex;
+            flex-direction: column;
+            gap: 26px;
+        }
+        .pm-library-card{
+            position: relative;
+            overflow: hidden;
+            border-radius: 28px;
+            padding: 34px 36px 30px;
+            background:
+                radial-gradient(120% 120% at 100% 100%, rgba(91,39,185,0.18) 0%, rgba(91,39,185,0) 42%),
+                linear-gradient(180deg, rgba(41,44,71,0.98) 0%, rgba(38,41,66,0.98) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 24px 48px rgba(0,0,0,0.20);
+        }
+        .pm-library-card::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 8% 0%, rgba(255,255,255,0.06), rgba(255,255,255,0) 24%),
+                radial-gradient(circle at 100% 88%, rgba(110,44,220,0.18), rgba(110,44,220,0) 24%);
+        }
+        .pm-library-tag{
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: inline-flex;
+            align-items: center;
+            min-width: 118px;
+            height: 40px;
+            padding: 0 18px;
+            border-radius: 0 0 18px 0;
+            font-size: 14px;
+            font-weight: 900;
+            color: #1f2142;
+            letter-spacing: .01em;
+            box-shadow: 0 10px 24px rgba(98,72,255,0.18);
+        }
+        .pm-library-tag.is-violet{
+            background: linear-gradient(90deg, #8e67ff 0%, #6f56f5 100%);
+            color: rgba(248,244,255,0.96);
+        }
+        .pm-library-tag.is-gold{
+            background: linear-gradient(90deg, #ffd86d 0%, #f6c74b 100%);
+            color: rgba(45,33,15,0.92);
+        }
+        .pm-library-main{
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 188px;
+            gap: 28px;
+            align-items: start;
+        }
+        .pm-library-copy{
+            min-width: 0;
+            padding-top: 6px;
+        }
+        .pm-library-block + .pm-library-block{
+            margin-top: 26px;
+        }
+        .pm-library-label{
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.96);
+            line-height: 1.3;
+        }
+        .pm-library-title{
+            margin-top: 12px;
+            font-size: 20px;
+            font-weight: 800;
+            color: rgba(240,243,255,0.88);
+            line-height: 1.4;
+        }
+        .pm-library-desc{
+            margin-top: 12px;
+            font-size: 16px;
+            line-height: 1.9;
+            color: rgba(198,205,232,0.82);
+        }
+        .pm-library-side{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 14px;
+            padding-top: 4px;
+        }
+        .pm-library-side-label{
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.96);
+        }
+        .pm-library-thumb{
+            position: relative;
+            width: 176px;
+            aspect-ratio: 0.78;
+            border-radius: 18px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 18px 36px rgba(0,0,0,0.22);
+        }
+        .pm-library-thumb::before,
+        .pm-library-thumb::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+        }
+        .pm-library-thumb--character{
+            background:
+                radial-gradient(circle at 76% 18%, rgba(255,120,201,0.9), rgba(255,120,201,0) 22%),
+                radial-gradient(circle at 24% 18%, rgba(72,195,255,0.92), rgba(72,195,255,0) 24%),
+                linear-gradient(180deg, rgba(29,31,61,1) 0%, rgba(23,26,48,1) 100%);
+        }
+        .pm-library-thumb--character::before{
+            background:
+                linear-gradient(90deg, rgba(24,31,63,0.36) 0 18%, transparent 18% 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
+        }
+        .pm-library-thumb--character::after{
+            content: "";
+            position: absolute;
+            left: 22px;
+            right: 18px;
+            bottom: 14px;
+            top: 18px;
+            background:
+                radial-gradient(circle at 56% 18%, rgba(255,255,255,0.92) 0 7%, rgba(122,90,255,0.92) 8% 14%, transparent 15%),
+                radial-gradient(circle at 72% 18%, rgba(255,255,255,0.92) 0 7%, rgba(122,90,255,0.92) 8% 14%, transparent 15%),
+                linear-gradient(135deg, rgba(249,83,202,0.96), rgba(106,228,255,0.96));
+            clip-path: polygon(34% 7%, 53% 0, 72% 10%, 82% 18%, 84% 30%, 78% 42%, 91% 61%, 100% 84%, 78% 98%, 58% 90%, 40% 100%, 22% 88%, 8% 62%, 0 40%, 4% 21%, 18% 10%);
+            filter: saturate(1.18);
+            box-shadow:
+                40px 74px 0 -12px rgba(173,194,255,0.16),
+                -26px 66px 0 -16px rgba(130,205,255,0.16);
+        }
+        .pm-library-char-sword{
+            position: absolute;
+            left: 12px;
+            bottom: 24px;
+            width: 166px;
+            height: 14px;
+            border-radius: 999px;
+            transform: rotate(-21deg);
+            background: linear-gradient(90deg, rgba(255,102,204,0.96), rgba(91,223,255,0.96));
+            box-shadow: 0 0 20px rgba(116,221,255,0.28);
+        }
+        .pm-library-char-sword::before{
+            content: "";
+            position: absolute;
+            right: 12px;
+            top: 50%;
+            width: 28px;
+            height: 28px;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            border: 4px solid rgba(255,255,255,0.18);
+        }
+        .pm-library-char-sword::after{
+            content: "";
+            position: absolute;
+            left: 18px;
+            top: 50%;
+            width: 18px;
+            height: 24px;
+            transform: translateY(-50%);
+            border-radius: 8px;
+            background: rgba(37,34,64,0.94);
+        }
+        .pm-library-thumb--scene{
+            background:
+                radial-gradient(circle at 52% 66%, rgba(145,255,255,0.18), rgba(145,255,255,0) 22%),
+                radial-gradient(circle at 52% 18%, rgba(255,130,230,0.34), rgba(255,130,230,0) 24%),
+                linear-gradient(180deg, rgba(38,38,76,1) 0%, rgba(26,29,55,1) 100%);
+        }
+        .pm-library-thumb--scene::before{
+            background:
+                linear-gradient(90deg, rgba(56,122,205,0.78) 0 20%, transparent 20% 28%, rgba(67,45,150,0.78) 28% 44%, transparent 44% 56%, rgba(49,31,120,0.84) 56% 76%, transparent 76% 100%);
+            opacity: .78;
+        }
+        .pm-library-thumb--scene::after{
+            content: "";
+            position: absolute;
+            left: 24px;
+            right: 24px;
+            top: 18px;
+            bottom: 18px;
+            background:
+                linear-gradient(180deg, rgba(126,247,255,0.18), rgba(126,247,255,0) 18%),
+                linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0) 100%);
+            clip-path: polygon(24% 0, 64% 0, 78% 10%, 82% 36%, 100% 100%, 0 100%, 8% 32%, 18% 12%);
+        }
+        .pm-library-scene-avatar{
+            position: absolute;
+            left: 50%;
+            bottom: 28px;
+            width: 38px;
+            height: 94px;
+            transform: translateX(-50%);
+            border-radius: 24px 24px 12px 12px;
+            background: linear-gradient(180deg, rgba(176,255,255,0.88), rgba(136,206,255,0.22));
+            box-shadow: 0 0 22px rgba(145,255,255,0.30);
+        }
+        .pm-library-scene-avatar::before{
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -18px;
+            width: 28px;
+            height: 28px;
+            transform: translateX(-50%);
+            border-radius: 999px;
+            background: rgba(170,248,255,0.92);
+            box-shadow: 0 0 18px rgba(145,255,255,0.28);
+        }
+        .pm-library-actions{
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-top: 30px;
+        }
+        .pm-primary-btn,
+        .pm-icon-btn{
+            height: 54px;
+            border: 0;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform .18s ease, box-shadow .18s ease;
+        }
+        .pm-primary-btn:hover,
+        .pm-icon-btn:hover,
+        .pm-float-add:hover{
+            transform: translateY(-1px);
+        }
+        .pm-primary-btn{
+            min-width: 156px;
+            padding: 0 28px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: #ffffff;
+            background: linear-gradient(90deg, #ffc966 0%, #f355cf 44%, #6338ff 100%);
+            box-shadow: 0 18px 36px rgba(98,56,255,0.18);
+        }
+        .pm-icon-btn{
+            width: 96px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.88);
+            background: rgba(86,90,117,0.82);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
+        }
+        .pm-icon-btn svg,
+        .pm-primary-btn svg{
+            width: 22px;
+            height: 22px;
+        }
+        .pm-float-add{
+            position: absolute;
+            left: 50%;
+            bottom: 44px;
+            z-index: 4;
+            width: 74px;
+            height: 74px;
+            transform: translateX(-50%);
+            border: 0;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            font-size: 34px;
+            color: rgba(255,255,255,0.96);
+            background: linear-gradient(180deg, #f14ce5 0%, #6a32ff 100%);
+            box-shadow: 0 20px 36px rgba(101,50,255,0.28);
+            cursor: pointer;
+        }
+        .pm-storyboard-shell,
+        .pm-video-shell{
+            height: auto;
+            min-height: 100%;
+            overflow-y: auto;
+            padding-right: 6px;
+        }
+        .pm-storyboard-heading{
+            margin: 2px 0 16px;
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(249,249,255,0.97);
+            letter-spacing: .02em;
+        }
+        .pm-storyboard-stack{
+            display: flex;
+            flex-direction: column;
+            gap: 34px;
+            padding: 6px 0 10px;
+        }
+        .pm-storyboard-card{
+            position: relative;
+            overflow: hidden;
+            min-height: 344px;
+            padding: 34px 36px 34px 84px;
+            border-radius: 30px;
+            background:
+                radial-gradient(110% 120% at 0% 0%, rgba(110,84,255,0.07) 0%, rgba(110,84,255,0) 34%),
+                linear-gradient(180deg, rgba(48,51,78,0.98) 0%, rgba(44,48,74,0.98) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 26px 54px rgba(0,0,0,0.22);
+        }
+        .pm-storyboard-card::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background:
+                radial-gradient(circle at 92% 18%, rgba(255,255,255,0.04), rgba(255,255,255,0) 18%),
+                radial-gradient(circle at 76% 100%, rgba(110,58,255,0.10), rgba(110,58,255,0) 24%);
+        }
+        .pm-storyboard-index{
+            position: absolute;
+            left: 0;
+            top: 18px;
+            width: 74px;
+            height: 54px;
+            border-radius: 0 18px 18px 0;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(180deg, rgba(61,65,97,0.96) 0%, rgba(51,55,84,0.96) 100%);
+            color: rgba(221,225,255,0.96);
+            font-size: 24px;
+            font-style: italic;
+            font-weight: 900;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .pm-storyboard-grid{
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 290px;
+            gap: 34px;
+            align-items: start;
+        }
+        .pm-storyboard-main{
+            min-width: 0;
+            padding-top: 4px;
+        }
+        .pm-storyboard-block + .pm-storyboard-block{
+            margin-top: 30px;
+        }
+        .pm-storyboard-label{
+            display: block;
+            margin-bottom: 14px;
+            font-size: 18px;
+            line-height: 1.3;
+            font-weight: 900;
+            color: rgba(255,255,255,0.98);
+        }
+        .pm-storyboard-text{
+            font-size: 15px;
+            line-height: 1.9;
+            color: rgba(190,197,226,0.84);
+        }
+        .pm-storyboard-text.is-script{
+            color: rgba(178,186,216,0.90);
+        }
+        .pm-storyboard-mark{
+            color: #f381d5;
+            font-weight: 900;
+        }
+        .pm-storyboard-duration{
+            display: inline-flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.98);
+        }
+        .pm-storyboard-duration-badge{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-width: 64px;
+            height: 34px;
+            padding: 0 12px;
+            border-radius: 8px;
+            background: rgba(88,91,122,0.72);
+            color: rgba(197,205,244,0.95);
+            font-size: 17px;
+            letter-spacing: .02em;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .pm-storyboard-side{
+            padding-top: 4px;
+        }
+        .pm-storyboard-side-label{
+            display: block;
+            margin-bottom: 18px;
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.98);
+        }
+        .pm-storyboard-thumbs{
+            display: flex;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .pm-storyboard-thumb{
+            width: 92px;
+            height: 92px;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 16px 28px rgba(0,0,0,0.18);
+            background: #171a2a;
+        }
+        .pm-art-card,
+        .pm-shot-preview-art,
+        .pm-player-canvas{
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #181b2c;
+        }
+        .pm-art-card::before,
+        .pm-art-card::after,
+        .pm-shot-preview-art::before,
+        .pm-shot-preview-art::after,
+        .pm-player-canvas::before,
+        .pm-player-canvas::after{
+            content: "";
+            position: absolute;
+            display: block;
+        }
+        .pm-art-card .pm-art-blade,
+        .pm-art-card .pm-art-figure,
+        .pm-art-card .pm-art-holo,
+        .pm-art-card .pm-art-road,
+        .pm-shot-preview-art .pm-art-blade,
+        .pm-shot-preview-art .pm-art-figure,
+        .pm-shot-preview-art .pm-art-holo,
+        .pm-player-canvas .pm-player-figure,
+        .pm-player-canvas .pm-player-hair,
+        .pm-player-canvas .pm-player-sword,
+        .pm-player-canvas .pm-player-screen{
+            position: absolute;
+            display: block;
+        }
+        .pm-art-card .pm-art-figure,
+        .pm-art-card .pm-art-holo,
+        .pm-player-canvas .pm-player-screen,
+        .pm-player-canvas .pm-player-figure{
+            z-index: 2;
+        }
+        .pm-art-card .pm-art-blade,
+        .pm-player-canvas .pm-player-hair{
+            z-index: 3;
+        }
+        .pm-player-canvas .pm-player-sword{
+            z-index: 4;
+        }
+        .pm-art-card.is-character{
+            background:
+                radial-gradient(circle at 74% 18%, rgba(255,92,192,0.58), rgba(255,92,192,0) 20%),
+                radial-gradient(circle at 24% 22%, rgba(91,216,255,0.72), rgba(91,216,255,0) 24%),
+                linear-gradient(180deg, #40558f 0%, #2f3360 50%, #17192b 100%);
+        }
+        .pm-art-card.is-character::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(52,76,139,0.82) 0 20%, transparent 20% 42%, rgba(54,39,114,0.72) 42% 58%, transparent 58% 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0));
+        }
+        .pm-art-card.is-character::after{
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 30%;
+            background: linear-gradient(180deg, rgba(116,225,255,0.00) 0%, rgba(116,225,255,0.18) 34%, rgba(5,7,14,0.84) 100%);
+        }
+        .pm-art-card.is-character .pm-art-figure{
+            left: 20%;
+            bottom: -2%;
+            width: 46%;
+            height: 84%;
+            border-radius: 34% 34% 22% 22% / 20% 20% 16% 16%;
+            background:
+                radial-gradient(circle at 55% 18%, rgba(255,255,255,0.94) 0 5%, rgba(166,126,255,0.88) 6% 10%, transparent 11%),
+                radial-gradient(circle at 74% 18%, rgba(255,255,255,0.94) 0 5%, rgba(166,126,255,0.88) 6% 10%, transparent 11%),
+                linear-gradient(180deg, rgba(15,18,32,0.98) 0%, rgba(9,11,19,1) 100%);
+            clip-path: polygon(30% 4%, 52% 0, 72% 8%, 84% 20%, 86% 34%, 77% 44%, 86% 66%, 92% 86%, 68% 100%, 49% 90%, 34% 100%, 18% 84%, 6% 60%, 0 40%, 4% 18%, 16% 8%);
+            box-shadow: 0 0 0 1px rgba(255,255,255,0.03);
+        }
+        .pm-art-card.is-character .pm-art-blade{
+            left: 18%;
+            bottom: 24%;
+            width: 70%;
+            height: 10px;
+            border-radius: 999px;
+            transform: rotate(-18deg);
+            background: linear-gradient(90deg, rgba(255,115,196,0.96), rgba(85,225,255,0.96));
+            box-shadow: 0 0 16px rgba(111,225,255,0.30);
+        }
+        .pm-art-card.is-scene{
+            background:
+                radial-gradient(circle at 54% 70%, rgba(135,255,255,0.16), rgba(135,255,255,0) 24%),
+                radial-gradient(circle at 68% 18%, rgba(255,115,209,0.30), rgba(255,115,209,0) 22%),
+                linear-gradient(180deg, #3d4179 0%, #252a4d 52%, #16192b 100%);
+        }
+        .pm-art-card.is-scene::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(45,83,173,0.80) 0 22%, transparent 22% 32%, rgba(80,51,174,0.84) 32% 46%, transparent 46% 62%, rgba(54,45,145,0.84) 62% 82%, transparent 82% 100%);
+            opacity: .82;
+        }
+        .pm-art-card.is-scene::after{
+            left: 14%;
+            right: 14%;
+            bottom: 0;
+            height: 32%;
+            background: linear-gradient(180deg, rgba(255,122,210,0.00), rgba(255,122,210,0.12) 40%, rgba(5,7,14,0.88) 100%);
+            clip-path: polygon(0 100%, 18% 26%, 38% 30%, 52% 0, 66% 34%, 100% 100%);
+        }
+        .pm-art-card.is-scene .pm-art-holo{
+            left: 34%;
+            top: 22%;
+            width: 20%;
+            height: 44%;
+            border-radius: 20px 20px 12px 12px;
+            background: linear-gradient(180deg, rgba(182,255,255,0.92), rgba(140,208,255,0.18));
+            box-shadow: 0 0 18px rgba(135,255,255,0.24);
+        }
+        .pm-art-card.is-scene .pm-art-holo::before{
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: -12px;
+            width: 18px;
+            height: 18px;
+            transform: translateX(-50%);
+            border-radius: 999px;
+            background: rgba(182,255,255,0.94);
+        }
+        .pm-art-card.is-rooftop{
+            background:
+                radial-gradient(circle at 64% 16%, rgba(255,115,209,0.36), rgba(255,115,209,0) 22%),
+                radial-gradient(circle at 26% 22%, rgba(91,216,255,0.48), rgba(91,216,255,0) 22%),
+                linear-gradient(180deg, #3a4077 0%, #262b4f 56%, #171a2d 100%);
+        }
+        .pm-art-card.is-rooftop::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(44,76,157,0.62) 0 26%, transparent 26% 58%, rgba(103,53,176,0.62) 58% 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+        }
+        .pm-art-card.is-rooftop::after{
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 28%;
+            background: linear-gradient(180deg, rgba(255,255,255,0.00), rgba(8,10,16,0.92));
+        }
+        .pm-art-card.is-rooftop .pm-art-holo{
+            left: 10%;
+            top: 20%;
+            width: 32%;
+            height: 52%;
+            border-radius: 28px;
+            background:
+                linear-gradient(180deg, rgba(192,255,255,0.28), rgba(192,255,255,0.00)),
+                linear-gradient(180deg, rgba(255,98,224,0.36), rgba(255,98,224,0.04));
+            box-shadow: 0 0 20px rgba(255,115,209,0.18);
+        }
+        .pm-art-card.is-rooftop .pm-art-figure{
+            right: 20%;
+            bottom: 10%;
+            width: 10%;
+            height: 34%;
+            border-radius: 42% 42% 18% 18% / 18% 18% 12% 12%;
+            background: linear-gradient(180deg, rgba(18,21,38,0.96), rgba(6,8,14,1));
+        }
+        .pm-video-shell{
+            padding-bottom: 8px;
+        }
+        .pm-video-layout{
+            display: grid;
+            grid-template-columns: 360px minmax(0, 1fr) 360px;
+            gap: 24px;
+            align-items: start;
+        }
+        .pm-video-panel{
+            border-radius: 26px;
+            background: linear-gradient(180deg, rgba(39,42,67,0.98) 0%, rgba(34,37,58,0.98) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            box-shadow: 0 22px 46px rgba(0,0,0,0.20);
+        }
+        .pm-shot-list-panel{
+            min-height: 712px;
+            padding: 28px 18px 20px;
+        }
+        .pm-shot-list{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .pm-shot-item{
+            position: relative;
+            overflow: hidden;
+            border-radius: 18px;
+            background: #171b2c;
+            border: 1px solid rgba(255,255,255,0.04);
+            box-shadow: 0 16px 28px rgba(0,0,0,0.16);
+        }
+        .pm-shot-item.is-active{
+            border-color: rgba(255,205,94,0.82);
+            box-shadow: 0 0 0 2px rgba(235,76,255,0.48), 0 18px 28px rgba(0,0,0,0.18);
+        }
+        .pm-shot-preview{
+            aspect-ratio: 1.72 / 1;
+        }
+        .pm-shot-meta{
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+        .pm-shot-title{
+            position: absolute;
+            left: 16px;
+            bottom: 14px;
+            height: 30px;
+            padding: 0 12px;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 12px;
+            background: rgba(13,14,22,0.48);
+            color: rgba(255,255,255,0.96);
+            font-size: 16px;
+            font-weight: 900;
+        }
+        .pm-shot-duration{
+            position: absolute;
+            right: 16px;
+            bottom: 14px;
+            height: 34px;
+            padding: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            border-radius: 12px;
+            background: rgba(88,91,122,0.82);
+            color: rgba(245,246,255,0.96);
+            font-size: 16px;
+            font-weight: 900;
+        }
+        .pm-video-center{
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+        .pm-player-stage{
+            min-height: 464px;
+            padding: 0;
+            overflow: hidden;
+        }
+        .pm-player-canvas{
+            min-height: 464px;
+            border-radius: 26px;
+            background:
+                radial-gradient(circle at 24% 28%, rgba(95,224,255,0.40), rgba(95,224,255,0) 18%),
+                radial-gradient(circle at 67% 18%, rgba(255,89,206,0.42), rgba(255,89,206,0) 22%),
+                linear-gradient(180deg, #425a95 0%, #263356 46%, #1a1d2e 100%);
+        }
+        .pm-player-canvas::before{
+            inset: 0;
+            background:
+                linear-gradient(90deg, rgba(66,108,190,0.80) 0 22%, transparent 22% 54%, rgba(58,46,125,0.76) 54% 72%, transparent 72% 100%),
+                linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.00));
+        }
+        .pm-player-canvas::after{
+            left: 38%;
+            right: 0;
+            bottom: 0;
+            height: 50%;
+            background: linear-gradient(180deg, rgba(255,110,212,0.00) 0%, rgba(140,201,255,0.18) 26%, rgba(20,22,36,0.94) 100%);
+            clip-path: polygon(0 0, 100% 10%, 100% 100%, 18% 100%);
+        }
+        .pm-player-screen{
+            left: 3%;
+            top: 16%;
+            width: 28%;
+            height: 40%;
+            border-radius: 22px;
+            background:
+                linear-gradient(180deg, rgba(202,255,255,0.28), rgba(202,255,255,0)),
+                linear-gradient(180deg, rgba(122,236,255,0.98), rgba(174,237,255,0.48));
+            filter: blur(.2px);
+            box-shadow: 0 0 18px rgba(122,236,255,0.22);
+        }
+        .pm-player-figure{
+            left: 18%;
+            bottom: -8%;
+            width: 42%;
+            height: 86%;
+            border-radius: 38% 38% 18% 18% / 20% 20% 12% 12%;
+            background:
+                radial-gradient(circle at 54% 16%, rgba(255,255,255,0.96) 0 4%, rgba(167,117,255,0.92) 5% 9%, transparent 10%),
+                radial-gradient(circle at 72% 16%, rgba(255,255,255,0.96) 0 4%, rgba(167,117,255,0.92) 5% 9%, transparent 10%),
+                linear-gradient(180deg, rgba(20,25,46,0.98) 0%, rgba(10,12,22,1) 100%);
+            clip-path: polygon(24% 4%, 44% 0, 65% 6%, 79% 18%, 81% 32%, 72% 42%, 82% 62%, 92% 84%, 76% 100%, 56% 90%, 34% 100%, 18% 84%, 6% 60%, 0 42%, 2% 20%, 12% 10%);
+            box-shadow:
+                0 0 0 1px rgba(255,255,255,0.03),
+                inset 0 -54px 0 rgba(25,37,74,0.88);
+        }
+        .pm-player-hair{
+            left: 22%;
+            top: 8%;
+            width: 32%;
+            height: 34%;
+            border-radius: 46% 46% 38% 38%;
+            background:
+                radial-gradient(circle at 20% 32%, rgba(64,214,255,0.88), rgba(64,214,255,0) 18%),
+                radial-gradient(circle at 78% 36%, rgba(255,126,104,0.90), rgba(255,126,104,0) 18%),
+                radial-gradient(circle at 88% 60%, rgba(245,219,74,0.82), rgba(245,219,74,0) 18%),
+                radial-gradient(circle at 64% 22%, rgba(255,63,177,0.84), rgba(255,63,177,0) 20%),
+                linear-gradient(180deg, rgba(18,17,30,0.98), rgba(8,9,17,1));
+            clip-path: polygon(8% 26%, 24% 6%, 44% 0, 74% 10%, 100% 34%, 92% 70%, 74% 100%, 18% 84%, 0 54%);
+            filter: drop-shadow(0 10px 18px rgba(255,89,206,0.20));
+        }
+        .pm-player-sword{
+            left: 22%;
+            top: 44%;
+            width: 38%;
+            height: 18px;
+            border-radius: 999px;
+            transform: rotate(-17deg);
+            background: linear-gradient(90deg, rgba(255,118,205,0.98), rgba(98,229,255,0.98));
+            box-shadow: 0 0 18px rgba(98,229,255,0.28);
+        }
+        .pm-player-sword::before{
+            content: "";
+            position: absolute;
+            left: -16px;
+            top: 50%;
+            width: 22px;
+            height: 22px;
+            transform: translateY(-50%);
+            border-radius: 6px;
+            background: rgba(61,41,105,0.96);
+        }
+        .pm-player-sword::after{
+            content: "";
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            width: 26px;
+            height: 26px;
+            transform: translateY(-50%);
+            border-radius: 999px;
+            border: 4px solid rgba(255,255,255,0.18);
+        }
+        .pm-player-controls{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            background: rgba(45,48,76,0.96);
+        }
+        .pm-player-btn{
+            width: 24px;
+            height: 24px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.96);
+        }
+        .pm-player-time{
+            font-size: 15px;
+            font-weight: 900;
+            color: #c55cff;
+        }
+        .pm-player-progress{
+            position: relative;
+            flex: 1 1 auto;
+            height: 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.14);
+        }
+        .pm-player-progress::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 18%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #f053df 0%, #c44aff 100%);
+        }
+        .pm-player-progress::after{
+            content: "";
+            position: absolute;
+            left: 18%;
+            top: 50%;
+            width: 12px;
+            height: 12px;
+            transform: translate(-50%, -50%);
+            border-radius: 999px;
+            background: #f4f0ff;
+            box-shadow: 0 0 0 4px rgba(245,83,223,0.18);
+        }
+        .pm-player-side-icon{
+            width: 28px;
+            height: 28px;
+            display: grid;
+            place-items: center;
+            color: rgba(245,247,255,0.94);
+        }
+        .pm-player-corner{
+            position: absolute;
+            top: 16px;
+            left: 18px;
+            z-index: 3;
+            display: inline-flex;
+            gap: 8px;
+        }
+        .pm-player-pill{
+            min-width: 36px;
+            height: 24px;
+            padding: 0 8px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.92);
+            color: #202235;
+            font-size: 12px;
+            font-weight: 900;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .pm-player-play{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            z-index: 6;
+            width: 92px;
+            height: 92px;
+            margin: -46px 0 0 -46px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            border: 0;
+            background: rgba(194,170,236,0.88);
+            color: #ffffff;
+            box-shadow: 0 22px 40px rgba(0,0,0,0.18);
+            cursor: pointer;
+        }
+        .pm-player-play svg{
+            width: 34px;
+            height: 34px;
+            margin-left: 4px;
+        }
+        .pm-video-tools{
+            min-height: 514px;
+            padding: 22px 18px 18px;
+        }
+        .pm-video-tool-grid{
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 12px;
+        }
+        .pm-video-tool{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 6px 4px 12px;
+            border: 0;
+            background: transparent;
+            color: rgba(205,211,236,0.92);
+            font-size: 14px;
+            font-weight: 800;
+            cursor: pointer;
+        }
+        .pm-video-tool svg{
+            width: 26px;
+            height: 26px;
+        }
+        .pm-video-tool.is-active{
+            color: rgba(255,255,255,0.98);
+        }
+        .pm-video-tool.is-active span:last-child{
+            position: relative;
+        }
+        .pm-video-tool.is-active span:last-child::after{
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -8px;
+            height: 3px;
+            border-radius: 999px;
+            background: linear-gradient(90deg, #f056dc 0%, #cb49ff 100%);
+        }
+        .pm-audio-section{
+            margin-top: 24px;
+            padding: 0 8px;
+        }
+        .pm-audio-title{
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.98);
+        }
+        .pm-audio-row{
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            margin-top: 18px;
+        }
+        .pm-audio-slider{
+            position: relative;
+            flex: 1 1 auto;
+            height: 6px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.16);
+        }
+        .pm-audio-slider::before{
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            border-radius: inherit;
+            background: linear-gradient(90deg, #f056dc 0%, #cc49ff 100%);
+        }
+        .pm-audio-slider::after{
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 14px;
+            height: 14px;
+            transform: translate(-50%, -50%);
+            border-radius: 999px;
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(255,255,255,0.08);
+        }
+        .pm-audio-value{
+            width: 44px;
+            text-align: right;
+            font-size: 17px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.96);
+        }
+        .pm-video-bottom{
+            margin-top: 24px;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) 360px;
+            gap: 24px;
+        }
+        .pm-timeline-shell{
+            padding: 12px 16px 16px;
+        }
+        .pm-timeline-toolbar{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: rgba(211,217,243,0.88);
+        }
+        .pm-timeline-toolbar svg{
+            width: 20px;
+            height: 20px;
+        }
+        .pm-timeline-ruler{
+            position: relative;
+            margin-top: 10px;
+            height: 34px;
+            border-radius: 12px 12px 0 0;
+            background:
+                repeating-linear-gradient(90deg, rgba(255,255,255,0.22) 0 1px, transparent 1px 10px),
+                linear-gradient(180deg, rgba(35,37,59,0.94), rgba(28,31,50,0.94));
+        }
+        .pm-timeline-stamps{
+            position: absolute;
+            inset: 8px 16px auto 16px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: rgba(155,163,206,0.84);
+        }
+        .pm-timeline-track{
+            position: relative;
+            min-height: 124px;
+            border-radius: 0 0 18px 18px;
+            background:
+                linear-gradient(90deg, rgba(255,255,255,0.08) 0 1px, transparent 1px calc(50% - 1px), rgba(255,255,255,0.08) calc(50% - 1px) 50%, transparent 50% 100%),
+                linear-gradient(180deg, rgba(31,34,55,0.98) 0%, rgba(27,30,47,0.98) 100%);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-top: 0;
+        }
+        .pm-timeline-track::before{
+            content: "";
+            position: absolute;
+            left: 34px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: rgba(196,201,238,0.74);
+        }
+        .pm-timeline-tag{
+            position: absolute;
+            left: 12px;
+            bottom: 26px;
+            width: 38px;
+            height: 32px;
+            border-radius: 8px;
+            display: grid;
+            place-items: center;
+            background: rgba(100,102,119,0.84);
+            color: rgba(255,255,255,0.96);
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .pm-timeline-caption{
+            position: absolute;
+            left: 18%;
+            top: 42px;
+            width: 38%;
+            height: 30px;
+            padding: 0 14px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 8px;
+            background: rgba(131,112,204,0.94);
+            color: rgba(248,247,255,0.98);
+            font-size: 14px;
+            font-weight: 800;
+        }
+        .pm-timeline-caption::before{
+            content: "T";
+            width: 18px;
+            height: 18px;
+            border-radius: 6px;
+            display: inline-grid;
+            place-items: center;
+            font-size: 12px;
+            font-weight: 900;
+            color: rgba(255,255,255,0.94);
+            border: 1px solid rgba(255,255,255,0.42);
+        }
+        .pm-subtitle-wrap{
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .pm-subtitle-title{
+            padding: 0 6px;
+            font-size: 18px;
+            font-weight: 900;
+            color: rgba(205,212,238,0.94);
+        }
+        .pm-subtitle-editor{
+            min-height: 134px;
+            padding: 20px 18px;
+            border-radius: 18px;
+            background: rgba(19,14,31,0.82);
+            border: 1px solid rgba(255,255,255,0.04);
+            color: rgba(126,129,153,0.92);
+            font-size: 18px;
+        }
+        @media (max-width: 1100px){
+            .pm-library-main{
+                grid-template-columns: 1fr;
+            }
+            .pm-library-side{
+                align-items: flex-start;
+            }
+            .pm-library-thumb{
+                width: 188px;
+            }
+            .pm-float-add{
+                left: auto;
+                right: 28px;
+                bottom: 28px;
+                transform: none;
+            }
+            .pm-storyboard-grid,
+            .pm-video-layout,
+            .pm-video-bottom{
+                grid-template-columns: 1fr;
+            }
+            .pm-shot-list-panel,
+            .pm-video-tools{
+                min-height: 0;
+            }
+        }
+        @media (max-width: 720px){
+            .pm-library-card{
+                padding: 28px 22px 24px;
+            }
+            .pm-library-desc{
+                font-size: 14px;
+            }
+            .pm-library-actions{
+                flex-wrap: wrap;
+            }
+            .pm-icon-btn{
+                width: 82px;
+            }
+            .pm-storyboard-card{
+                padding: 76px 20px 24px;
+            }
+            .pm-storyboard-grid{
+                gap: 22px;
+            }
+            .pm-storyboard-index{
+                top: 12px;
+                width: 62px;
+                height: 46px;
+                font-size: 21px;
+            }
+            .pm-video-tool-grid{
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+            .pm-player-canvas,
+            .pm-player-stage{
+                min-height: 320px;
+            }
+            .pm-player-play{
+                width: 72px;
+                height: 72px;
+                margin: -36px 0 0 -36px;
+            }
+            .pm-player-play svg{
+                width: 28px;
+                height: 28px;
+            }
+        }
+
         /* ========= Studio popover ========= */
         .studio-popover{
             position: fixed;
@@ -4353,7 +6487,7 @@
                                         <div class="file-row">
                                             <span class="file-tag" data-script-file-tag>📄 未绑定剧本</span>
                                             <button class="delete-bind-btn" type="button" data-script-delete-btn>🗑️删除</button>
-                                        </div>
+                                        -->
                                     </div>
                                 </div>
                                 <textarea id="workbench-input" maxlength="100" oninput="syncPrompt(this.value)" class="wb-prompt-input" placeholder="将“中的大黄鸭添加到 合适的位置上"></textarea>
@@ -4533,15 +6667,105 @@
                         </div>
 
                         <!-- 核心内容展示区 -->
-                        <div class="flex-1 p-5 xl:p-6 overflow-y-auto">
+                        <div class="flex-1 min-h-0 p-5 xl:p-6 overflow-y-auto">
                             
                             <!-- 快速模式内容：2步走 -->
                             <div id="quick-view-steps" class="h-full grid grid-cols-1 lg:grid-cols-[minmax(0,1.38fr)_minmax(400px,1.12fr)] xl:grid-cols-[minmax(0,1.3fr)_minmax(460px,1.18fr)] gap-5 xl:gap-6">
                                 <!-- Step 1: 九宫图 -->
-                                <div id="quick-step-frames" class="min-w-0 space-y-3">
-                                    <div class="grid grid-cols-3 gap-3 xl:gap-4">
+                                <div id="quick-step-frames" class="min-w-0 h-full">
+                                    <div class="qm-preview-card">
                                         <!-- 9个占位符 -->
-                                        <script>
+                                        <div class="qm-storyboard-board" aria-label="九宫图预览">
+                                            <article class="qm-frame qm-frame-1">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-pink" style="top:14px; right:14px;">青歌巷</span>
+                                                </div>
+                                                <span class="qm-frame-index">1</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-2">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-cyan" style="top:14px; left:18px;">永福</span>
+                                                </div>
+                                                <span class="qm-frame-index">2</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-3">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-purple" style="top:14px; right:16px;">未夜灯</span>
+                                                </div>
+                                                <span class="qm-frame-index">3</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-4">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-purple" style="bottom:14px; left:18px;">夜巷</span>
+                                                </div>
+                                                <span class="qm-frame-index">4</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-5">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                </div>
+                                                <span class="qm-frame-index">5</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-6">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-cyan" style="top:14px; right:16px;">符咒</span>
+                                                </div>
+                                                <span class="qm-frame-index">6</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-7">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-pink" style="top:14px; left:18px;">赛博巷</span>
+                                                </div>
+                                                <span class="qm-frame-index">7</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-8">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-purple" style="top:14px; left:16px;">市井录</span>
+                                                    <span class="qm-frame-sign is-pink" style="top:14px; right:14px;">无界巷</span>
+                                                </div>
+                                                <span class="qm-frame-index">8</span>
+                                            </article>
+                                            <article class="qm-frame qm-frame-9">
+                                                <div class="qm-frame-canvas">
+                                                    <span class="qm-frame-subject"></span>
+                                                    <span class="qm-frame-accent"></span>
+                                                    <span class="qm-frame-sign is-cyan" style="top:14px; right:14px;">流酒青歌</span>
+                                                </div>
+                                                <span class="qm-frame-index">9</span>
+                                            </article>
+                                        </div>
+                                        <div class="qm-storyboard-actions">
+                                            <button type="button" class="qm-gradient-btn">生成视频(28积分)</button>
+                                            <button type="button" class="qm-muted-btn" aria-label="编辑九宫图">
+                                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                    <path d="M4.5 19.5h4.2l9.3-9.3-4.2-4.2-9.3 9.3v4.2Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+                                                    <path d="m12.4 6.6 4.2 4.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                                    <path d="M18.8 4.7 20.5 3l.5.5c1 1 1 2.6 0 3.5L19.3 8.7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </button>
+                                        </div>
+                                        <button type="button" class="qm-fab" aria-label="更多操作">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path d="M12 3l1.3 3.7L17 8l-3.7 1.3L12 13l-1.3-3.7L7 8l3.7-1.3L12 3Z" fill="currentColor"/>
+                                                <path d="M18.5 13.5 19.3 16l2.5.8-2.5.8-.8 2.4-.8-2.4-2.5-.8 2.5-.8.8-2.5Z" fill="currentColor" opacity=".92"/>
+                                            </svg>
+                                        </button>
+                                        <!--
                                             for(let i=0; i<9; i++) {
                                                 document.write(`
                                                     <div class="aspect-square glass rounded-xl relative group overflow-hidden">
@@ -4554,13 +6778,71 @@
                                                     </div>
                                                 `);
                                             }
-                                        </script>
+                                        -->
                                     </div>
                                 </div>
                                 <!-- Step 2: 视频播放 -->
-                                <div id="quick-step-video" class="min-w-0 space-y-3 flex flex-col">
-                                    <div class="flex-1 min-h-[260px] lg:min-h-full glass rounded-2xl bg-black/40 flex items-center justify-center border-dashed border-2 border-white/5">
-                                        <div class="text-center opacity-20">
+                                <div id="quick-step-video" class="min-w-0 h-full flex flex-col">
+                                    <div class="qm-preview-card">
+                                        <div class="qm-video-stage" aria-label="视频预览">
+                                            <div class="qm-video-scene">
+                                                <span class="qm-video-trunk is-1"></span>
+                                                <span class="qm-video-trunk is-2"></span>
+                                                <span class="qm-video-trunk is-3"></span>
+                                                <span class="qm-video-deer is-left"></span>
+                                                <span class="qm-video-deer is-center"></span>
+                                                <span class="qm-video-rock is-left"></span>
+                                                <span class="qm-video-rock is-mid"></span>
+                                                <span class="qm-video-rock is-right"></span>
+                                                <span class="qm-video-water"></span>
+                                                <span class="qm-video-plant"></span>
+                                                <span class="qm-video-leaf"></span>
+                                                <span class="qm-video-moth"></span>
+                                            </div>
+                                            <button type="button" class="qm-video-play" aria-label="播放视频">
+                                                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                                                    <path d="M8 6.5v11l9-5.5-9-5.5Z"/>
+                                                </svg>
+                                            </button>
+                                            <div class="qm-video-status">
+                                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                    <path d="M4 14h3l4 4V6L7 10H4v4Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                                    <path d="M15 9a4 4 0 0 1 0 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                    <path d="M18 6a8 8 0 0 1 0 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                </svg>
+                                                <span class="qm-video-time">00:00 / 00:00</span>
+                                            </div>
+                                            <div class="qm-video-progress"></div>
+                                        </div>
+                                        <div class="qm-video-metrics">
+                                            <div class="qm-video-metric">
+                                                <div class="qm-video-metric-label">分辨率</div>
+                                                <div class="qm-video-metric-value">540p</div>
+                                            </div>
+                                            <div class="qm-video-metric">
+                                                <div class="qm-video-metric-label">视频时长</div>
+                                                <div class="qm-video-metric-value">4秒</div>
+                                            </div>
+                                            <div class="qm-video-metric">
+                                                <div class="qm-video-metric-label">视频比例</div>
+                                                <div class="qm-video-metric-value">16:9</div>
+                                            </div>
+                                            <div class="qm-video-metric">
+                                                <div class="qm-video-metric-label">风格</div>
+                                                <div class="qm-video-metric-value">玄幻修仙</div>
+                                            </div>
+                                        </div>
+                                        <div class="qm-video-actions">
+                                            <button type="button" class="qm-muted-btn" style="flex:1 1 auto;">重新生成(28积分)</button>
+                                            <button type="button" class="qm-gradient-btn">下载视频</button>
+                                        </div>
+                                        <button type="button" class="qm-fab" aria-label="更多视频操作">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path d="M12 3l1.3 3.7L17 8l-3.7 1.3L12 13l-1.3-3.7L7 8l3.7-1.3L12 3Z" fill="currentColor"/>
+                                                <path d="M18.5 13.5 19.3 16l2.5.8-2.5.8-.8 2.4-.8-2.4-2.5-.8 2.5-.8.8-2.5Z" fill="currentColor" opacity=".92"/>
+                                            </svg>
+                                        </button>
+                                        <!--
                                             <svg class="w-12 h-12 mx-auto mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                             <p class="text-sm">等待九宫格确认后生成视频...</p>
                                         </div>
@@ -4569,29 +6851,101 @@
                             </div>
 
                             <!-- 专业模式内容：传统Tab逻辑 -->
-                            <div id="pro-view-tabs" class="hidden h-full">
-                                <div id="pro-content-subject" class="h-full flex items-center justify-center">
-                                    <div class="w-64 glass rounded-2xl flex flex-col items-center justify-center text-gray-600 border-dashed border-2 p-6">
-                                        <span class="text-3xl mb-4 opacity-30">👤</span>
-                                        <p class="text-xs">等待主体设定生成...</p>
-                                        <!-- 进度条（显示百分比） -->
-                                        <div class="w-full mt-5">
-                                            <div class="flex items-center justify-between text-[11px] font-semibold text-white/50">
-                                                <span>生成进度</span>
-                                                <span id="pro-gen-progress-text">0%</span>
-                                            </div>
-                                            <div class="mt-2 h-2 rounded-full bg-white/5 border border-white/10 overflow-hidden">
-                                                <div id="pro-gen-progress-bar" class="h-full rounded-full bg-cyan-400/90" style="width: 0%;"></div>
-                                            </div>
+                            <div id="pro-view-tabs" class="hidden h-full min-h-0">
+                                <div id="pro-content-subject" class="h-full min-h-0">
+                                    <div class="pm-stage-reference">
+                                        <div class="pm-stage-reference-frame">
+                                            <img src="./2.png" alt="主体预览参考图" loading="eager">
                                         </div>
                                     </div>
                                 </div>
-                                <div id="pro-content-storyboard" class="hidden grid grid-cols-2 gap-4">
-                                    <div class="aspect-video glass rounded-xl skeleton"></div>
-                                    <div class="aspect-video glass rounded-xl skeleton"></div>
+                                <div id="pro-content-storyboard" class="hidden h-full min-h-0">
+                                    <div class="pm-storyboard-shell">
+                                        <div class="pm-storyboard-heading">视频分镜</div>
+                                        <div class="pm-storyboard-stack">
+                                            <section class="pm-storyboard-card">
+                                                <span class="pm-storyboard-index">1</span>
+                                                <div class="pm-storyboard-grid">
+                                                    <div class="pm-storyboard-main">
+                                                        <div class="pm-storyboard-block">
+                                                            <span class="pm-storyboard-label">剧本内容:</span>
+                                                            <p class="pm-storyboard-text is-script">莉安 · 夜刃独自行于赛博都市夜幕，占据这座城市的黑暗与希望</p>
+                                                        </div>
+                                                        <div class="pm-storyboard-block">
+                                                            <span class="pm-storyboard-label">镜头描述:</span>
+                                                            <p class="pm-storyboard-text"><span class="pm-storyboard-mark">在@赛博都市夜幕</span>中的场景中，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>站在高楼天台边缘，银黑装甲反射着霓虹灯光。她五彩斑斓的短发在风中微微飘动，眼神锐利而深邃。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>右手持霓虹武士刀，将其轻轻靠在肩上。背后的广告屏幕和城市车流把她的身影映衬得更加醒目。</p>
+                                                        </div>
+                                                        <div class="pm-storyboard-block">
+                                                            <div class="pm-storyboard-duration">
+                                                                <span>视频时长:</span>
+                                                                <span class="pm-storyboard-duration-badge">00:07</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pm-storyboard-side">
+                                                        <span class="pm-storyboard-side-label">主体列表:</span>
+                                                        <div class="pm-storyboard-thumbs">
+                                                            <div class="pm-storyboard-thumb">
+                                                                <div class="pm-art-card is-scene">
+                                                                    <span class="pm-art-holo"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pm-storyboard-thumb">
+                                                                <div class="pm-art-card is-character">
+                                                                    <span class="pm-art-figure"></span>
+                                                                    <span class="pm-art-blade"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                            <section class="pm-storyboard-card">
+                                                <span class="pm-storyboard-index">2</span>
+                                                <div class="pm-storyboard-grid">
+                                                    <div class="pm-storyboard-main">
+                                                        <div class="pm-storyboard-block">
+                                                            <span class="pm-storyboard-label">剧本内容:</span>
+                                                            <p class="pm-storyboard-text is-script">莉安 · 夜坚定胆迈出脚步，准备行动，提示黑夜</p>
+                                                        </div>
+                                                        <div class="pm-storyboard-block">
+                                                            <span class="pm-storyboard-label">镜头描述:</span>
+                                                            <p class="pm-storyboard-text">镜头由远及近，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>从天台走入灯火繁华的街道。<span class="pm-storyboard-mark">@赛博都市夜幕</span>中，装甲的亮蓝能量线闪耀着寒芒。她眼神坚定，夜风吹下头发更显灵动，人群在她身旁流动，广告飞舰在远方巡航。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>轻声说：“是时候了。”然后她一脚踏入人潮，霓虹武士刀的反光在斑斓夜色里掠过。</p>
+                                                        </div>
+                                                        <div class="pm-storyboard-block">
+                                                            <div class="pm-storyboard-duration">
+                                                                <span>视频时长:</span>
+                                                                <span class="pm-storyboard-duration-badge">00:08</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="pm-storyboard-side">
+                                                        <span class="pm-storyboard-side-label">主体列表:</span>
+                                                        <div class="pm-storyboard-thumbs">
+                                                            <div class="pm-storyboard-thumb">
+                                                                <div class="pm-art-card is-character">
+                                                                    <span class="pm-art-figure"></span>
+                                                                    <span class="pm-art-blade"></span>
+                                                                </div>
+                                                            </div>
+                                                            <div class="pm-storyboard-thumb">
+                                                                <div class="pm-art-card is-scene">
+                                                                    <span class="pm-art-holo"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div id="pro-content-video" class="hidden h-full flex items-center justify-center">
-                                    <div class="w-full aspect-video glass rounded-2xl bg-black/60 flex items-center justify-center">视频播放器占位</div>
+                                <div id="pro-content-video" class="hidden h-full min-h-0">
+                                    <div class="pm-stage-reference">
+                                        <div class="pm-stage-reference-frame">
+                                            <img src="./5.png" alt="视频预览参考图" loading="eager">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -4612,6 +6966,11 @@
             </div>
         </div>
     </main>
+
+    <div aria-hidden="true" style="display:none;">
+        <span id="pro-gen-progress-text">0%</span>
+        <div id="pro-gen-progress-bar" style="width: 0%;"></div>
+    </div>
 
     <script>
         let currentMode = 'quick'; // 'quick' or 'pro'
@@ -5089,8 +7448,8 @@
                 if (proParams) proParams.classList.add('hidden');
                 if (quickTabs) quickTabs.classList.remove('hidden');
                 if (proTabs) proTabs.classList.add('hidden');
-                if (quickSteps) quickSteps.classList.remove('hidden');
-                if (proViewTabs) proViewTabs.classList.add('hidden');
+                setWorkbenchPanelVisibility(quickSteps, true, 'grid');
+                setWorkbenchPanelVisibility(proViewTabs, false);
                 if (generateBtn) generateBtn.innerText = "一键生成漫剧（50积分）";
                 if (eta) eta.innerText = "~25s";
                 scriptBtns.forEach(btn => btn.classList.add('hidden'));
@@ -5100,13 +7459,14 @@
                 if (proParams) proParams.classList.remove('hidden');
                 if (quickTabs) quickTabs.classList.add('hidden');
                 if (proTabs) proTabs.classList.remove('hidden');
-                if (quickSteps) quickSteps.classList.add('hidden');
-                if (proViewTabs) proViewTabs.classList.remove('hidden');
+                setWorkbenchPanelVisibility(quickSteps, false, 'grid');
+                setWorkbenchPanelVisibility(proViewTabs, true);
                 if (generateBtn) generateBtn.innerText = "一键生成漫剧";
                 if (eta) eta.innerText = "~85s";
                 scriptBtns.forEach(btn => btn.classList.remove('hidden'));
-                syncWorkbenchFlowStatus('pro', 0);
-                switchProTab('subject');
+                const currentPct = Number(document.getElementById('wb-gen-progress-text')?.textContent?.replace('%','')) || 0;
+                syncWorkbenchFlowStatus('pro', currentPct);
+                switchProTab(getProActiveStepKey(currentPct));
             }
             syncWorkbenchModelOptions(mode);
             syncDurationBounds();
@@ -5273,12 +7633,46 @@
             });
         }
 
+        function setWorkbenchPanelVisibility(node, visible, displayMode = 'block'){
+            if (!node) return;
+            node.classList.toggle('hidden', !visible);
+            node.toggleAttribute('hidden', !visible);
+            node.style.display = visible ? displayMode : 'none';
+        }
+
+        function getProActiveStepKey(pct = 0){
+            const n = Math.max(0, Math.min(100, Number(pct) || 0));
+            return n <= 0 ? 'subject' : n < 34 ? 'subject' : n < 72 ? 'storyboard' : 'video';
+        }
+
+        function ensureProPreviewRender(forceTab){
+            const proTabs = document.getElementById('pro-tabs');
+            const proViewTabs = document.getElementById('pro-view-tabs');
+            if (!proTabs || !proViewTabs) return;
+
+            const proModeActive = currentMode === 'pro' || !proTabs.classList.contains('hidden');
+            if (!proModeActive) return;
+
+            setWorkbenchPanelVisibility(proViewTabs, true);
+
+            const selectedNode = proTabs.querySelector('[data-selected="true"]')
+                || proTabs.querySelector('[data-state="active"]')
+                || document.getElementById('tab-subject');
+            const nextTab = forceTab || selectedNode?.getAttribute('data-step-key') || 'subject';
+
+            ['subject', 'storyboard', 'video'].forEach((key) => {
+                setWorkbenchPanelVisibility(document.getElementById(`pro-content-${key}`), key === nextTab);
+            });
+            syncFlowSelection('pro-tabs', nextTab);
+        }
+
         function syncWorkbenchFlowStatus(mode, pct = 0){
             const n = Math.max(0, Math.min(100, Number(pct) || 0));
             if (mode === 'pro') {
                 const order = ['subject', 'storyboard', 'video'];
-                const activeKey = n <= 0 ? 'subject' : n < 34 ? 'subject' : n < 72 ? 'storyboard' : 'video';
+                const activeKey = getProActiveStepKey(n);
                 syncFlowSteps('pro-tabs', activeKey, order);
+                switchProTab(activeKey);
                 return;
             }
 
@@ -5308,13 +7702,14 @@
         }
 
         // 专业模式下的 Tab 切换
-        function switchProTab(tab) {
+        function switchProTab(tab, syncHeader = true) {
             const tabs = ['subject', 'storyboard', 'video'];
             tabs.forEach(t => {
-                document.getElementById(`pro-content-${t}`).classList.add('hidden');
+                setWorkbenchPanelVisibility(document.getElementById(`pro-content-${t}`), false);
             });
-            document.getElementById(`pro-content-${tab}`).classList.remove('hidden');
-            syncFlowSelection('pro-tabs', tab);
+            setWorkbenchPanelVisibility(document.getElementById(`pro-content-${tab}`), true);
+            if (syncHeader) syncFlowSelection('pro-tabs', tab);
+            ensureProPreviewRender(tab);
         }
 
         // 初始化默认状态
@@ -5338,6 +7733,8 @@
                     }
                 });
             }
+            setTimeout(() => ensureProPreviewRender(), 60);
+            setTimeout(() => ensureProPreviewRender(), 360);
         };
 
         function initInspirationSquare(){
@@ -6470,6 +8867,16 @@
                 document.addEventListener('DOMContentLoaded', openUpdateModal, { once: true });
             } else {
                 openUpdateModal();
+            }
+        })();
+
+        (function(){
+            const storyboardCopies = document.querySelectorAll('#pro-content-storyboard .pm-storyboard-text:not(.is-script)');
+            if (storyboardCopies[0]) {
+                storyboardCopies[0].innerHTML = '<span class="pm-storyboard-mark">@赛博都市夜幕</span>中的场景中，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>站在高楼天台边缘，银黑装甲反射着霓虹灯光。她五彩斑斓的短发在风中微微飘动，眼神锐利而深邃。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>右手持霓虹武士刀，将其轻轻靠在肩上。背后的广告屏幕和城市车流把她的身影映衬得更加醒目。';
+            }
+            if (storyboardCopies[1]) {
+                storyboardCopies[1].innerHTML = '镜头由远及近，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>从天台走入灯火繁华的街道。<span class="pm-storyboard-mark">@赛博都市夜幕</span>中，装甲的亮蓝能量线闪耀着寒芒。她眼神坚定，夜风吹下头发更显灵动，人群在她身旁流动，广告飞舰在远方巡航。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>轻声说：“是时候了。”然后她一脚踏入人潮，霓虹武士刀的反光在斑斓夜色里掠过。';
             }
         })();
     </script>

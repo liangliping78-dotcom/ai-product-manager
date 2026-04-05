@@ -762,6 +762,44 @@
             border-color: rgba(255,255,255,0.14);
         }
         .prompt-tools svg{ width: 16px; height: 16px; }
+        .prompt-subject-strip{
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+            margin-top: 10px;
+            min-height: 22px;
+        }
+        .prompt-subject-strip.hidden{ display: none; }
+        .prompt-subject-list{
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 8px;
+        }
+        .prompt-subject-chip{
+            display: inline-flex;
+            align-items: center;
+            min-height: 24px;
+            padding: 0 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(78,125,242,0.22);
+            background: rgba(78,125,242,0.12);
+            color: rgba(106,171,255,0.98);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
+            white-space: nowrap;
+        }
+        .prompt-subject-chip .subject-at{
+            color: rgba(106,171,255,0.98);
+        }
+        .prompt-subject-chip .subject-name{
+            color: rgba(173,206,255,0.98);
+        }
 
         /* Landing input v2 (Image #2 style) */
         .ip-card{
@@ -895,7 +933,7 @@
             flex-wrap: nowrap;
             gap: 10px;
             overflow-x: auto;
-            overflow-y: hidden;
+            overflow-y: visible;
             min-width: 0;
             flex: 1;
             white-space: nowrap;
@@ -2810,6 +2848,216 @@
             transform: none;
         }
 
+        .update-modal{
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .update-modal.hidden{ display: none; }
+        .update-modal-backdrop{
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .update-modal-panel{
+            position: relative;
+            width: min(480px, calc(100vw - 32px));
+            border-radius: 16px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(30, 30, 36, 0.8);
+            box-shadow: 0 20px 40px rgba(138, 43, 226, 0.15);
+            backdrop-filter: blur(22px);
+            -webkit-backdrop-filter: blur(22px);
+            color: rgba(255,255,255,0.9);
+            overflow: hidden;
+        }
+        .update-modal-head{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 16px;
+            padding: 22px 22px 14px;
+        }
+        .update-modal-head-left{
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+        .update-modal-emoji{
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(138,43,226,0.26), rgba(75,0,130,0.18));
+            box-shadow: 0 0 24px rgba(138,43,226,0.28);
+            filter: drop-shadow(0 0 8px rgba(138,43,226,0.28));
+            flex: 0 0 auto;
+        }
+        .update-modal-title-wrap{
+            min-width: 0;
+        }
+        .update-modal-title{
+            font-size: 20px;
+            line-height: 1.25;
+            font-weight: 900;
+            background: linear-gradient(90deg, #b56cff 0%, #6ab6ff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            -webkit-text-fill-color: transparent;
+        }
+        .update-modal-close{
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+            color: rgba(255,255,255,0.62);
+            display: grid;
+            place-items: center;
+            flex: 0 0 auto;
+            transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease;
+        }
+        .update-modal-close:hover{
+            background: rgba(255,255,255,0.14);
+            color: rgba(255,255,255,0.96);
+            border-color: rgba(255,255,255,0.18);
+            transform: translateY(-1px);
+        }
+        .update-modal-body{
+            padding: 0 22px 18px;
+            display: grid;
+            gap: 10px;
+        }
+        .update-feature{
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 14px 14px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+            transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+        }
+        .update-feature:hover{
+            transform: translateY(-2px);
+            border-color: rgba(138,43,226,0.32);
+            background: rgba(255,255,255,0.05);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.22);
+        }
+        .update-feature-icon{
+            width: 34px;
+            height: 34px;
+            border-radius: 11px;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, rgba(138,43,226,0.22), rgba(75,0,130,0.16));
+            color: rgba(255,255,255,0.92);
+            flex: 0 0 auto;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06);
+        }
+        .update-feature-copy{
+            min-width: 0;
+            flex: 1;
+        }
+        .update-feature-title{
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 800;
+            color: rgba(255,255,255,0.94);
+        }
+        .update-feature-desc{
+            margin-top: 4px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.62);
+        }
+        .update-modal-footer{
+            padding: 0 22px 22px;
+        }
+        .update-modal-cta{
+            width: 100%;
+            height: 46px;
+            border-radius: 14px;
+            border: 0;
+            background: linear-gradient(90deg, #8A2BE2, #4B0082);
+            color: #fff;
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: .02em;
+            box-shadow: 0 14px 34px rgba(138,43,226,0.32), 0 0 28px rgba(138,43,226,0.18);
+            transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+        }
+        .update-modal-cta:hover{
+            transform: translateY(-1px);
+            box-shadow: 0 18px 40px rgba(138,43,226,0.36), 0 0 32px rgba(138,43,226,0.22);
+            filter: saturate(1.05);
+        }
+        .update-modal-cta:active{
+            transform: translateY(0);
+        }
+        .new-badge-anchor{
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            flex: 0 0 auto;
+            overflow: visible;
+        }
+        .new-badge{
+            position: absolute;
+            top: 2px;
+            right: -6px;
+            min-width: 22px;
+            height: 14px;
+            padding: 0 5px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #ff4fd8, #9b5cff);
+            color: #fff;
+            font-size: 8px;
+            font-weight: 900;
+            letter-spacing: .08em;
+            line-height: 1;
+            pointer-events: none;
+            box-shadow: 0 0 0 0 rgba(255,79,216,0.35);
+            animation: newBadgePulse 1.8s ease-in-out infinite;
+            z-index: 2;
+        }
+        .new-badge::after{
+            content: "";
+            position: absolute;
+            inset: -4px;
+            border-radius: inherit;
+            background: linear-gradient(90deg, rgba(255,79,216,0.30), rgba(155,92,255,0.28));
+            filter: blur(5px);
+            opacity: .42;
+            z-index: -1;
+        }
+        @keyframes newBadgePulse{
+            0%{
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255,79,216,0.34);
+            }
+            70%{
+                transform: scale(1.01);
+                box-shadow: 0 0 0 8px rgba(255,79,216,0);
+            }
+            100%{
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(255,79,216,0);
+            }
+        }
+
         .wb-label{
             display: block;
             margin-bottom: 8px;
@@ -3465,6 +3713,9 @@
                     </div>
                 <div class="ip-card">
                     <textarea id="main-input" maxlength="100" placeholder="输入你的提示词，AI 将为你规划漫剧全过程..." class="ip-textarea" oninput="syncPrompt(this.value)"></textarea>
+                    <div class="prompt-subject-strip hidden" data-studio-subject-strip>
+                        <div class="prompt-subject-list" data-studio-subject-list></div>
+                    </div>
                     <button class="ip-send" aria-label="开始创作" onclick="enterWorkbench()">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M12 5v14"/>
@@ -3535,32 +3786,38 @@
                                         <svg viewBox="0 0 24 24" fill="none"><path d="M12 12a4.2 4.2 0 1 0-4.2-4.2A4.2 4.2 0 0 0 12 12z" fill="rgba(255,255,255,0.20)"/><path d="M4.5 21c.7-4 4-6.5 7.5-6.5S18.8 17 19.5 21" stroke="rgba(255,255,255,0.72)" stroke-width="2" stroke-linecap="round"/></svg>
                                     </span>
                                     <span class="studio-pill-text" data-studio-label="subject">主体</span>
-                                    <span class="studio-badge hidden" data-studio-subject-badge>已选</span>
+                                    <span class="studio-badge hidden" data-studio-subject-badge aria-hidden="true"></span>
                                     <svg class="studio-caret" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
                                 </button>
 
                                 <!-- 红框区域：图片上传入口（与“主体”并列） -->
-                                <button class="studio-pill" type="button" data-studio-upload-image aria-label="上传图片（最多 1–4 张）">
-                                    <span class="studio-pill-icon" aria-hidden="true">
-                                        <svg viewBox="0 0 24 24" fill="none">
-                                            <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9z" stroke="rgba(255,255,255,0.78)" stroke-width="2"/>
-                                            <path d="M8 13l2.2-2.2a1 1 0 0 1 1.4 0L14 13l1.4-1.4a1 1 0 0 1 1.4 0L19 13.8" stroke="rgba(6,182,212,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            <circle cx="9" cy="9" r="1.3" fill="rgba(255,255,255,0.60)"/>
-                                        </svg>
-                                    </span>
-                                    <span class="studio-pill-text">图片</span>
-                                    <span class="studio-badge hidden" data-studio-image-badge>已上传</span>
-                                </button>
-                                <div class="import-wrap hidden" data-studio-script>
-                                    <button class="import-btn" type="button" aria-label="上传剧本">
-                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                            <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                                            <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                                        </svg>
-                                        <span>剧本</span>
-                                        <span class="studio-badge hidden" data-studio-script-badge>已上传</span>
+                                <span class="new-badge-anchor">
+                                    <button class="studio-pill" type="button" data-studio-upload-image aria-label="上传图片（最多 1–4 张）">
+                                        <span class="studio-pill-icon" aria-hidden="true">
+                                            <svg viewBox="0 0 24 24" fill="none">
+                                                <path d="M4 7.5A2.5 2.5 0 0 1 6.5 5h11A2.5 2.5 0 0 1 20 7.5v9A2.5 2.5 0 0 1 17.5 19h-11A2.5 2.5 0 0 1 4 16.5v-9z" stroke="rgba(255,255,255,0.78)" stroke-width="2"/>
+                                                <path d="M8 13l2.2-2.2a1 1 0 0 1 1.4 0L14 13l1.4-1.4a1 1 0 0 1 1.4 0L19 13.8" stroke="rgba(6,182,212,0.9)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <circle cx="9" cy="9" r="1.3" fill="rgba(255,255,255,0.60)"/>
+                                            </svg>
+                                        </span>
+                                        <span class="studio-pill-text">图片</span>
+                                        <span class="studio-badge hidden" data-studio-image-badge>已上传</span>
                                     </button>
-                                    <span class="script-hover-tip">支持 txt / md / docx，限 10MB</span>
+                                    <span class="new-badge" aria-hidden="true">NEW</span>
+                                </span>
+                                <div class="import-wrap hidden" data-studio-script>
+                                    <span class="new-badge-anchor">
+                                        <button class="import-btn" type="button" aria-label="上传剧本" title="支持txt.docx.excel.pdf.md，限5000字">
+                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                                <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                            </svg>
+                                            <span>剧本</span>
+                                            <span class="studio-badge hidden" data-studio-script-badge>已上传</span>
+                                        </button>
+                                        <span class="new-badge" aria-hidden="true">NEW</span>
+                                    </span>
+                                    <span class="script-hover-tip">支持txt.docx.excel.pdf.md，限5000字</span>
                                 </div>
                             </div>
                         </div>
@@ -4100,19 +4357,25 @@
                                     </div>
                                 </div>
                                 <textarea id="workbench-input" maxlength="100" oninput="syncPrompt(this.value)" class="wb-prompt-input" placeholder="将“中的大黄鸭添加到 合适的位置上"></textarea>
+                                <div class="prompt-subject-strip hidden" data-studio-subject-strip>
+                                    <div class="prompt-subject-list" data-studio-subject-list></div>
+                                </div>
                                 <div class="wb-prompt-footer">
                                     <div id="wb-count" class="wb-count" aria-hidden="true">0/100</div>
-                                    <div class="wb-prompt-actions">
+                                <div class="wb-prompt-actions">
                                         <div class="import-wrap hidden" data-studio-script>
-                                            <button class="import-btn" type="button" aria-label="上传剧本">
-                                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                    <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                                                    <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                                                </svg>
-                                                <span>剧本</span>
-                                                <span class="studio-badge hidden" data-studio-script-badge>已上传</span>
-                                            </button>
-                                            <span class="script-hover-tip">支持 txt / md / docx，限 10MB</span>
+                                            <span class="new-badge-anchor">
+                                                <button class="import-btn" type="button" aria-label="上传剧本" title="支持txt.docx.excel.pdf.md，限5000字">
+                                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                        <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7l-5-5z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                                        <path d="M14 2v5h5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+                                                    </svg>
+                                                    <span>剧本</span>
+                                                    <span class="studio-badge hidden" data-studio-script-badge>已上传</span>
+                                                </button>
+                                                <span class="new-badge" aria-hidden="true">NEW</span>
+                                            </span>
+                                            <span class="script-hover-tip">支持txt.docx.excel.pdf.md，限5000字</span>
                                         </div>
                                         <button type="button" class="wb-trash-btn" aria-label="清空提示词" onclick="syncPrompt('')">
                                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -5406,6 +5669,11 @@
             document.querySelectorAll('[data-studio-label="spec"]').forEach(el => el.textContent = `${studioState.resolution} · ${studioState.ratio} · ${studioState.duration}秒`);
 
             document.querySelectorAll('[data-studio-script]').forEach(btn => {
+                const importBtn = btn.querySelector('.import-btn');
+                const tipText = '支持txt.docx.excel.pdf.md，限5000字';
+                if (importBtn) {
+                    importBtn.setAttribute('title', studioState.scriptName ? `已上传：${studioState.scriptName}` : tipText);
+                }
                 if (!studioState.scriptName) {
                     btn.removeAttribute('title');
                 } else {
@@ -5417,19 +5685,40 @@
                 else badge.classList.add('hidden');
             });
             document.querySelectorAll('[data-studio-subject-badge]').forEach(badge => {
-                const count = Array.isArray(studioState.selectedSubjects) ? studioState.selectedSubjects.length : 0;
-                if (count > 0) {
-                    badge.textContent = `已选 ${count}`;
-                    badge.classList.remove('hidden');
-                } else {
-                    badge.textContent = '已选';
-                    badge.classList.add('hidden');
-                }
+                badge.textContent = '';
+                badge.classList.add('hidden');
             });
+            syncPromptSubjectMentions();
             syncScriptBindingUI();
         }
 
         function clamp(num, min, max){ return Math.min(max, Math.max(min, num)); }
+
+        function escapeHtml(text){
+            return String(text || '').replace(/[&<>"']/g, ch => ({
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[ch]));
+        }
+
+        function syncPromptSubjectMentions(){
+            const names = Array.from(new Set(
+                Array.isArray(studioState.selectedSubjects) ? studioState.selectedSubjects : []
+            )).filter(Boolean);
+            document.querySelectorAll('[data-studio-subject-strip]').forEach(strip => {
+                const list = strip.querySelector('[data-studio-subject-list]');
+                if (!list) return;
+                list.innerHTML = names.map(name => `
+                    <span class="prompt-subject-chip" title="${escapeHtml(name)}">
+                        <span class="subject-at">@</span><span class="subject-name">${escapeHtml(name)}</span>
+                    </span>
+                `).join('');
+                strip.classList.toggle('hidden', names.length === 0);
+            });
+        }
 
         function getScriptUploadNodes(){
             return {
@@ -6106,8 +6395,84 @@
             <div class="ux-toast-text">操作已完成。</div>
         </div>
     </div>
+    <div id="update-modal" class="update-modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="update-modal-backdrop" data-update-modal-close></div>
+        <div class="update-modal-panel" role="document">
+            <div class="update-modal-head">
+                <div class="update-modal-head-left">
+                    <div class="update-modal-emoji" aria-hidden="true">🚀</div>
+                    <div class="update-modal-title-wrap">
+                        <div class="update-modal-title">AI漫剧 V2.0 震撼上线</div>
+                    </div>
+                </div>
+                <button type="button" class="update-modal-close" aria-label="关闭版本更新公告" data-update-modal-close>
+                    <svg viewBox="0 0 24 24" fill="none" width="14" height="14" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="update-modal-body">
+                <div class="update-feature">
+                    <div class="update-feature-icon" aria-hidden="true">📝</div>
+                    <div class="update-feature-copy">
+                        <div class="update-feature-title">长剧本一键解析</div>
+                        <div class="update-feature-desc">支持上传 TXT/Word，AI 自动拆解分镜。</div>
+                    </div>
+                </div>
+                <div class="update-feature">
+                    <div class="update-feature-icon" aria-hidden="true">🖼️</div>
+                    <div class="update-feature-copy">
+                        <div class="update-feature-title">多图参考支持</div>
+                        <div class="update-feature-desc">最多支持 4 张参考图，精准控制画面。</div>
+                    </div>
+                </div>
+                <div class="update-feature">
+                    <div class="update-feature-icon" aria-hidden="true">🎯</div>
+                    <div class="update-feature-copy">
+                        <div class="update-feature-title">单分镜精细微调</div>
+                        <div class="update-feature-desc">不满意的分镜支持局部重绘与回滚。</div>
+                    </div>
+                </div>
+            </div>
+            <div class="update-modal-footer">
+                <button type="button" class="update-modal-cta" data-update-modal-close>立即体验</button>
+            </div>
+        </div>
+    </div>
     <input id="studio-script-file" type="file" hidden accept=".txt,.md,.docx" />
     <input id="studio-image-file" type="file" hidden accept="image/*" multiple />
+
+    <script>
+        (function(){
+            const openUpdateModal = () => {
+                const modal = document.getElementById('update-modal');
+                if (!modal) return;
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+                const prevOverflow = document.body.style.overflow;
+                document.body.dataset.updateModalOverflow = prevOverflow;
+                document.body.style.overflow = 'hidden';
+
+                const closeModal = () => {
+                    modal.classList.add('hidden');
+                    modal.setAttribute('aria-hidden', 'true');
+                    const restore = document.body.dataset.updateModalOverflow || '';
+                    document.body.style.overflow = restore;
+                    delete document.body.dataset.updateModalOverflow;
+                };
+
+                modal.querySelectorAll('[data-update-modal-close]').forEach((el) => {
+                    el.addEventListener('click', closeModal);
+                });
+            };
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', openUpdateModal, { once: true });
+            } else {
+                openUpdateModal();
+            }
+        })();
+    </script>
 
     <!-- 旧的全屏遮罩进度面板已移除：当前使用左侧面板内替换展示进度 -->
 
