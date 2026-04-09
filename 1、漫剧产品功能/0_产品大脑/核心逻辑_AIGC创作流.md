@@ -53,6 +53,20 @@ flowchart LR
   - 入口在 Prompt 输入框左下角的 `+ 添加主体`
   - 从主体库选择后，先进入当前任务的“主体框”，再参与后续引用和生成。
 
+#### 接口层最新补充
+
+- 最新 `animatic/create_asset` 已把 `gen_mode` 提升为必传：
+  - `0` 长视频生成模式
+  - `1` 九宫格模式
+- 同一接口里，视频生成模型与九宫格图片模型已经拆开：
+  - `model`：视频生成模型，默认 `viduq2`
+  - `nine_grid_img_model`：九宫格图片生成模型，默认 `gemini-3.1-flash-image-preview`
+- 最新接口表还新增：
+  - `character_uids`：主体库 uid 数组
+  - `upload_image_urls`：九宫格模式上传图片 url 字典，按主体 uid 组织
+- 最新接口表把 `character_uids` 标记为必传，但是否允许空数组未展开说明，现阶段记为 `必传/可传空数组待确认`。
+- 这说明输入阶段已经不是单纯“写一段描述”，而是先完成模式声明、模型声明、主体绑定和参考图挂接。
+
 #### 关键结论
 
 - 这一阶段不只是“写脚本”，而是在做全局创作约束设定。
@@ -142,6 +156,12 @@ flowchart LR
 #### 输出结果
 
 - 用户点击 `生成视频`，从分镜级编辑进入视频级预览与合成阶段。
+
+#### 接口层最新补充
+
+- `animatic/insert_shot` 已新增 `character_uids` 和 `model` 入参，说明插入分镜时也能带主体与模型上下文。
+- `animatic/update_all_shots` 最新表里明确的更新字段收敛为 `duration`、`ratio`、`quality`、`model`，并要求同时带 `steps_gen_status` 与 `assets_uid`。
+- 最新 `animatic/get_shots_by_asset` 除分镜列表外，还返回资产级 `bgm`、`volume`，以及分镜级 `provider`、`gen_mode`、`model`，说明分镜查询已经兼顾成片配置和模型执行态。
 
 #### 来源依据
 
@@ -353,6 +373,17 @@ flowchart TD
 - 这套逻辑不是“覆盖式编辑”，而是“版本池 + 当前指针”。
 - 平台通过这种方式降低 AIGC 生成的不确定性风险，让用户可以回滚到更满意的版本。
 
+#### 单分镜详情接口补充
+
+- 最新接口表新增 `animatic/get_shot_by_id`，可直接按 `shot_uid` 查询单条分镜详情。
+- 返回体除当前分镜基本信息外，还补齐：
+  - `his_version`：历史版本集合
+  - `subtitle`：字幕数组
+  - `generate_method`：生成方式标记
+  - `provider`、`model`、`nine_grid_img_model`：当前视频/九宫格所用模型链路
+  - `title`、`style_name`、`gen_mode`：回带所属资产的关键信息
+- 这意味着“分镜历史记录池”已经不只是页面逻辑，而是有明确的单分镜查询接口支撑。
+
 #### 来源依据
 
 - `迭代3/7、分镜生成记录.html`
@@ -479,6 +510,28 @@ flowchart TD
 
 - `迭代5/8、背景音乐自定义上传.html`
 - `【AI漫剧】使用文档.pdf` 第 14 页更新摘要
+
+### 4.4 单分镜模式的最终视频链路
+
+#### 最新补充
+
+- 最新接口表已经补齐 `nine_grid/video/generate` 与 `nine_grid/video/query`：
+  - `generate`：创建九宫格最终视频任务
+  - `query`：按 `shot_uid` 查询任务状态与最终视频地址
+- 审核宽松链路另补充：
+  - `nine_grid/multi_model_video`
+  - `nine_grid/get_multi_model_video_results`
+- 这说明单分镜模式已经形成 `创建资产 -> 九宫格图片 -> 九宫格微调 -> 最终视频任务 -> 查询结果` 的完整接口闭环，而不是只停留在九宫格出图阶段。
+
+#### 状态与异常承载
+
+- 当前最新接口表统一保留 `code` + `msg` 作为接口层返回。
+- 任务执行层则更多依赖：
+  - `status`
+  - `generate_status`
+  - `raw_status`
+  - `error` / `error_data`
+- 具体异常码枚举在最新接口表中没有完整展开，因此本轮文档只同步字段语义，不自行臆造枚举值。
 
 ## 五、结论
 

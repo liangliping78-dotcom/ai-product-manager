@@ -6,9 +6,9 @@
   - 1.2 输入方式
     - 支持 `提示词输入`、`图片上传`、`主体添加`、`多模态混合输入`；输入为空时禁用生成，输入内容支持自动保存上次填写结果。
   - 1.3 全局创作参数
-    - 支持配置 `风格`、`视频总时长`、`比例`、`分辨率/质量`、`语言`、`模型选择`；早期由总时长影响分镜拆分，后续演进为总时长控制加单分镜时长细调。
+    - 支持配置 `风格`、`视频总时长`、`比例`、`分辨率/质量`、`语言`、`生成模式（gen_mode）`、`视频生成模型`、`九宫格图模型`；早期由总时长影响分镜拆分，后续演进为总时长控制加单分镜时长细调。
   - 1.4 入口前置能力
-    - 支持 `+添加主体` 从输入阶段把主体加入当前任务；支持从创作入口直接进入后续主体预览、分镜生成与视频生成主链路。
+    - 支持 `+添加主体` 从输入阶段把主体加入当前任务；支持通过 `character_uids`、`upload_image_urls` 在创建资产时同时绑定主体和参考图，再进入后续主体预览、分镜生成与视频生成主链路。
 
 - 2. 账号、入口与工作台框架
   - 2.1 账号与登录
@@ -62,19 +62,21 @@
   - 5.4 标准视频生成
     - 支持对多个分镜批量发起 `生成视频`，支持轮询生成状态、查看任务状态、查看错误信息与查看最终视频地址。
   - 5.5 多模型视频生成
-    - 支持 `多模型分镜视频生成`、`多提供方调度`、`结果回填`；平台已具备 `provider`、`provider_task_id`、`provider_url`、`final_url` 级别的多模型结果管理能力。
+    - 支持 `多模型分镜视频生成`、`多提供方调度`、`结果回填`；平台已具备 `provider`、`model`、`provider_task_id`、`provider_url`、`url`、`thumbnail_url`、`error_data` 级别的多模型结果管理能力。
   - 5.6 视频预览与完整视频
     - 支持在视频预览阶段执行 `切换分镜列表`、`查看单分镜结果`、`查看完整视频`、`播放成片`、`导出到作品库`。
+  - 5.7 分镜详情查询
+    - 支持通过 `shot_uid` 获取单条分镜详情；返回 `his_version`、`subtitle`、`generate_method`、`provider`、`model`、`nine_grid_img_model`，为分镜回滚和单镜校对提供底层数据。
 
 - 6. 单分镜模式与九宫格能力
   - 6.1 单分镜任务配置
-    - 支持单分镜模式下使用 `文字`、`主体`、`上传图片`、`模型` 混合配置任务；该模式强调单镜头快速出图与出视频，而不是多分镜叙事。
+    - 支持单分镜模式下使用 `文字`、`主体`、`上传图片`、`视频生成模型`、`九宫格图模型` 混合配置任务；该模式强调单镜头快速出图与出视频，而不是多分镜叙事。
   - 6.2 九宫格生成
     - 支持生成 `九宫格` 关键帧结果作为单分镜模式第一阶段产物；九宫格是单分镜模式的关键帧形态，不等于剧情模式中的分镜列表。
   - 6.3 九宫格微调
     - 支持输入 `微调提示词` 对当前九宫格结果再次生成；微调只作用于当前九宫格任务，不等于修改全局提示词。
   - 6.4 最终视频结果
-    - 支持切换 `最终视频 Tab`、查看单分镜最终视频、执行 `重新生成`；接口侧当前已明确九宫格生成与微调接口，最终视频链路更偏复用通用视频能力。
+    - 支持切换 `最终视频 Tab`、查看单分镜最终视频、执行 `重新生成`；接口侧已经补齐 `nine_grid/video/generate`、`nine_grid/video/query`，审核宽松链路进一步补齐 `nine_grid/multi_model_video` 与 `nine_grid/get_multi_model_video_results`。
   - 6.5 单分镜商业信号
     - 单分镜模式已出现“生成视频（500）”等显式商业化文案，说明单分镜已具备独立产品化与付费验证价值。
 
@@ -106,7 +108,7 @@
   - 8.1 资产库
     - 支持对创作任务资产执行 `创建`、`查看详情`、`查询我的资产`、`编辑更新`、`软删除`、`硬删除`；资产承载草稿、中间态、结果态与全局配置。
   - 8.2 资产字段承载
-    - 资产层支持承载 `标题`、`时长`、`比例`、`质量`、`风格`、`主题`、`BGM`、`音量`、`字幕样式`、`分镜状态`、`模式状态`、`主体列表` 等全局信息。
+    - 资产层支持承载 `标题`、`时长`、`比例`、`质量`、`风格`、`主题`、`BGM`、`音量`、`字幕样式`、`分镜状态`、`模式状态（gen_mode）`、`主体列表`、`shot_uid`、`nine_grid_img_url`、`nine_grid_img_gen_status`、`model`、`nine_grid_img_model` 等全局信息。
   - 8.3 草稿与过程态管理
     - 支持用资产记录创作中状态与过程态数据；`steps_gen_status`、`save_status` 等状态字段用于区分资产阶段，但部分枚举仍未补全说明。
   - 8.4 作品库
@@ -164,13 +166,13 @@
   - 12.3 主体图像接口
     - `animatic/create_characters`、`animatic/text_to_portraits`、`character/images/generate`、`character/images/analyze` 对应主体生成、主体图生成、参考图生成与图像分析回填。
   - 12.4 分镜接口
-    - `animatic/create_shot`、`animatic/insert_shot`、`animatic/get_shots_by_asset`、`animatic/update_all_shots`、`animatic/hard_delete_shot`、`animatic/generate_shot_thumbnail`、`animatic/temporary_generate_shot_thumbnail` 对应分镜生成、插入、查询、批量更新、删除与分镜封面能力。
+    - `animatic/create_shot`、`animatic/insert_shot`、`animatic/get_shots_by_asset`、`animatic/get_shot_by_id`、`animatic/update_all_shots`、`animatic/hard_delete_shot`、`animatic/generate_shot_thumbnail`、`animatic/temporary_generate_shot_thumbnail` 对应分镜生成、插入、查询、详情查看、批量更新、删除与分镜封面能力。
   - 12.5 分镜版本与字幕接口
     - `shots/history/query`、`shots/history/replace` 对应分镜历史记录查询与当前版本替换；`shots/subtitle/query`、`shots/subtitle/update` 对应字幕查询、字幕编辑与字幕样式更新。
   - 12.6 视频生成与导出接口
     - `animatic/generate_shot_video`、`animatic/get_video_results`、`animatic/multi_model_video`、`animatic/get_multi_model_video_results`、`animatic/video_export`、`animatic/get_video_export_results` 对应视频生成、状态查询、多模型结果回填与成片导出。
   - 12.7 音色与九宫格接口
-    - `voice/create`、`voice/query`、`voice/delete`、`voice/update`、`voice/clone`、`voice/tts`、`voice/get` 对应音色与声音克隆能力；`nine_grid/create_nine_grid`、`nine_grid/refine_nine_grid` 对应九宫格生成与九宫格微调。
+    - `voice/create`、`voice/query`、`voice/delete`、`voice/update`、`voice/clone`、`voice/tts`、`voice/get` 对应音色与声音克隆能力；`nine_grid/image/generate`、`nine_grid/image/refine`、`nine_grid/video/generate`、`nine_grid/video/query`、`nine_grid/multi_model_video`、`nine_grid/get_multi_model_video_results` 对应九宫格生成、九宫格微调、单分镜最终视频与审核宽松视频链路。
   - 12.8 平台支撑接口
     - `person/api/animatic/check_cookie`、`refund-quota`、`deduct-quota`、`add-quota`、`safety/get_token_answer` 分别承接登录态校验、积分退还、积分扣减、积分增加与安全问答类平台支撑能力。
 
