@@ -147,6 +147,8 @@
     - 支持 `会员权益` 与 `积分体系` 联动；早期有会员跳转式方案，后续逐步被平台内购买与区域支付体系替代。
   - 10.4 平台辅助能力
     - 支持 `个人中心`、`教程查看`、`客服触达`、`使用引导` 等辅助能力，说明平台已具备持续运营属性，而不是一次性生成工具。
+  - 10.5 增长归因与语言辅助
+    - 支持 `AppsFlyer 事件上报`、`语音识别文本润色`、`术语修正翻译`；说明海外增长和多语言处理开始有服务端中台承接，而不再只停留在页面层。
 
 - 11. AI 能力扩展与可控性边界
   - 11.1 多模型能力
@@ -175,6 +177,8 @@
     - `voice/create`、`voice/query`、`voice/delete`、`voice/update`、`voice/clone`、`voice/tts`、`voice/get` 对应音色与声音克隆能力；`nine_grid/image/generate`、`nine_grid/image/refine`、`nine_grid/video/generate`、`nine_grid/video/query`、`nine_grid/multi_model_video`、`nine_grid/get_multi_model_video_results` 对应九宫格生成、九宫格微调、单分镜最终视频与审核宽松视频链路。
   - 12.8 平台支撑接口
     - `person/api/animatic/check_cookie`、`refund-quota`、`deduct-quota`、`add-quota`、`safety/get_token_answer` 分别承接登录态校验、积分退还、积分扣减、积分增加与安全问答类平台支撑能力。
+  - 12.9 Vinabot 通用服务接口
+    - `api/appsflyer/event_track`、`api/translation/polish`、`api/translation/correct`、`api/download/create`、`api/download/check`、`api/generation/image`、`api/generation/image/async`、`api/generation/image/result`、`api/generation/video/create`、`api/generation/video/result`、`api/moderation/image`、`api/asr/text2token` 对应增长归因、文本清洗、术语纠正、下载回存、通用图视频生成、安全审核与唤醒词 token 生成能力。
 
 - 13. 后续新增功能时的结构化扩展原则
   - 13.1 模式扩展原则
