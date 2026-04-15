@@ -3411,203 +3411,6 @@
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        .voice-picker-modal{
-            position: fixed;
-            inset: 0;
-            z-index: 96;
-        }
-        .voice-picker-backdrop{
-            position: absolute;
-            inset: 0;
-            background: rgba(0,0,0,0.54);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-        }
-        .voice-picker-panel{
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            width: min(980px, calc(100vw - 32px));
-            max-height: min(760px, calc(100vh - 32px));
-            border-radius: 30px;
-            background: rgba(36,37,44,0.98);
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 40px 90px rgba(0,0,0,0.52);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-        .voice-picker-head{
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            padding: 22px 26px;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-        .voice-picker-title{
-            font-size: 18px;
-            font-weight: 900;
-            color: rgba(255,255,255,0.96);
-        }
-        .voice-picker-close{
-            width: 32px;
-            height: 32px;
-            border-radius: 999px;
-            border: 0;
-            background: rgba(255,255,255,0.08);
-            color: rgba(255,255,255,0.88);
-            display: grid;
-            place-items: center;
-            cursor: pointer;
-        }
-        .voice-picker-body{
-            flex: 1 1 auto;
-            overflow: auto;
-            padding: 28px 32px 24px;
-        }
-        .voice-picker-current{
-            font-size: 18px;
-            font-weight: 900;
-            color: rgba(255,255,255,0.96);
-        }
-        .voice-picker-tabs-row{
-            margin-top: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-        .voice-picker-tabs{
-            display: inline-flex;
-            align-items: center;
-            gap: 0;
-            padding: 3px;
-            border-radius: 999px;
-            background: rgba(17,11,31,0.86);
-            border: 1px solid rgba(255,255,255,0.06);
-        }
-        .voice-picker-tab{
-            min-width: 96px;
-            height: 40px;
-            padding: 0 18px;
-            border-radius: 999px;
-            border: 0;
-            background: transparent;
-            color: rgba(214,218,238,0.82);
-            font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: all .18s ease;
-        }
-        .voice-picker-tab.is-active{
-            color: rgba(255,255,255,0.98);
-            background: linear-gradient(90deg, rgba(255,158,92,0.94) 0%, rgba(244,83,216,0.92) 48%, rgba(136,84,255,0.96) 100%);
-            box-shadow: 0 12px 28px rgba(111,58,255,0.18);
-        }
-        .voice-picker-filter{
-            height: 40px;
-            padding: 0 14px;
-            border-radius: 10px;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.08);
-            color: rgba(230,233,246,0.90);
-            font-size: 14px;
-            font-weight: 800;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
-        .voice-picker-filter svg{
-            width: 14px;
-            height: 14px;
-            opacity: .86;
-        }
-        .voice-picker-scroll{
-            margin-top: 22px;
-            max-height: 408px;
-            overflow: auto;
-            padding-right: 4px;
-        }
-        .voice-picker-grid{
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 20px 22px;
-        }
-        .voice-picker-card{
-            min-height: 118px;
-            padding: 18px 16px;
-            border-radius: 20px;
-            background: rgba(93,95,107,0.28);
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 14px 28px rgba(0,0,0,0.18);
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            text-align: left;
-            cursor: pointer;
-            transition: border-color .18s ease, transform .18s ease, box-shadow .18s ease;
-        }
-        .voice-picker-card:hover{
-            transform: translateY(-1px);
-            border-color: rgba(255,255,255,0.14);
-        }
-        .voice-picker-card.is-selected{
-            border-color: rgba(178,116,255,0.92);
-            box-shadow: 0 0 0 1px rgba(255,179,95,0.72), 0 16px 30px rgba(98,56,255,0.18);
-            background: rgba(88,91,118,0.34);
-        }
-        .voice-picker-card-avatar{
-            width: 72px;
-            height: 72px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.92);
-            overflow: hidden;
-            flex: 0 0 auto;
-        }
-        .voice-picker-card-avatar img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .voice-picker-card-name{
-            font-size: 17px;
-            line-height: 1.5;
-            font-weight: 900;
-            color: rgba(248,250,255,0.94);
-            word-break: break-word;
-        }
-        .voice-picker-foot{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 18px;
-            padding: 20px 28px 28px;
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-        .voice-picker-cancel,
-        .voice-picker-confirm{
-            min-width: 196px;
-            height: 48px;
-            border-radius: 16px;
-            border: 0;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-        .voice-picker-cancel{
-            background: rgba(92,94,105,0.56);
-            color: rgba(255,255,255,0.92);
-        }
-        .voice-picker-confirm{
-            color: #ffffff;
-            background: linear-gradient(90deg, #ffc966 0%, #f355cf 44%, #6338ff 100%);
-            box-shadow: 0 16px 34px rgba(98,56,255,0.18);
-        }
 
         /* ========= Language hover popover ========= */
         .lang-popover{
@@ -3839,10 +3642,6 @@
             background: linear-gradient(90deg, #ffd86d 0%, #f6c74b 100%);
             color: rgba(45,33,15,0.92);
         }
-        .pm-library-tag.is-cyan{
-            background: linear-gradient(90deg, #73ddff 0%, #67a8ff 100%);
-            color: rgba(16,31,52,0.94);
-        }
         .pm-library-main{
             display: grid;
             grid-template-columns: minmax(0, 1fr) 188px;
@@ -3868,103 +3667,12 @@
             font-weight: 800;
             color: rgba(240,243,255,0.88);
             line-height: 1.4;
-            white-space: pre-wrap;
         }
         .pm-library-desc{
             margin-top: 12px;
             font-size: 16px;
             line-height: 1.9;
             color: rgba(198,205,232,0.82);
-            white-space: pre-wrap;
-        }
-        .pm-library-editor{
-            margin-top: 12px;
-        }
-        .pm-library-input,
-        .pm-library-textarea{
-            width: 100%;
-            border-radius: 18px;
-            border: 1px solid rgba(255,255,255,0.10);
-            background: rgba(18,20,31,0.52);
-            color: rgba(248,250,255,0.96);
-            padding: 14px 16px;
-            font-size: 15px;
-            outline: none;
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04);
-        }
-        .pm-library-input{
-            min-height: 54px;
-            font-weight: 800;
-        }
-        .pm-library-textarea{
-            min-height: 126px;
-            resize: none;
-            line-height: 1.8;
-        }
-        .pm-library-input:focus,
-        .pm-library-textarea:focus{
-            border-color: rgba(244,83,216,0.42);
-            box-shadow: 0 0 0 3px rgba(129,82,255,0.14);
-        }
-        .pm-library-edit-meta{
-            margin-top: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 14px;
-            font-size: 12px;
-            font-weight: 800;
-            color: rgba(176,184,216,0.82);
-        }
-        .pm-library-edit-tip{
-            color: rgba(150,160,196,0.72);
-        }
-        .pm-library-char-counter{
-            color: rgba(236,240,255,0.92);
-        }
-        .pm-voice-trigger{
-            margin-top: 12px;
-            width: min(100%, 360px);
-            min-height: 122px;
-            padding: 18px 20px;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.08);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 34px rgba(0,0,0,0.16);
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            text-align: left;
-            cursor: pointer;
-            transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
-        }
-        .pm-voice-trigger:hover{
-            transform: translateY(-1px);
-            border-color: rgba(255,255,255,0.28);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 22px 40px rgba(0,0,0,0.20);
-        }
-        .pm-voice-avatar{
-            width: 80px;
-            height: 80px;
-            border-radius: 999px;
-            background: rgba(255,255,255,0.92);
-            overflow: hidden;
-            flex: 0 0 auto;
-        }
-        .pm-voice-avatar img{
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        .pm-voice-copy{
-            min-width: 0;
-        }
-        .pm-voice-name{
-            font-size: 18px;
-            line-height: 1.45;
-            font-weight: 900;
-            color: rgba(255,255,255,0.96);
         }
         .pm-library-side{
             display: flex;
@@ -4100,88 +3808,11 @@
             background: rgba(170,248,255,0.92);
             box-shadow: 0 0 18px rgba(145,255,255,0.28);
         }
-        .pm-library-thumb--prop{
-            background:
-                radial-gradient(circle at 72% 20%, rgba(255,170,92,0.26), rgba(255,170,92,0) 24%),
-                radial-gradient(circle at 32% 18%, rgba(101,225,255,0.30), rgba(101,225,255,0) 26%),
-                linear-gradient(180deg, rgba(34,37,70,1) 0%, rgba(24,28,53,1) 100%);
-        }
-        .pm-library-thumb--prop::before{
-            background:
-                linear-gradient(90deg, rgba(53,98,194,0.46) 0 18%, transparent 18% 100%),
-                linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0));
-        }
-        .pm-library-thumb--prop::after{
-            content: "";
-            position: absolute;
-            left: 20px;
-            right: 20px;
-            top: 18px;
-            bottom: 18px;
-            background:
-                radial-gradient(circle at 60% 24%, rgba(255,255,255,0.22), rgba(255,255,255,0) 20%),
-                linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
-        }
-        .pm-library-prop-core{
-            position: absolute;
-            left: 50%;
-            top: 52%;
-            width: 78px;
-            height: 78px;
-            transform: translate(-50%, -50%) rotate(45deg);
-            border-radius: 22px;
-            background:
-                linear-gradient(135deg, rgba(123,239,255,0.98), rgba(255,103,204,0.92));
-            box-shadow:
-                0 0 0 8px rgba(255,255,255,0.05),
-                0 18px 36px rgba(0,0,0,0.24);
-        }
-        .pm-library-prop-core::before{
-            content: "";
-            position: absolute;
-            inset: 16px;
-            border-radius: 14px;
-            background: rgba(22,24,42,0.84);
-            box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
-        }
-        .pm-library-prop-core::after{
-            content: "";
-            position: absolute;
-            left: 50%;
-            top: -26px;
-            width: 12px;
-            height: 136px;
-            transform: translateX(-50%) rotate(-45deg);
-            border-radius: 999px;
-            background: linear-gradient(180deg, rgba(255,108,196,0.96), rgba(98,229,255,0.96));
-            box-shadow: 0 0 16px rgba(98,229,255,0.30);
-        }
         .pm-library-actions{
             display: flex;
             align-items: center;
             gap: 14px;
             margin-top: 30px;
-        }
-        .pm-library-edit-btn{
-            min-width: 116px;
-            height: 48px;
-            padding: 0 22px;
-            border: 0;
-            border-radius: 16px;
-            color: rgba(255,255,255,0.96);
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            background: linear-gradient(90deg, rgba(255,205,102,0.96) 0%, rgba(242,85,207,0.92) 40%, rgba(99,56,255,0.96) 100%);
-            box-shadow: 0 16px 30px rgba(98,56,255,0.18);
-            transition: transform .18s ease, box-shadow .18s ease, background .18s ease;
-        }
-        .pm-library-edit-btn:hover{
-            transform: translateY(-1px);
-        }
-        .pm-library-edit-btn.is-active{
-            background: rgba(86,90,117,0.84);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
         .pm-primary-btn,
         .pm-icon-btn{
@@ -4217,48 +3848,10 @@
             background: rgba(86,90,117,0.82);
             box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);
         }
-        .pm-icon-btn.is-compact{
-            width: 78px;
-        }
         .pm-icon-btn svg,
         .pm-primary-btn svg{
             width: 22px;
             height: 22px;
-        }
-        .pm-library-action-slot{
-            position: relative;
-        }
-        .pm-sync-menu{
-            position: absolute;
-            right: 0;
-            bottom: calc(100% + 12px);
-            width: 198px;
-            padding: 12px;
-            border-radius: 18px;
-            background: rgba(94,97,122,0.96);
-            border: 1px solid rgba(255,255,255,0.08);
-            box-shadow: 0 24px 50px rgba(0,0,0,0.30);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            z-index: 8;
-        }
-        .pm-sync-menu-btn{
-            width: 100%;
-            min-height: 44px;
-            padding: 0 14px;
-            border: 0;
-            border-radius: 14px;
-            display: flex;
-            align-items: center;
-            text-align: left;
-            background: transparent;
-            color: rgba(255,255,255,0.96);
-            font-size: 14px;
-            font-weight: 900;
-            cursor: pointer;
-        }
-        .pm-sync-menu-btn:hover{
-            background: rgba(255,255,255,0.08);
         }
         .pm-float-add{
             position: absolute;
@@ -4860,17 +4453,6 @@
             height: 34px;
             margin-left: 4px;
         }
-        .pm-player-float-actions{
-            position: absolute;
-            right: 20px;
-            bottom: 84px;
-            z-index: 7;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 12px;
-            max-width: calc(100% - 40px);
-        }
         .pm-video-tools{
             min-height: 514px;
             padding: 22px 18px 18px;
@@ -5106,9 +4688,6 @@
             .pm-video-tools{
                 min-height: 0;
             }
-            .voice-picker-grid{
-                grid-template-columns: repeat(3, minmax(0, 1fr));
-            }
         }
         @media (max-width: 720px){
             .pm-library-card{
@@ -5119,46 +4698,6 @@
             }
             .pm-library-actions{
                 flex-wrap: wrap;
-            }
-            .pm-voice-trigger{
-                width: 100%;
-                min-height: 104px;
-                padding: 16px;
-            }
-            .pm-voice-avatar{
-                width: 64px;
-                height: 64px;
-            }
-            .voice-picker-panel{
-                width: min(100vw - 20px, 980px);
-                max-height: min(100vh - 20px, 760px);
-            }
-            .voice-picker-body{
-                padding: 22px 18px 20px;
-            }
-            .voice-picker-grid{
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 14px;
-            }
-            .voice-picker-card{
-                min-height: 98px;
-                padding: 14px;
-            }
-            .voice-picker-card-avatar{
-                width: 58px;
-                height: 58px;
-            }
-            .voice-picker-card-name{
-                font-size: 15px;
-            }
-            .voice-picker-foot{
-                padding: 18px;
-                gap: 12px;
-            }
-            .voice-picker-cancel,
-            .voice-picker-confirm{
-                min-width: 0;
-                flex: 1 1 0;
             }
             .pm-icon-btn{
                 width: 82px;
@@ -5190,12 +4729,6 @@
             .pm-player-play svg{
                 width: 28px;
                 height: 28px;
-            }
-            .pm-player-float-actions{
-                right: 14px;
-                bottom: 74px;
-                gap: 10px;
-                flex-wrap: wrap;
             }
         }
 
@@ -6940,187 +6473,6 @@
             font-weight: 800;
         }
 
-        .wb-left-shell{
-            border: 1px solid rgba(255,255,255,0.08);
-            background:
-                radial-gradient(140% 120% at 0% 0%, rgba(18,197,255,0.10) 0%, rgba(18,197,255,0.02) 38%, rgba(255,255,255,0.02) 100%),
-                linear-gradient(180deg, rgba(17,20,30,0.96) 0%, rgba(10,12,19,0.98) 100%);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 26px 64px rgba(0,0,0,0.34);
-        }
-        .wb-upload-section,
-        .wb-compose-card,
-        .wb-param-card{
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: linear-gradient(180deg, rgba(15,18,27,0.86) 0%, rgba(9,11,18,0.92) 100%);
-            box-shadow: inset 0 1px 0 rgba(255,255,255,0.03);
-            padding: 12px;
-        }
-        .wb-upload-section{
-            background: linear-gradient(180deg, rgba(18,22,32,0.88) 0%, rgba(11,14,22,0.92) 100%);
-        }
-        .wb-upload-section .wb-upload-card{
-            border-radius: 16px;
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(255,255,255,0.10);
-        }
-
-        .wb-compose-card .wb-prompt{
-            min-height: 360px;
-            display: flex;
-            flex-direction: column;
-            padding: 0;
-            border-radius: 16px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: linear-gradient(180deg, rgba(7,10,16,0.96) 0%, rgba(5,8,14,0.98) 100%);
-            overflow: hidden;
-        }
-        .wb-compose-card .script-bind-panel{
-            margin: 12px 12px 0;
-            border-radius: 14px;
-        }
-        .wb-compose-card .wb-prompt-input{
-            flex: 1 1 auto;
-            min-height: 248px;
-            padding: 14px 14px 6px;
-            font-size: 13px;
-            line-height: 1.7;
-            color: rgba(230,238,255,0.85);
-        }
-        .wb-compose-card .wb-prompt-input::placeholder{
-            color: rgba(255,255,255,0.34);
-            font-weight: 600;
-        }
-        .wb-compose-card .prompt-subject-strip{
-            margin: 0 12px 8px;
-        }
-        .wb-compose-card .wb-prompt-footer{
-            margin-top: 0;
-            padding: 10px 12px;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            flex-wrap: wrap;
-            background: rgba(255,255,255,0.02);
-        }
-        .wb-prompt-links{
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            flex-wrap: wrap;
-        }
-        .wb-prompt-link-btn{
-            height: 30px;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 0 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.08);
-            background: rgba(255,255,255,0.03);
-            color: rgba(214,223,248,0.88);
-            font-size: 11px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: all .18s ease;
-        }
-        .wb-prompt-link-btn svg{
-            width: 13px;
-            height: 13px;
-            opacity: .92;
-        }
-        .wb-prompt-link-btn:hover{
-            background: rgba(255,255,255,0.08);
-            border-color: rgba(255,255,255,0.14);
-            color: rgba(255,255,255,0.96);
-        }
-        .wb-prompt-meta{
-            display: inline-flex;
-            align-items: center;
-            justify-content: flex-end;
-            gap: 8px;
-            margin-left: auto;
-            flex-wrap: wrap;
-        }
-        .wb-prompt-meta .wb-prompt-actions{
-            margin-left: 0;
-        }
-        .wb-compose-card .wb-count{
-            min-height: 30px;
-            padding: 0 8px;
-            border-radius: 10px;
-            font-size: 11px;
-            color: rgba(167,178,212,0.86);
-            background: rgba(255,255,255,0.04);
-        }
-        .wb-compose-card .wb-trash-btn{
-            width: 30px;
-            height: 30px;
-            border-radius: 10px;
-        }
-        .wb-compose-card .wb-trash-btn svg{
-            width: 16px;
-            height: 16px;
-        }
-
-        .wb-param-card{
-            display: grid;
-            gap: 12px;
-        }
-        .wb-param-card .wb-label{
-            margin-bottom: 6px;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: .01em;
-            text-transform: none;
-            color: rgba(176,188,220,0.88);
-        }
-        .wb-param-card .wb-select{
-            border-radius: 14px;
-            border-color: rgba(255,255,255,0.10);
-            background: rgba(255,255,255,0.04);
-        }
-        .wb-param-card .wb-select-native{
-            height: 42px;
-            color: rgba(237,242,255,0.92);
-        }
-        .wb-param-card .wb-range-card{
-            border-radius: 14px;
-            background: rgba(255,255,255,0.03);
-            border-color: rgba(255,255,255,0.10);
-        }
-        .wb-param-card .wb-range-meta{
-            font-size: 11px;
-        }
-
-        .wb-left-shell .wb-total-points{
-            border-radius: 16px;
-            padding: 10px 12px;
-            margin-top: -2px;
-        }
-        .wb-left-shell .primary-action{
-            height: 48px;
-            border-radius: 14px;
-            font-size: 16px;
-            font-weight: 800;
-            letter-spacing: .01em;
-            box-shadow: 0 12px 32px rgba(255,255,255,0.08);
-        }
-        .wb-left-shell .primary-action:disabled{
-            background: rgba(82,90,108,0.58) !important;
-            color: rgba(220,226,236,0.44) !important;
-            opacity: 1;
-            box-shadow: none;
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-        @media (max-width: 640px){
-            .wb-compose-card .wb-prompt{
-                min-height: 320px;
-            }
-        }
-
         .wb-pro-tip{
             background: rgba(6, 182, 212, 0.06);
             border: 1px solid rgba(6, 182, 212, 0.12);
@@ -8325,7 +7677,7 @@
             <div class="grid grid-cols-1 lg:grid-cols-[276px_minmax(0,1fr)] xl:grid-cols-[292px_minmax(0,1fr)] gap-4 xl:gap-5">
                 <!-- 左侧：配置面板 -->
                 <div class="min-w-0 space-y-6">
-            <div class="glass rounded-3xl p-5 xl:p-6 space-y-5 xl:space-y-6 wb-left-shell">
+            <div class="glass rounded-3xl p-5 xl:p-6 space-y-5 xl:space-y-6">
                         <!-- 顶部：模式切换 + 返回首页 -->
                         <section class="wb-topbar">
                             <div class="landing-mode-tabs wb-mode-tabs" role="tablist" aria-label="工作台模式切换">
@@ -8375,7 +7727,7 @@
                                 <div class="wb-gen-progress-meta">
                                     <div class="wb-gen-progress-copy">
                                         <div class="wb-gen-progress-kicker">当前阶段</div>
-                                        <div id="wb-gen-progress-label" class="wb-gen-progress-label"></div>
+                                        <div id="wb-gen-progress-label" class="wb-gen-progress-label">等待开始生成</div>
                                         <div id="wb-gen-progress-desc" class="wb-gen-progress-stage">按阶段自动推进，完成后可直接预览。</div>
                                     </div>
                                     <div class="wb-gen-progress-pill">
@@ -8418,7 +7770,7 @@
                                     </div>
                                 </div>
                                 <div class="wb-gen-progress-foot">
-                                    <span><strong id="wb-gen-progress-stage"></strong></span>
+                                    <span><strong id="wb-gen-progress-stage">等待生成</strong></span>
                                     <span id="wb-gen-progress-eta">未开始</span>
                                 </div>
                             </div>
@@ -8443,8 +7795,8 @@
                                     <div class="wb-gen-phase" data-wb-phase="2" data-state="todo">
                                         <div class="wb-gen-phase-dot" aria-hidden="true"></div>
                                         <div class="wb-gen-phase-main">
-                                            <strong></strong>
-                                            <span></span>
+                                            <strong>关键帧组装</strong>
+                                            <span>构图与节奏</span>
                                         </div>
                                         <div class="wb-gen-phase-status" data-wb-phase-status>待开始</div>
                                     </div>
@@ -8462,7 +7814,7 @@
 
                         <div id="wb-left-form" class="space-y-6">
                         <!-- 上传模块：上传图片 / 主体 -->
-                        <section class="wb-upload-section">
+                        <section>
                             <div class="wb-upload-wrap">
                                 <button id="wb-upload-trigger" type="button" class="w-full wb-upload-card" aria-label="上传图片 / 主体" aria-haspopup="menu" aria-expanded="false">
                                     <div class="wb-upload-left">
@@ -8497,7 +7849,7 @@
                         </section>
 
                         <!-- 提示词输入框 -->
-                        <section class="space-y-3 wb-compose-card">
+                        <section class="space-y-3">
                             <div class="wb-prompt">
                                 <div class="script-bind-panel hidden" data-script-bind-panel>
                                     <div class="script-state-uploading hidden" data-script-state-uploading>
@@ -8521,28 +7873,12 @@
                                         -->
                                     </div>
                                 </div>
-                                <textarea id="workbench-input" maxlength="100" oninput="syncPrompt(this.value)" class="wb-prompt-input" placeholder="输入文字，描述想要生成的内容"></textarea>
+                                <textarea id="workbench-input" maxlength="100" oninput="syncPrompt(this.value)" class="wb-prompt-input" placeholder="将“中的大黄鸭添加到 合适的位置上"></textarea>
                                 <div class="prompt-subject-strip hidden" data-studio-subject-strip>
                                     <div class="prompt-subject-list" data-studio-subject-list></div>
                                 </div>
                                 <div class="wb-prompt-footer">
-                                    <div class="wb-prompt-links">
-                                        <button type="button" class="wb-prompt-link-btn" data-wb-prompt-guide>
-                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path d="M4 6.5A2.5 2.5 0 0 1 6.5 4H20v14H6.5A2.5 2.5 0 0 0 4 20.5V6.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                                                <path d="M8 8h8M8 11h6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-                                            </svg>
-                                            <span>使用教程</span>
-                                        </button>
-                                        <button type="button" class="wb-prompt-link-btn" data-wb-prompt-sample>
-                                            <span>试用样例</span>
-                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path d="m9 6 6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                            </svg>
-                                        </button>
-                                    </div>
-                                    <div class="wb-prompt-meta">
-                                        <div id="wb-count" class="wb-count" aria-hidden="true">0/100</div>
+                                    <div id="wb-count" class="wb-count" aria-hidden="true">0/100</div>
                                 <div class="wb-prompt-actions">
                                         <div class="import-wrap hidden" data-studio-script>
                                             <span class="new-badge-anchor">
@@ -8558,7 +7894,7 @@
                                             </span>
                                             <span class="script-hover-tip">支持txt.docx.excel.pdf.md，限5000字</span>
                                         </div>
-                                        <button type="button" class="wb-trash-btn" aria-label="清空提示词" onclick="syncPrompt('', 'clear')">
+                                        <button type="button" class="wb-trash-btn" aria-label="清空提示词" onclick="syncPrompt('')">
                                             <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
                                                 <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
                                                 <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
@@ -8566,13 +7902,12 @@
                                             </svg>
                                         </button>
                                     </div>
-                                    </div>
                                 </div>
                             </div>
                         </section>
 
                         <!-- 参数配置（顺序：模型 / 时长 / 清晰度 / 宽高比） -->
-                        <section class="space-y-5 wb-param-card">
+                        <section class="space-y-5">
                             <div class="space-y-2">
                                 <label class="wb-label">模型</label>
                                 <div class="wb-select">
@@ -8719,7 +8054,7 @@
                         <div class="flex-1 min-h-0 p-5 xl:p-6 overflow-y-auto">
                             
                             <!-- 快速模式内容：2步走 -->
-                            <div id="quick-view-steps" class="h-full min-h-0">
+                            <div id="quick-view-steps" class="h-full grid grid-cols-1 lg:grid-cols-[minmax(0,1.38fr)_minmax(400px,1.12fr)] xl:grid-cols-[minmax(0,1.3fr)_minmax(460px,1.18fr)] gap-5 xl:gap-6">
                                 <!-- Step 1: 九宫图 -->
                                 <div id="quick-step-frames" class="min-w-0 h-full">
                                     <div class="qm-preview-card">
@@ -8831,7 +8166,7 @@
                                     </div>
                                 </div>
                                 <!-- Step 2: 视频播放 -->
-                                <div id="quick-step-video" class="min-w-0 h-full flex flex-col hidden" hidden aria-hidden="true">
+                                <div id="quick-step-video" class="min-w-0 h-full flex flex-col">
                                     <div class="qm-preview-card">
                                         <div class="qm-video-stage" aria-label="视频预览">
                                             <div class="qm-video-scene">
@@ -8903,51 +8238,41 @@
                             <div id="pro-view-tabs" class="hidden h-full min-h-0">
                                 <div id="pro-content-subject" class="h-full min-h-0">
                                     <div class="pm-library-shell">
+                                        <div class="pm-pagebar">
+                                            <div>
+                                                <div class="pm-pagebar-title">步骤1：主体预览</div>
+                                                <div class="pm-pagebar-sub">确认人物主体与场景主体，后续分镜/成片保持一致性。</div>
+                                            </div>
+                                            <div class="pm-pagebar-actions">
+                                                <div class="pm-points-pill" title="当前积分（示例）">
+                                                    <span class="pm-points-ico" aria-hidden="true">✦</span>
+                                                    <span>195617</span>
+                                                </div>
+                                                <button type="button" class="pm-primary-btn" aria-label="生成分镜（原型按钮）" data-pm-toast="已触发「生成分镜」(原型演示)">
+                                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                        <path d="M12 2l2.2 6.4L21 11l-6.8 2.6L12 20l-2.2-6.4L3 11l6.8-2.6L12 2Z" fill="currentColor" opacity="0.92"/>
+                                                    </svg>
+                                                    生成分镜
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="pm-library-stack">
-                                            <section class="pm-library-card" data-subject-profile-card data-library-card-kind data-library-card-label="主体库人物">
+                                            <section class="pm-library-card">
                                                 <span class="pm-library-tag is-violet">主体库人物</span>
                                                 <div class="pm-library-main">
                                                     <div class="pm-library-copy">
                                                         <div class="pm-library-block">
                                                             <div class="pm-library-label">人物名称:</div>
-                                                            <div class="pm-library-title" data-subject-display="name">莉安 · 夜刃</div>
-                                                            <div class="pm-library-editor hidden" data-subject-editor-wrap="name">
-                                                                <input type="text" class="pm-library-input" data-subject-input="name" maxlength="50" value="莉安 · 夜刃">
-                                                                <div class="pm-library-edit-meta">
-                                                                    <span class="pm-library-char-counter" data-subject-live-counter="name">0/50</span>
-                                                                </div>
-                                                            </div>
+                                                            <div class="pm-library-title">莉安 · 夜刃</div>
                                                         </div>
                                                         <div class="pm-library-block">
                                                             <div class="pm-library-label">简要描述:</div>
-                                                            <div class="pm-library-desc" data-subject-display="summary">未来都市的独行侠，宁静果断、充满正义感。她曾是科技公司精英，为揭露黑幕踏上反抗之路，是地下反抗组织的领袖。信念坚定，渴望用自己的力量改变城市命运。</div>
-                                                            <div class="pm-library-editor hidden" data-subject-editor-wrap="summary">
-                                                                <textarea class="pm-library-textarea" data-subject-input="summary" maxlength="500">未来都市的独行侠，宁静果断、充满正义感。她曾是科技公司精英，为揭露黑幕踏上反抗之路，是地下反抗组织的领袖。信念坚定，渴望用自己的力量改变城市命运。</textarea>
-                                                                <div class="pm-library-edit-meta">
-                                                                    <span class="pm-library-char-counter" data-subject-live-counter="summary">0/500</span>
-                                                                </div>
-                                                            </div>
+                                                            <div class="pm-library-desc">未来都市的独行侠，宁静果断、充满正义感。她曾是科技公司精英，为揭露黑幕踏上反抗之路，是地下反抗组织的领袖。信念坚定，渴望用自己的力量改变城市命运。</div>
                                                         </div>
                                                         <div class="pm-library-block">
                                                             <div class="pm-library-label">外观描述:</div>
-                                                            <div class="pm-library-desc" data-subject-display="appearance">五彩短发、层次分明的发梢微微飘动；银黑未来感装甲，胸口有亮蓝能量线条；眼睛大而明亮，带紫色特殊纹理；手持霓虹武士刀，刀刃发出蓝粉纹理光芒；脸部轮廓清晰、下巴微扬，坚定冷静自信。</div>
-                                                            <div class="pm-library-editor hidden" data-subject-editor-wrap="appearance">
-                                                                <textarea class="pm-library-textarea" data-subject-input="appearance" maxlength="1000">五彩短发、层次分明的发梢微微飘动；银黑未来感装甲，胸口有亮蓝能量线条；眼睛大而明亮，带紫色特殊纹理；手持霓虹武士刀，刀刃发出蓝粉纹理光芒；脸部轮廓清晰、下巴微扬，坚定冷静自信。</textarea>
-                                                                <div class="pm-library-edit-meta">
-                                                                    <span class="pm-library-char-counter" data-subject-live-counter="appearance">0/1000</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pm-library-block">
-                                                            <div class="pm-library-label">音色:</div>
-                                                            <button type="button" class="pm-voice-trigger" data-voice-picker-open aria-label="选择当前人物音色">
-                                                                <span class="pm-voice-avatar" aria-hidden="true">
-                                                                    <img src="./2.png" alt="" data-subject-voice-avatar loading="lazy">
-                                                                </span>
-                                                                <span class="pm-voice-copy">
-                                                                    <span class="pm-voice-name" data-subject-voice-name>清澈邻家弟弟</span>
-                                                                </span>
-                                                            </button>
+                                                            <div class="pm-library-desc">五彩短发、层次分明的发梢微微飘动；银黑未来感装甲，胸口有亮蓝能量线条；眼睛大而明亮，带紫色特殊纹理；手持霓虹武士刀，刀刃发出蓝粉纹理光芒；脸部轮廓清晰、下巴微扬，坚定冷静自信。</div>
                                                         </div>
                                                     </div>
                                                     <div class="pm-library-side">
@@ -8957,32 +8282,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="pm-library-actions">
-                                                    <button type="button" class="pm-library-edit-btn" data-subject-edit-toggle>编辑</button>
-                                                    <button type="button" class="pm-icon-btn is-compact" data-library-delete aria-label="删除主体库人物">
-                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                            <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
-                                                            <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
-                                                            <path d="M10 11v7M14 11v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="pm-library-action-slot" data-library-sync-slot>
-                                                        <button type="button" class="pm-icon-btn is-compact" data-library-sync-toggle aria-label="更多同步操作" aria-haspopup="menu" aria-expanded="false">
-                                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                                <path d="M7 7h6V3l5 5-5 5V9H7a4 4 0 0 0-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                <path d="M17 17h-6v4l-5-5 5-5v4h6a4 4 0 0 0 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </button>
-                                                        <div class="pm-sync-menu hidden" data-library-sync-menu aria-hidden="true" role="menu">
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="sync">同步到主体库</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="refresh">从主体库更新</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="save">另存为新场景</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </section>
 
-                                            <section class="pm-library-card" data-library-card-kind data-library-card-label="临时场景">
+                                            <section class="pm-library-card">
                                                 <span class="pm-library-tag is-gold">临时场景</span>
                                                 <div class="pm-library-main">
                                                     <div class="pm-library-copy">
@@ -9006,78 +8308,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="pm-library-actions">
-                                                    <button type="button" class="pm-library-edit-btn" data-pm-toast="已触发「编辑临时场景」(原型演示)">编辑</button>
-                                                    <button type="button" class="pm-icon-btn is-compact" data-library-delete aria-label="删除临时场景">
-                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                            <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
-                                                            <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
-                                                            <path d="M10 11v7M14 11v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="pm-library-action-slot" data-library-sync-slot>
-                                                        <button type="button" class="pm-icon-btn is-compact" data-library-sync-toggle aria-label="更多同步操作" aria-haspopup="menu" aria-expanded="false">
-                                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                                <path d="M7 7h6V3l5 5-5 5V9H7a4 4 0 0 0-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                <path d="M17 17h-6v4l-5-5 5-5v4h6a4 4 0 0 0 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </button>
-                                                        <div class="pm-sync-menu hidden" data-library-sync-menu aria-hidden="true" role="menu">
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="sync">同步到主体库</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="refresh">从主体库更新</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="save">另存为新场景</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </section>
-
-                                            <section class="pm-library-card" data-library-card-kind data-library-card-label="临时物品">
-                                                <span class="pm-library-tag is-cyan">临时物品</span>
-                                                <div class="pm-library-main">
-                                                    <div class="pm-library-copy">
-                                                        <div class="pm-library-block">
-                                                            <div class="pm-library-label">物品名称:</div>
-                                                            <div class="pm-library-title">霓虹武士刀</div>
-                                                        </div>
-                                                        <div class="pm-library-block">
-                                                            <div class="pm-library-label">简要描述:</div>
-                                                            <div class="pm-library-desc">角色主武器，承担近战攻击与视觉识别两种作用，是分镜里最核心的道具之一。</div>
-                                                        </div>
-                                                        <div class="pm-library-block">
-                                                            <div class="pm-library-label">外观描述:</div>
-                                                            <div class="pm-library-desc">刀身细长，通体泛着蓝粉交织的霓虹光效；护手为深色科技金属结构，尾端带有发光能量节点。静止时有轻微辉光，挥动时会拖出柔和残影。</div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="pm-library-side">
-                                                        <div class="pm-library-side-label">主体图:</div>
-                                                        <div class="pm-library-thumb pm-library-thumb--prop" aria-hidden="true">
-                                                            <span class="pm-library-prop-core"></span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="pm-library-actions">
-                                                    <button type="button" class="pm-library-edit-btn" data-pm-toast="已触发「编辑临时物品」(原型演示)">编辑</button>
-                                                    <button type="button" class="pm-icon-btn is-compact" data-library-delete aria-label="删除临时物品">
-                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                            <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
-                                                            <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
-                                                            <path d="M10 11v7M14 11v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
-                                                        </svg>
-                                                    </button>
-                                                    <div class="pm-library-action-slot" data-library-sync-slot>
-                                                        <button type="button" class="pm-icon-btn is-compact" data-library-sync-toggle aria-label="更多同步操作" aria-haspopup="menu" aria-expanded="false">
-                                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                                <path d="M7 7h6V3l5 5-5 5V9H7a4 4 0 0 0-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                                <path d="M17 17h-6v4l-5-5 5-5v4h6a4 4 0 0 0 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                            </svg>
-                                                        </button>
-                                                        <div class="pm-sync-menu hidden" data-library-sync-menu aria-hidden="true" role="menu">
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="sync">同步到主体库</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="refresh">从主体库更新</button>
-                                                            <button type="button" class="pm-sync-menu-btn" data-library-sync-action="save">另存为新场景</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </section>
                                         </div>
 
@@ -9086,6 +8316,25 @@
                                 </div>
                                 <div id="pro-content-storyboard" class="hidden h-full min-h-0">
                                     <div class="pm-storyboard-shell">
+                                        <div class="pm-pagebar">
+                                            <div>
+                                                <div class="pm-pagebar-title">步骤2：分镜预览</div>
+                                                <div class="pm-pagebar-sub">逐条确认镜头描述与时长；不满意的分镜可编辑或删除。</div>
+                                            </div>
+                                            <div class="pm-pagebar-actions">
+                                                <div class="pm-points-pill" title="当前积分（示例）">
+                                                    <span class="pm-points-ico" aria-hidden="true">✦</span>
+                                                    <span>195617</span>
+                                                </div>
+                                                <button type="button" class="pm-primary-btn" aria-label="生成视频（原型按钮）" data-pm-toast="已触发「生成视频」(原型演示)">
+                                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                        <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"/>
+                                                    </svg>
+                                                    生成视频
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="pm-storyboard-heading">视频分镜</div>
                                         <div class="pm-storyboard-stack">
                                             <section class="pm-storyboard-card">
                                                 <span class="pm-storyboard-index">1</span>
@@ -9186,6 +8435,27 @@
                                 </div>
                                 <div id="pro-content-video" class="hidden h-full min-h-0">
                                     <div class="pm-video-shell">
+                                        <div class="pm-pagebar">
+                                            <div>
+                                                <div class="pm-pagebar-title">步骤3：视频预览</div>
+                                                <div class="pm-pagebar-sub">预览成片，调整音量/音乐/字幕，最后导出。</div>
+                                            </div>
+                                            <div class="pm-pagebar-actions">
+                                                <div class="pm-points-pill" title="当前积分（示例）">
+                                                    <span class="pm-points-ico" aria-hidden="true">✦</span>
+                                                    <span>195617</span>
+                                                </div>
+                                                <button type="button" class="pm-primary-btn" aria-label="导出（原型按钮）" data-pm-toast="已触发「导出」(原型演示)">
+                                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                        <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                        <path d="M8 9l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        <path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                    </svg>
+                                                    导出
+                                                </button>
+                                            </div>
+                                        </div>
+
                                         <div class="pm-video-layout">
                                             <aside class="pm-video-panel pm-shot-list-panel" aria-label="分镜列表">
                                                 <div class="pm-shot-list">
@@ -9334,58 +8604,14 @@
                         </div>
 
                         <!-- 底部状态栏 -->
-                        <div id="quick-step-export" class="p-6 border-t border-white/5 flex justify-between items-center gap-4 flex-wrap bg-black/20">
+                        <div id="quick-step-export" class="p-6 border-t border-white/5 flex justify-between items-center bg-black/20">
                             <div class="flex gap-8">
                                 <div class="text-xs"><span class="text-gray-500 block">生成队列</span><span class="text-white">空闲</span></div>
                                 <div class="text-xs"><span class="text-gray-500 block">预计渲染</span><span id="eta-text" class="text-white">~25s</span></div>
                             </div>
-                            <div class="flex items-center justify-end gap-3 flex-wrap ml-auto">
-                                <div id="workbench-bottom-quick-actions" class="flex items-center gap-3">
-                                    <button class="px-8 py-2 border border-white/10 rounded-xl text-sm hover:bg-white hover:text-black transition">
-                                        导出视频
-                                    </button>
-                                </div>
-                                <div id="workbench-bottom-pro-actions" class="hidden items-center gap-3">
-                                    <div data-pro-bottom-action="subject" class="hidden items-center gap-3">
-                                        <div class="pm-points-pill" title="当前积分（示例）">
-                                            <span class="pm-points-ico" aria-hidden="true">✦</span>
-                                            <span>195617</span>
-                                        </div>
-                                        <button type="button" class="pm-primary-btn" aria-label="生成分镜（原型按钮）" data-pm-toast="已触发「生成分镜」(原型演示)">
-                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path d="M12 2l2.2 6.4L21 11l-6.8 2.6L12 20l-2.2-6.4L3 11l6.8-2.6L12 2Z" fill="currentColor" opacity="0.92"/>
-                                            </svg>
-                                            生成分镜
-                                        </button>
-                                    </div>
-                                    <div data-pro-bottom-action="storyboard" class="hidden items-center gap-3">
-                                        <div class="pm-points-pill" title="当前积分（示例）">
-                                            <span class="pm-points-ico" aria-hidden="true">✦</span>
-                                            <span>195617</span>
-                                        </div>
-                                        <button type="button" class="pm-primary-btn" aria-label="生成视频（原型按钮）" data-pm-toast="已触发「生成视频」(原型演示)">
-                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path d="M8 6.5v11l9-5.5-9-5.5Z" fill="currentColor"/>
-                                            </svg>
-                                            生成视频
-                                        </button>
-                                    </div>
-                                    <div data-pro-bottom-action="video" class="hidden items-center gap-3">
-                                        <div class="pm-points-pill" title="当前积分（示例）">
-                                            <span class="pm-points-ico" aria-hidden="true">✦</span>
-                                            <span>195617</span>
-                                        </div>
-                                        <button type="button" class="pm-primary-btn" aria-label="导出（原型按钮）" data-pm-toast="已触发「导出」(原型演示)">
-                                            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                <path d="M12 3v10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                                <path d="M8 9l4 4 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                                                <path d="M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                                            </svg>
-                                            导出
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            <button class="px-8 py-2 border border-white/10 rounded-xl text-sm hover:bg-white hover:text-black transition">
+                                导出视频
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -9824,7 +9050,6 @@
     <script>
         let currentMode = 'quick'; // 'quick' or 'pro'
         let currentPromptText = "";
-        let promptInputSource = 'manual';
         let selectedSide = 'voices';
         let uxToastTimer = null;
         let wbGenDemoTimer = null;
@@ -9839,9 +9064,7 @@
             duration: 8,
             selectedSubjects: [],
             scriptName: '',
-            imageCount: 0,
-            characterVoiceName: '清澈邻家弟弟',
-            characterVoiceImage: './2.png'
+            imageCount: 0
         };
         const MODE_MODEL_LIBRARY = {
             quick: [
@@ -9869,30 +9092,8 @@
             { name: '繁忙大都会街角', desc: '高楼林立与涂鸦墙交错，街道上五光十色的霓虹招牌，老式自动售货机与路边摊，阳光斑驳。', thumb: 'linear-gradient(135deg, rgba(185,109,151,0.72), rgba(116,56,144,0.92))' },
             { name: '比利（Billy）', desc: '短金发，佩戴棒球帽，身穿经典色块拼接 T 恤与大件护膝，脚踩滑板，面带自信微笑。', image: './3.png' }
         ];
-        const VOICE_LIBRARY_OPTIONS = [
-            { name: '软软女孩', image: './1.png', group: 'library' },
-            { name: '清澈邻家弟弟', image: './2.png', group: 'library' },
-            { name: '清脆少女', image: './3.png', group: 'library' },
-            { name: '温柔学姐', image: './4.png', group: 'library' },
-            { name: '嘴硬竹马', image: './5.png', group: 'library' },
-            { name: '真诚青年', image: './1.png', group: 'library' },
-            { name: '率真弟弟', image: './2.png', group: 'library' },
-            { name: '抒情男声', image: './3.png', group: 'library' },
-            { name: '电台男主播', image: './4.png', group: 'library' },
-            { name: '温暖少女', image: './5.png', group: 'library' },
-            { name: '憨憨萌兽', image: './1.png', group: 'library' },
-            { name: '阅历姐姐', image: './4.png', group: 'library' },
-            { name: '我的旁白', image: './2.png', group: 'mine' },
-            { name: '品牌女声', image: './4.png', group: 'mine' },
-            { name: '记录男声', image: './3.png', group: 'mine' },
-            { name: '暖场助手', image: './5.png', group: 'mine' }
-        ];
-        let subjectProfileEditMode = false;
-        let voicePickerActiveTab = 'library';
-        let voicePickerDraftName = '清澈邻家弟弟';
         let studioPopoverCloseTimer = null;
         let pinnedPopoverKey = null;
-        const PROMPT_DRAFT_STORAGE_KEY = 'ai_story_prompt_state_v2';
         const PROMPT_BLOCKLIST = ['血腥', '暴力', '色情', '淫秽', '违法', '仇恨'];
         const ALLOWED_IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/webp'];
         const MAX_IMAGE_COUNT = 4;
@@ -10068,80 +9269,6 @@
             const restore = document.body.dataset.pointsModalOverflow || '';
             document.body.style.overflow = restore;
             delete document.body.dataset.pointsModalOverflow;
-        }
-
-        function getVoiceOptionByName(name){
-            return VOICE_LIBRARY_OPTIONS.find((item) => item.name === name) || VOICE_LIBRARY_OPTIONS[0];
-        }
-
-        function syncSubjectVoiceCard(){
-            const current = getVoiceOptionByName(studioState.characterVoiceName);
-            if (!current) return;
-
-            studioState.characterVoiceName = current.name;
-            studioState.characterVoiceImage = current.image;
-
-            document.querySelectorAll('[data-subject-voice-name]').forEach((node) => {
-                node.textContent = current.name;
-            });
-            document.querySelectorAll('[data-subject-voice-avatar]').forEach((node) => {
-                node.setAttribute('src', current.image);
-                node.setAttribute('alt', current.name);
-            });
-
-            const currentNode = document.querySelector('[data-voice-picker-current]');
-            if (currentNode) currentNode.textContent = voicePickerDraftName || current.name;
-        }
-
-        function renderVoicePickerCards(){
-            const modal = document.getElementById('voice-picker-modal');
-            const grid = modal?.querySelector('[data-voice-picker-grid]');
-            if (!modal || !grid) return;
-
-            const currentNode = modal.querySelector('[data-voice-picker-current]');
-            if (currentNode) currentNode.textContent = voicePickerDraftName || studioState.characterVoiceName;
-
-            modal.querySelectorAll('[data-voice-picker-tab]').forEach((btn) => {
-                const active = btn.getAttribute('data-voice-picker-tab') === voicePickerActiveTab;
-                btn.classList.toggle('is-active', active);
-                btn.setAttribute('aria-selected', active ? 'true' : 'false');
-            });
-
-            const options = VOICE_LIBRARY_OPTIONS.filter((item) => item.group === voicePickerActiveTab);
-            grid.innerHTML = options.map((item) => `
-                <button type="button" class="voice-picker-card${item.name === voicePickerDraftName ? ' is-selected' : ''}" data-voice-option="${item.name}" aria-pressed="${item.name === voicePickerDraftName ? 'true' : 'false'}">
-                    <span class="voice-picker-card-avatar" aria-hidden="true">
-                        <img src="${item.image}" alt="${item.name}" loading="lazy">
-                    </span>
-                    <span class="voice-picker-card-name">${item.name}</span>
-                </button>
-            `).join('');
-        }
-
-        function openVoicePickerModal(){
-            const modal = document.getElementById('voice-picker-modal');
-            if (!modal) return;
-
-            const current = getVoiceOptionByName(studioState.characterVoiceName);
-            voicePickerDraftName = current.name;
-            voicePickerActiveTab = current.group || 'library';
-            renderVoicePickerCards();
-
-            modal.classList.remove('hidden');
-            modal.setAttribute('aria-hidden', 'false');
-            const prevOverflow = document.body.style.overflow;
-            document.body.dataset.voicePickerOverflow = prevOverflow;
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeVoicePickerModal(){
-            const modal = document.getElementById('voice-picker-modal');
-            if (!modal || modal.classList.contains('hidden')) return;
-            modal.classList.add('hidden');
-            modal.setAttribute('aria-hidden', 'true');
-            const restore = document.body.dataset.voicePickerOverflow || '';
-            document.body.style.overflow = restore;
-            delete document.body.dataset.voicePickerOverflow;
         }
 
         let langPopoverCloseTimer = null;
@@ -10372,50 +9499,10 @@
             if (meta) showUxToast(meta);
         }
 
-        function emitPromptMetric(eventName, detail = {}){
-            const payload = {
-                event: eventName,
-                mode: currentMode,
-                source: promptInputSource,
-                length: String(currentPromptText || '').length,
-                ...detail
-            };
-            try {
-                window.dispatchEvent(new CustomEvent('studio:prompt-metric', { detail: payload }));
-            } catch (_) {}
-        }
-
-        function persistPromptDraft(){
-            try {
-                const payload = {
-                    text: String(currentPromptText || ''),
-                    mode: currentMode,
-                    source: promptInputSource,
-                    updatedAt: Date.now()
-                };
-                sessionStorage.setItem(PROMPT_DRAFT_STORAGE_KEY, JSON.stringify(payload));
-            } catch (_) {}
-        }
-
-        function restorePromptDraft(){
-            try {
-                const raw = sessionStorage.getItem(PROMPT_DRAFT_STORAGE_KEY);
-                if (!raw) return;
-                const parsed = JSON.parse(raw);
-                if (parsed && (parsed.mode === 'quick' || parsed.mode === 'pro')) currentMode = parsed.mode;
-                if (parsed && typeof parsed.text === 'string') currentPromptText = parsed.text;
-                if (parsed && typeof parsed.source === 'string' && parsed.source) promptInputSource = parsed.source;
-            } catch (_) {}
-        }
-
         function getPromptValidationState(text){
             const value = String(text || '').trim();
-            const bounds = getPromptBounds(currentMode);
             if (!value) {
                 return { valid: false, level: 'warning', message: '请输入提示词后开始生成' };
-            }
-            if (value.length > bounds.max) {
-                return { valid: false, level: 'error', message: `提示词长度已超过 ${bounds.max} 字，请精简后继续` };
             }
             const hit = PROMPT_BLOCKLIST.find(word => value.includes(word));
             if (hit) {
@@ -10438,7 +9525,6 @@
                 btn.setAttribute('aria-disabled', state.valid ? 'false' : 'true');
                 btn.title = state.valid ? '' : state.message;
             });
-            emitPromptMetric('prompt_availability_checked', { valid: state.valid, level: state.level });
             return state;
         }
 
@@ -10622,9 +9708,8 @@
                 if (proParams) proParams.classList.add('hidden');
                 if (quickTabs) quickTabs.classList.remove('hidden');
                 if (proTabs) proTabs.classList.add('hidden');
-                setWorkbenchPanelVisibility(quickSteps, true, 'block');
+                setWorkbenchPanelVisibility(quickSteps, true, 'grid');
                 setWorkbenchPanelVisibility(proViewTabs, false);
-                syncWorkbenchBottomActions('quick');
                 if (generateBtn) generateBtn.innerText = "一键生成漫剧（50积分）";
                 if (eta) eta.innerText = "~25s";
                 scriptBtns.forEach(btn => btn.classList.add('hidden'));
@@ -10635,14 +9720,13 @@
                 if (proParams) proParams.classList.remove('hidden');
                 if (quickTabs) quickTabs.classList.add('hidden');
                 if (proTabs) proTabs.classList.remove('hidden');
-                setWorkbenchPanelVisibility(quickSteps, false, 'block');
+                setWorkbenchPanelVisibility(quickSteps, false, 'grid');
                 setWorkbenchPanelVisibility(proViewTabs, true);
                 if (generateBtn) generateBtn.innerText = "一键生成漫剧";
                 if (eta) eta.innerText = "~85s";
                 scriptBtns.forEach(btn => btn.classList.remove('hidden'));
                 imageBtns.forEach(btn => btn.classList.add('hidden'));
                 const currentPct = Number(document.getElementById('wb-gen-progress-text')?.textContent?.replace('%','')) || 0;
-                syncWorkbenchBottomActions('pro', getProActiveStepKey(currentPct));
                 syncWorkbenchFlowStatus('pro', currentPct);
                 switchProTab(getProActiveStepKey(currentPct));
             }
@@ -10679,11 +9763,10 @@
         }
 
         // 同步提示词，防止丢失
-        function syncPrompt(val, source = 'manual') {
+        function syncPrompt(val) {
             const bounds = getPromptBounds(currentMode);
             const next = String(val || '').slice(0, bounds.max);
             currentPromptText = next;
-            promptInputSource = source || 'manual';
             const main = document.getElementById('main-input');
             const wb = document.getElementById('workbench-input');
             if (main) {
@@ -10697,10 +9780,6 @@
             updateMainCount();
             updateWorkbenchCount();
             updateGenerateAvailability();
-            persistPromptDraft();
-            emitPromptMetric('prompt_input_changed');
-            if (!String(next || '').trim()) emitPromptMetric('prompt_empty_blocked');
-            if (PROMPT_BLOCKLIST.some(word => String(next || '').includes(word))) emitPromptMetric('prompt_sensitive_blocked');
         }
 
         function updateMainCount(){
@@ -10742,7 +9821,6 @@
             updateMainCount();
             updateWorkbenchCount();
             updateGenerateAvailability();
-            persistPromptDraft();
             return {
                 max: bounds.max,
                 originalLength: base.length,
@@ -10826,20 +9904,6 @@
             node.setAttribute('aria-hidden', visible ? 'false' : 'true');
         }
 
-        function syncWorkbenchBottomActions(mode = currentMode, tab = 'subject'){
-            const quickActions = document.getElementById('workbench-bottom-quick-actions');
-            const proActions = document.getElementById('workbench-bottom-pro-actions');
-
-            setWorkbenchPanelVisibility(quickActions, mode === 'quick', 'flex');
-            setWorkbenchPanelVisibility(proActions, mode === 'pro', 'flex');
-
-            if (!proActions) return;
-            proActions.querySelectorAll('[data-pro-bottom-action]').forEach((node) => {
-                const key = node.getAttribute('data-pro-bottom-action');
-                setWorkbenchPanelVisibility(node, mode === 'pro' && key === tab, 'flex');
-            });
-        }
-
         function getProActiveStepKey(pct = 0){
             const n = Math.max(0, Math.min(100, Number(pct) || 0));
             return n <= 0 ? 'subject' : n < 34 ? 'subject' : n < 72 ? 'storyboard' : 'video';
@@ -10864,7 +9928,6 @@
                 setWorkbenchPanelVisibility(document.getElementById(`pro-content-${key}`), key === nextTab);
             });
             syncFlowSelection('pro-tabs', nextTab);
-            syncWorkbenchBottomActions('pro', nextTab);
         }
 
         function syncWorkbenchFlowStatus(mode, pct = 0){
@@ -10880,7 +9943,6 @@
             const order = ['frames', 'video'];
             const activeKey = n <= 0 ? 'frames' : n < 68 ? 'frames' : 'video';
             syncFlowSteps('quick-tabs', activeKey, order);
-            switchQuickTab(activeKey, false);
         }
 
         function switchQuickTab(tab, shouldScroll = true) {
@@ -10888,7 +9950,6 @@
             tabs.forEach(t => {
                 const target = document.getElementById(`quick-step-${t}`);
                 if (!target) return;
-                setWorkbenchPanelVisibility(target, t === tab, t === 'video' ? 'flex' : 'block');
                 target.classList.remove('ring-1', 'ring-cyan-400/20');
             });
 
@@ -11012,240 +10073,6 @@
             });
         }
 
-        function initSubjectProfileEditor(){
-            const card = document.querySelector('[data-subject-profile-card]');
-            if (!card) return;
-
-            const toggleBtn = card.querySelector('[data-subject-edit-toggle]');
-            const fields = Array.from(card.querySelectorAll('[data-subject-input]')).map((input) => {
-                const key = input.getAttribute('data-subject-input');
-                return {
-                    key,
-                    input,
-                    wrap: card.querySelector(`[data-subject-editor-wrap="${key}"]`),
-                    display: card.querySelector(`[data-subject-display="${key}"]`),
-                    counter: card.querySelector(`[data-subject-live-counter="${key}"]`)
-                };
-            });
-
-            const autoResizeTextarea = (node) => {
-                if (!(node instanceof HTMLTextAreaElement)) return;
-                node.style.height = 'auto';
-                node.style.height = `${node.scrollHeight}px`;
-            };
-
-            const syncField = (field) => {
-                if (!field?.input) return;
-                const max = Number(field.input.getAttribute('maxlength') || 0);
-                let next = field.input.value.replace(/\r\n/g, '\n');
-                if (max > 0 && next.length > max) {
-                    next = next.slice(0, max);
-                    field.input.value = next;
-                }
-                if (field.display) field.display.textContent = next;
-                if (field.counter) field.counter.textContent = `${next.length}/${max}`;
-                autoResizeTextarea(field.input);
-            };
-
-            const setEditMode = (editing) => {
-                subjectProfileEditMode = editing;
-                card.classList.toggle('is-editing', editing);
-                if (toggleBtn) {
-                    toggleBtn.textContent = editing ? '完成编辑' : '编辑';
-                    toggleBtn.classList.toggle('is-active', editing);
-                }
-
-                fields.forEach((field) => {
-                    syncField(field);
-                    if (field.wrap) {
-                        field.wrap.classList.toggle('hidden', !editing);
-                        field.wrap.style.display = editing ? 'block' : 'none';
-                    }
-                    if (field.display) field.display.classList.toggle('hidden', editing);
-                });
-
-                if (editing && fields[0]?.input) {
-                    fields[0].input.focus();
-                    if (typeof fields[0].input.select === 'function') fields[0].input.select();
-                }
-            };
-
-            fields.forEach((field) => {
-                syncField(field);
-                field.input.addEventListener('input', () => syncField(field));
-                field.input.addEventListener('focus', () => autoResizeTextarea(field.input));
-            });
-
-            if (toggleBtn) {
-                toggleBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    setEditMode(!subjectProfileEditMode);
-                });
-            }
-
-            setEditMode(false);
-        }
-
-        function closeSubjectSyncMenus(){
-            document.querySelectorAll('[data-library-sync-menu]').forEach((menu) => {
-                menu.classList.add('hidden');
-                menu.setAttribute('aria-hidden', 'true');
-            });
-            document.querySelectorAll('[data-library-sync-toggle]').forEach((btn) => {
-                btn.setAttribute('aria-expanded', 'false');
-            });
-        }
-
-        function initSubjectLibraryActions(){
-            const shell = document.querySelector('#pro-content-subject .pm-library-shell');
-            if (!shell) return;
-
-            shell.addEventListener('click', (e) => {
-                const target = e.target;
-                if (!(target instanceof Element)) return;
-
-                const deleteBtn = target.closest('[data-library-delete]');
-                if (deleteBtn) {
-                    e.preventDefault();
-                    const card = deleteBtn.closest('[data-library-card-kind]');
-                    const label = card?.getAttribute('data-library-card-label') || '当前卡片';
-                    if (card) {
-                        card.classList.add('hidden');
-                        card.setAttribute('hidden', '');
-                        card.style.display = 'none';
-                    }
-                    closeSubjectSyncMenus();
-                    showUxToast({
-                        title: '已删除',
-                        message: `${label}已从当前草稿中移除。`,
-                        variant: 'info',
-                        duration: 2200
-                    });
-                    return;
-                }
-
-                const toggleBtn = target.closest('[data-library-sync-toggle]');
-                if (toggleBtn) {
-                    e.preventDefault();
-                    const slot = toggleBtn.closest('[data-library-sync-slot]');
-                    const menu = slot?.querySelector('[data-library-sync-menu]');
-                    const shouldOpen = Boolean(menu && menu.classList.contains('hidden'));
-                    closeSubjectSyncMenus();
-                    if (shouldOpen && menu) {
-                        menu.classList.remove('hidden');
-                        menu.setAttribute('aria-hidden', 'false');
-                        toggleBtn.setAttribute('aria-expanded', 'true');
-                    }
-                    return;
-                }
-
-                const actionBtn = target.closest('[data-library-sync-action]');
-                if (actionBtn) {
-                    e.preventDefault();
-                    const card = actionBtn.closest('[data-library-card-kind]');
-                    const label = card?.getAttribute('data-library-card-label') || '当前内容';
-                    const action = actionBtn.getAttribute('data-library-sync-action');
-                    const meta = action === 'sync'
-                        ? { title: '已同步到主体库', message: `${label}已同步到主体库。` }
-                        : action === 'refresh'
-                            ? { title: '已从主体库更新', message: `${label}已用主体库最新内容覆盖。` }
-                            : { title: '已另存', message: `${label}已另存为新场景。` };
-                    closeSubjectSyncMenus();
-                    showUxToast({
-                        title: meta.title,
-                        message: meta.message,
-                        variant: 'success',
-                        duration: 2200
-                    });
-                }
-            });
-
-            document.addEventListener('click', (e) => {
-                const target = e.target;
-                if (!(target instanceof Element)) return;
-                if (target.closest('[data-library-sync-slot]')) return;
-                closeSubjectSyncMenus();
-            });
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeSubjectSyncMenus();
-            });
-        }
-
-        function initVoicePickerModal(){
-            const modal = document.getElementById('voice-picker-modal');
-            if (!modal) return;
-
-            document.querySelectorAll('[data-voice-picker-open]').forEach((node) => {
-                node.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    openVoicePickerModal();
-                });
-            });
-
-            modal.querySelectorAll('[data-voice-picker-close]').forEach((node) => {
-                node.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    closeVoicePickerModal();
-                });
-            });
-
-            modal.querySelectorAll('[data-voice-picker-tab]').forEach((node) => {
-                node.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    voicePickerActiveTab = node.getAttribute('data-voice-picker-tab') || 'library';
-                    renderVoicePickerCards();
-                });
-            });
-
-            const grid = modal.querySelector('[data-voice-picker-grid]');
-            if (grid) {
-                grid.addEventListener('click', (e) => {
-                    const target = e.target instanceof Element ? e.target.closest('[data-voice-option]') : null;
-                    if (!target) return;
-                    voicePickerDraftName = target.getAttribute('data-voice-option') || voicePickerDraftName;
-                    renderVoicePickerCards();
-                });
-            }
-
-            const filterBtn = modal.querySelector('[data-voice-picker-filter]');
-            if (filterBtn) {
-                filterBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    showUxToast({
-                        title: '语言筛选',
-                        message: '当前原型固定为中文（普通话）音色展示。',
-                        variant: 'info',
-                        duration: 2000
-                    });
-                });
-            }
-
-            const confirmBtn = modal.querySelector('[data-voice-picker-confirm]');
-            if (confirmBtn) {
-                confirmBtn.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    const next = getVoiceOptionByName(voicePickerDraftName);
-                    studioState.characterVoiceName = next.name;
-                    studioState.characterVoiceImage = next.image;
-                    syncSubjectVoiceCard();
-                    closeVoicePickerModal();
-                    showUxToast({
-                        title: '音色已切换',
-                        message: `当前人物音色已切换为「${next.name}」。`,
-                        variant: 'success',
-                        duration: 2200
-                    });
-                });
-            }
-
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape') closeVoicePickerModal();
-            });
-
-            syncSubjectVoiceCard();
-        }
-
         function initPointsModal(){
             const modal = document.getElementById('points-modal');
             if (!modal) return;
@@ -11321,20 +10148,15 @@
 
         // 初始化默认状态
         window.onload = () => {
-            restorePromptDraft();
-            toggleMode(currentMode);
+            toggleMode('quick');
             setSideSelected('voices');
             initStudioUI();
             initSideDialog();
             initInspirationSquare();
-            initWorkbenchPromptHelperActions();
             initProPreviewDemo();
             initAssetsView();
             initSubjectsView();
             initVoicesView();
-            initSubjectProfileEditor();
-            initSubjectLibraryActions();
-            initVoicePickerModal();
             initPointsModal();
             initLangPopover();
             initWorkbenchUploadMenu();
@@ -11354,36 +10176,6 @@
             setTimeout(() => ensureProPreviewRender(), 60);
             setTimeout(() => ensureProPreviewRender(), 360);
         };
-
-        function initWorkbenchPromptHelperActions(){
-            document.querySelectorAll('[data-wb-prompt-guide]').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    closeSideDialog();
-                    openSideDialog('guide');
-                });
-            });
-
-            document.querySelectorAll('[data-wb-prompt-sample]').forEach((btn) => {
-                btn.addEventListener('click', () => {
-                    const sample = SAMPLE_PROMPTS[currentMode] || SAMPLE_PROMPTS.quick;
-                    syncPrompt(sample, 'sample');
-                    const wb = document.getElementById('workbench-input');
-                    if (wb) {
-                        try {
-                            const len = (wb.value || '').length;
-                            wb.focus({ preventScroll: true });
-                            wb.setSelectionRange(len, len);
-                        } catch (_) {}
-                    }
-                    showUxToast({
-                        title: '已填入试用样例',
-                        message: '你可以直接生成，或继续修改后再生成。',
-                        variant: 'info'
-                    });
-                    emitPromptMetric('prompt_sample_applied');
-                });
-            });
-        }
 
         function initInspirationSquare(){
             const grid = document.getElementById('inspiration-grid');
@@ -11432,7 +10224,7 @@
                 if (!prompt) return false;
 
                 mainInput.value = prompt;
-                if (typeof syncPrompt === 'function') syncPrompt(prompt, 'make_same');
+                if (typeof syncPrompt === 'function') syncPrompt(prompt);
 
                 if (focusInput) focusMainPrompt();
 
@@ -11817,8 +10609,8 @@
                     activeIndex: 1
                 };
                 if (n < 85) return {
-                    label: '',
-                    stage: '',
+                    label: '关键帧组装',
+                    stage: '生成并校正关键帧',
                     desc: '收束构图和节奏。',
                     eta: '约 9s',
                     activeIndex: 2
@@ -11857,9 +10649,9 @@
             const desc = document.getElementById('wb-gen-progress-desc');
             const stage = document.getElementById('wb-gen-progress-stage');
             const eta = document.getElementById('wb-gen-progress-eta');
-            if (label) label.textContent = '';
+            if (label) label.textContent = stageMeta.label;
             if (desc) desc.textContent = stageMeta.desc;
-            if (stage) stage.textContent = '';
+            if (stage) stage.textContent = stageMeta.stage;
             if (eta) eta.textContent = stageMeta.eta;
 
             document.querySelectorAll('[data-wb-phase]').forEach(node => {
@@ -12912,41 +11704,6 @@
                         <div class="points-row"><div>合成视频</div><div style="text-align:center; color: rgba(173,180,214,0.82); font-weight:800;">2026-04-02 17:57</div><div class="points-val-neg">- 112</div></div>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div id="voice-picker-modal" class="voice-picker-modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
-        <div class="voice-picker-backdrop" data-voice-picker-close></div>
-        <div class="voice-picker-panel" role="document">
-            <div class="voice-picker-head">
-                <div class="voice-picker-title">音色</div>
-                <button type="button" class="voice-picker-close" aria-label="关闭音色弹窗" data-voice-picker-close>
-                    <svg viewBox="0 0 24 24" fill="none" width="16" height="16" aria-hidden="true">
-                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </button>
-            </div>
-            <div class="voice-picker-body">
-                <div class="voice-picker-current">当前音色：<span data-voice-picker-current>清澈邻家弟弟</span></div>
-                <div class="voice-picker-tabs-row">
-                    <div class="voice-picker-tabs" role="tablist" aria-label="音色分类">
-                        <button type="button" class="voice-picker-tab is-active" role="tab" aria-selected="true" data-voice-picker-tab="library">音色库</button>
-                        <button type="button" class="voice-picker-tab" role="tab" aria-selected="false" data-voice-picker-tab="mine">个人音色</button>
-                    </div>
-                    <button type="button" class="voice-picker-filter" data-voice-picker-filter>
-                        <span>中文（普通话）</span>
-                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                            <path d="M7 10l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                        </svg>
-                    </button>
-                </div>
-                <div class="voice-picker-scroll">
-                    <div class="voice-picker-grid" data-voice-picker-grid aria-label="音色列表"></div>
-                </div>
-            </div>
-            <div class="voice-picker-foot">
-                <button type="button" class="voice-picker-cancel" data-voice-picker-close>取消</button>
-                <button type="button" class="voice-picker-confirm" data-voice-picker-confirm>确认</button>
             </div>
         </div>
     </div>
