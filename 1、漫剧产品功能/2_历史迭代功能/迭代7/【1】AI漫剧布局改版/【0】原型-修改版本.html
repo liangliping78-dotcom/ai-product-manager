@@ -4415,6 +4415,612 @@
             box-shadow: 0 16px 28px rgba(0,0,0,0.18);
             background: #171a2a;
         }
+        .pm-storyboard-gallery{
+            width: min(100%, 1120px);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            padding: 6px 0 18px;
+        }
+        .pm-storyboard-shot-card{
+            width: 100%;
+            border: 1px solid rgba(134,158,230,0.12);
+            border-radius: 24px;
+            padding: 14px 14px 16px;
+            background:
+                radial-gradient(circle at 18% 0%, rgba(84,143,255,0.10), rgba(84,143,255,0) 28%),
+                linear-gradient(180deg, rgba(26,35,57,0.98) 0%, rgba(21,27,44,0.98) 100%);
+            box-shadow: 0 22px 44px rgba(0,0,0,0.24);
+            text-align: left;
+            cursor: pointer;
+            transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease;
+            position: relative;
+            overflow: hidden;
+            outline: none;
+        }
+        .pm-storyboard-shot-card::before{
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: radial-gradient(rgba(184,202,255,0.12) 1px, transparent 1px);
+            background-size: 14px 14px;
+            opacity: .20;
+        }
+        .pm-storyboard-shot-card:hover{
+            transform: translateY(-2px);
+            border-color: rgba(120,213,255,0.26);
+            box-shadow: 0 28px 54px rgba(0,0,0,0.28);
+        }
+        .pm-storyboard-shot-card.is-active{
+            border-color: rgba(120,213,255,0.34);
+            box-shadow: 0 0 0 1px rgba(120,213,255,0.16), 0 28px 54px rgba(0,0,0,0.30);
+        }
+        .pm-storyboard-shot-card:focus-visible{
+            border-color: rgba(120,213,255,0.34);
+            box-shadow: 0 0 0 1px rgba(120,213,255,0.18), 0 28px 54px rgba(0,0,0,0.30);
+        }
+        .pm-storyboard-shot-head{
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+        .pm-storyboard-shot-label{
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(224,232,255,0.96);
+            font-size: 15px;
+            font-weight: 900;
+        }
+        .pm-storyboard-shot-label svg{
+            width: 14px;
+            height: 14px;
+            opacity: .82;
+        }
+        .pm-storyboard-shot-meta{
+            color: rgba(179,193,233,0.62);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .04em;
+        }
+        .pm-storyboard-shot-layout{
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: minmax(0, 1.82fr) minmax(300px, 0.94fr);
+            gap: 14px;
+            align-items: stretch;
+        }
+        .pm-storyboard-shot-visual{
+            min-width: 0;
+        }
+        .pm-storyboard-shot-frame{
+            position: relative;
+            display: block;
+            overflow: hidden;
+            border-radius: 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: #0f1627;
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 18px 34px rgba(0,0,0,0.22);
+            aspect-ratio: 2752 / 1536;
+        }
+        .pm-storyboard-shot-art{
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .pm-storyboard-shot-art svg{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .pm-storyboard-shot-corner{
+            position: absolute;
+            right: 14px;
+            bottom: 14px;
+            width: 34px;
+            height: 34px;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.95);
+            background: rgba(11,16,27,0.62);
+            border: 1px solid rgba(255,255,255,0.12);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.22);
+        }
+        .pm-storyboard-shot-corner svg{
+            width: 16px;
+            height: 16px;
+        }
+        .pm-storyboard-shot-info{
+            min-width: 0;
+            display: grid;
+            grid-template-rows: auto minmax(0, 1fr) auto auto;
+            gap: 14px;
+            padding: 16px;
+            border-radius: 18px;
+            border: 1px solid rgba(139,160,220,0.16);
+            background:
+                linear-gradient(180deg, rgba(21,28,46,0.96) 0%, rgba(15,21,35,0.96) 100%);
+            box-shadow: inset 0 1px 0 rgba(255,255,255,0.04), 0 18px 34px rgba(0,0,0,0.22);
+        }
+        .pm-storyboard-shot-card.is-active .pm-storyboard-shot-info{
+            border-color: rgba(120,213,255,0.22);
+        }
+        .pm-storyboard-shot-info-head{
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+        }
+        .pm-storyboard-shot-kicker{
+            display: block;
+            margin-bottom: 6px;
+            color: rgba(125,214,255,0.76);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+        }
+        .pm-storyboard-shot-info-title{
+            display: block;
+            color: rgba(244,247,255,0.96);
+            font-size: 16px;
+            line-height: 1.35;
+            font-weight: 900;
+        }
+        .pm-storyboard-shot-info-tag{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 30px;
+            padding: 0 12px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: rgba(208,218,247,0.72);
+            font-size: 11px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+        .pm-storyboard-shot-sections{
+            min-height: 0;
+            display: grid;
+            align-content: start;
+            gap: 10px;
+            overflow: auto;
+            padding-right: 4px;
+        }
+        .pm-storyboard-shot-section{
+            display: grid;
+            gap: 5px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(255,255,255,0.03);
+        }
+        .pm-storyboard-shot-section-label{
+            color: rgba(125,214,255,0.84);
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: .12em;
+        }
+        .pm-storyboard-shot-section-desc{
+            color: rgba(229,234,255,0.92);
+            font-size: 13px;
+            line-height: 1.72;
+        }
+        .pm-storyboard-shot-specs{
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+        .pm-storyboard-shot-spec{
+            display: grid;
+            gap: 4px;
+            padding: 10px 12px;
+            border-radius: 14px;
+            border: 1px solid rgba(255,255,255,0.06);
+            background: rgba(8,12,20,0.36);
+        }
+        .pm-storyboard-shot-spec-label{
+            color: rgba(172,184,220,0.64);
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: .08em;
+        }
+        .pm-storyboard-shot-spec-value{
+            color: rgba(244,247,255,0.94);
+            font-size: 14px;
+            line-height: 1.35;
+            font-weight: 900;
+        }
+        .pm-storyboard-shot-actions{
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding-top: 4px;
+        }
+        .pm-storyboard-shot-action{
+            min-width: 84px;
+            height: 38px;
+            padding: 0 16px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 900;
+            cursor: pointer;
+            transition: transform .18s ease, background .18s ease, border-color .18s ease;
+        }
+        .pm-storyboard-shot-action:hover{
+            transform: translateY(-1px);
+        }
+        .pm-storyboard-shot-action.is-ghost{
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.03);
+            color: rgba(193,205,240,0.86);
+        }
+        .pm-storyboard-shot-action.is-ghost:hover{
+            background: rgba(255,255,255,0.06);
+        }
+        .pm-storyboard-shot-action.is-primary{
+            border: 0;
+            color: rgba(255,255,255,0.98);
+            background: linear-gradient(135deg, rgba(90,211,255,0.98) 0%, rgba(84,126,255,0.98) 100%);
+            box-shadow: 0 14px 26px rgba(74,126,255,0.22);
+        }
+        .pm-storyboard-detail-modal{
+            position: fixed;
+            inset: 0;
+            z-index: 110;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        .pm-storyboard-detail-modal.hidden{
+            display: none;
+        }
+        .pm-storyboard-detail-backdrop{
+            position: absolute;
+            inset: 0;
+            background: rgba(5,8,15,0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+        }
+        .pm-storyboard-detail-dialog{
+            position: relative;
+            z-index: 1;
+            width: min(1400px, 100%);
+        }
+        .pm-storyboard-detail-stage{
+            position: relative;
+            overflow: hidden;
+            border-radius: 30px;
+            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(180deg, rgba(17,22,35,0.98) 0%, rgba(11,15,26,0.98) 100%);
+            box-shadow: 0 32px 90px rgba(0,0,0,0.42);
+        }
+        .pm-storyboard-detail-art{
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+            background: #101726;
+        }
+        .pm-storyboard-detail-art svg{
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .pm-storyboard-detail-topline{
+            position: absolute;
+            left: 20px;
+            top: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 2;
+            pointer-events: none;
+        }
+        .pm-storyboard-detail-badge{
+            height: 32px;
+            padding: 0 14px;
+            border-radius: 999px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(9,14,24,0.78);
+            border: 1px solid rgba(255,255,255,0.12);
+            color: rgba(244,247,255,0.96);
+            font-size: 12px;
+            font-weight: 900;
+            letter-spacing: .04em;
+        }
+        .pm-storyboard-detail-badge.is-meta{
+            color: rgba(198,208,239,0.78);
+        }
+        .pm-storyboard-detail-close{
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            z-index: 3;
+            width: 40px;
+            height: 40px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(9,14,24,0.78);
+            color: rgba(255,255,255,0.92);
+            display: grid;
+            place-items: center;
+            cursor: pointer;
+            transition: transform .18s ease, background .18s ease;
+        }
+        .pm-storyboard-detail-close:hover{
+            transform: translateY(-1px);
+            background: rgba(18,25,40,0.92);
+        }
+        .pm-storyboard-detail-close svg{
+            width: 16px;
+            height: 16px;
+        }
+        .pm-storyboard-detail-prompt-wrap{
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 18px;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+        }
+        .pm-storyboard-detail-prompt-card{
+            width: min(1220px, 100%);
+            padding: 14px 16px 12px;
+            border-radius: 22px;
+            background: rgba(11,15,24,0.92);
+            border: 1px solid rgba(255,255,255,0.10);
+            box-shadow: 0 24px 54px rgba(0,0,0,0.32);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .pm-storyboard-detail-prompt-head{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+        }
+        .pm-storyboard-detail-brand{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+        }
+        .pm-storyboard-detail-avatar{
+            width: 42px;
+            height: 42px;
+            border-radius: 14px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.96);
+            font-size: 15px;
+            font-weight: 900;
+            background:
+                radial-gradient(circle at 35% 32%, rgba(255,219,156,0.94), rgba(255,219,156,0) 28%),
+                linear-gradient(135deg, rgba(244,118,132,0.96) 0%, rgba(116,79,255,0.96) 100%);
+            box-shadow: 0 16px 30px rgba(0,0,0,0.24);
+        }
+        .pm-storyboard-detail-brand-title{
+            display: block;
+            color: rgba(245,247,255,0.96);
+            font-size: 14px;
+            font-weight: 900;
+        }
+        .pm-storyboard-detail-brand-sub{
+            display: block;
+            margin-top: 2px;
+            color: rgba(176,187,220,0.66);
+            font-size: 11px;
+            font-weight: 800;
+        }
+        .pm-storyboard-detail-head-actions{
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .pm-storyboard-detail-chip-btn,
+        .pm-storyboard-detail-expand{
+            height: 38px;
+            padding: 0 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.10);
+            background: rgba(255,255,255,0.04);
+            color: rgba(236,240,255,0.88);
+            font-size: 13px;
+            font-weight: 800;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            transition: background .18s ease, transform .18s ease;
+        }
+        .pm-storyboard-detail-chip-btn:hover,
+        .pm-storyboard-detail-expand:hover{
+            background: rgba(255,255,255,0.08);
+            transform: translateY(-1px);
+        }
+        .pm-storyboard-detail-expand{
+            width: 38px;
+            padding: 0;
+        }
+        .pm-storyboard-detail-expand svg{
+            width: 14px;
+            height: 14px;
+        }
+        .pm-storyboard-detail-copy{
+            margin-top: 14px;
+            color: rgba(229,234,255,0.94);
+            font-size: 14px;
+            line-height: 1.82;
+            max-height: 168px;
+            overflow: auto;
+        }
+        .pm-storyboard-detail-toolbar{
+            margin-top: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .pm-storyboard-detail-tool{
+            height: 34px;
+            padding: 0 12px;
+            border-radius: 10px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            color: rgba(221,228,250,0.78);
+            font-size: 12px;
+            font-weight: 800;
+        }
+        .pm-storyboard-detail-tool.is-count{
+            min-width: 38px;
+        }
+        .pm-storyboard-detail-send{
+            margin-left: auto;
+            width: 38px;
+            height: 38px;
+            border: 0;
+            border-radius: 12px;
+            display: grid;
+            place-items: center;
+            color: rgba(255,255,255,0.96);
+            background: linear-gradient(135deg, rgba(255,168,92,0.98) 0%, rgba(230,79,207,0.98) 52%, rgba(123,68,255,0.98) 100%);
+            box-shadow: 0 14px 26px rgba(123,68,255,0.24);
+            cursor: pointer;
+            transition: transform .18s ease;
+        }
+        .pm-storyboard-detail-send:hover{
+            transform: translateY(-1px);
+        }
+        .pm-storyboard-detail-send svg{
+            width: 16px;
+            height: 16px;
+        }
+        @media (max-width: 1024px){
+            .pm-storyboard-gallery{
+                width: 100%;
+            }
+            .pm-storyboard-shot-layout{
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .pm-storyboard-detail-dialog{
+                width: min(100%, 1180px);
+            }
+            .pm-storyboard-detail-copy{
+                max-height: 144px;
+            }
+        }
+        @media (max-width: 720px){
+            .pm-storyboard-gallery{
+                gap: 14px;
+            }
+            .pm-storyboard-shot-card{
+                padding: 12px;
+                border-radius: 20px;
+            }
+            .pm-storyboard-shot-head{
+                margin-bottom: 10px;
+                gap: 10px;
+            }
+            .pm-storyboard-shot-label{
+                font-size: 14px;
+            }
+            .pm-storyboard-shot-info{
+                padding: 14px;
+                border-radius: 16px;
+            }
+            .pm-storyboard-shot-info-head{
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .pm-storyboard-shot-specs{
+                grid-template-columns: 1fr;
+            }
+            .pm-storyboard-shot-actions{
+                justify-content: flex-start;
+            }
+            .pm-storyboard-shot-action{
+                flex: 1 1 0;
+            }
+            .pm-storyboard-detail-modal{
+                padding: 10px;
+            }
+            .pm-storyboard-detail-stage{
+                border-radius: 22px;
+            }
+            .pm-storyboard-detail-topline{
+                left: 12px;
+                top: 12px;
+                gap: 8px;
+            }
+            .pm-storyboard-detail-badge{
+                height: 28px;
+                padding: 0 10px;
+                font-size: 11px;
+            }
+            .pm-storyboard-detail-close{
+                right: 12px;
+                top: 12px;
+                width: 34px;
+                height: 34px;
+            }
+            .pm-storyboard-detail-prompt-wrap{
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+            }
+            .pm-storyboard-detail-prompt-card{
+                padding: 12px;
+                border-radius: 18px;
+            }
+            .pm-storyboard-detail-prompt-head{
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .pm-storyboard-detail-head-actions{
+                width: 100%;
+            }
+            .pm-storyboard-detail-chip-btn{
+                flex: 1 1 0;
+            }
+            .pm-storyboard-detail-expand{
+                flex: 0 0 38px;
+            }
+            .pm-storyboard-detail-copy{
+                margin-top: 12px;
+                font-size: 13px;
+                line-height: 1.72;
+                max-height: 118px;
+            }
+            .pm-storyboard-detail-toolbar{
+                gap: 8px;
+            }
+            .pm-storyboard-detail-tool{
+                height: 30px;
+                padding: 0 10px;
+                font-size: 11px;
+            }
+            .pm-storyboard-detail-send{
+                margin-left: 0;
+            }
+        }
         .pm-art-card,
         .pm-shot-preview-art,
         .pm-player-canvas{
@@ -9086,101 +9692,263 @@
                                 </div>
                                 <div id="pro-content-storyboard" class="hidden h-full min-h-0">
                                     <div class="pm-storyboard-shell">
-                                        <div class="pm-storyboard-stack">
-                                            <section class="pm-storyboard-card">
-                                                <span class="pm-storyboard-index">1</span>
-                                                <div class="pm-storyboard-grid">
-                                                    <div class="pm-storyboard-main">
-                                                        <div class="pm-storyboard-block">
-                                                            <span class="pm-storyboard-label">剧本内容:</span>
-                                                            <p class="pm-storyboard-text is-script">莉安 · 夜刃独自行于赛博都市夜幕，占据这座城市的黑暗与希望</p>
-                                                        </div>
-                                                        <div class="pm-storyboard-block">
-                                                            <span class="pm-storyboard-label">镜头描述:</span>
-                                                            <p class="pm-storyboard-text"><span class="pm-storyboard-mark">在@赛博都市夜幕</span>中的场景中，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>站在高楼天台边缘，银黑装甲反射着霓虹灯光。她五彩斑斓的短发在风中微微飘动，眼神锐利而深邃。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>右手持霓虹武士刀，将其轻轻靠在肩上。背后的广告屏幕和城市车流把她的身影映衬得更加醒目。</p>
-                                                        </div>
-                                                        <div class="pm-storyboard-block">
-                                                            <div class="pm-storyboard-duration">
-                                                                <span>视频时长:</span>
-                                                                <span class="pm-storyboard-duration-badge">00:07</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pm-storyboard-actions">
-                                                            <button type="button" class="pm-storyboard-edit" aria-label="编辑分镜1（原型按钮）" data-pm-toast="已触发「编辑分镜1」(原型演示)">编辑</button>
-                                                            <button type="button" class="pm-storyboard-trash" aria-label="删除分镜1（原型按钮）" data-pm-toast="已触发「删除分镜1」(原型演示)">
-                                                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                                    <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
-                                                                    <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
-                                                                    <path d="M10 11v7M14 11v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
+                                        <div class="pm-storyboard-gallery">
+                                            <article class="pm-storyboard-shot-card is-active" data-storyboard-shot data-storyboard-shot-title="分镜 #2" data-storyboard-shot-resolution="2752 × 1536" data-storyboard-shot-model="LAIPIC 3.0" data-storyboard-shot-duration="8 秒" data-storyboard-shot-ratio="16:9" tabindex="0" role="button" aria-label="查看分镜 #2 的构图详情">
+                                                <span class="pm-storyboard-shot-head">
+                                                    <span class="pm-storyboard-shot-label">
+                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                            <path d="M4 7h16M4 12h12M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                                        </svg>
+                                                        <span>分镜 #2</span>
+                                                    </span>
+                                                    <span class="pm-storyboard-shot-meta">2752 × 1536</span>
+                                                </span>
+                                                <div class="pm-storyboard-shot-layout">
+                                                    <div class="pm-storyboard-shot-visual">
+                                                        <span class="pm-storyboard-shot-frame">
+                                                            <span class="pm-storyboard-shot-art" data-storyboard-shot-art aria-hidden="true">
+                                                        <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+                                                            <defs>
+                                                                <linearGradient id="sbSceneInkBg" x1="0" y1="0" x2="1" y2="1">
+                                                                    <stop offset="0%" stop-color="#0e2031"/>
+                                                                    <stop offset="56%" stop-color="#355e79"/>
+                                                                    <stop offset="100%" stop-color="#0c1520"/>
+                                                                </linearGradient>
+                                                                <radialGradient id="sbSceneInkGlow" cx="50%" cy="38%" r="42%">
+                                                                    <stop offset="0%" stop-color="#ffffff" stop-opacity=".96"/>
+                                                                    <stop offset="18%" stop-color="#bdf4ff" stop-opacity=".78"/>
+                                                                    <stop offset="48%" stop-color="#72bfe8" stop-opacity=".26"/>
+                                                                    <stop offset="100%" stop-color="#72bfe8" stop-opacity="0"/>
+                                                                </radialGradient>
+                                                            </defs>
+                                                            <rect width="1600" height="900" fill="#102031"/>
+                                                            <rect x="24" y="24" width="1552" height="852" rx="22" fill="url(#sbSceneInkBg)"/>
+                                                            <rect x="120" y="96" width="1360" height="676" rx="18" fill="#17324c"/>
+                                                            <rect x="182" y="134" width="588" height="448" rx="18" fill="rgba(200,233,255,0.10)"/>
+                                                            <rect x="814" y="136" width="458" height="446" rx="14" fill="rgba(255,255,255,0.08)"/>
+                                                            <path d="M784 112L608 780" stroke="rgba(255,255,255,0.10)" stroke-width="22" stroke-linecap="round"/>
+                                                            <path d="M848 112L1018 792" stroke="rgba(255,255,255,0.09)" stroke-width="18" stroke-linecap="round"/>
+                                                            <ellipse cx="812" cy="360" rx="282" ry="210" fill="url(#sbSceneInkGlow)"/>
+                                                            <path d="M796 212L1160 640" stroke="rgba(205,245,255,0.78)" stroke-width="20" stroke-linecap="round"/>
+                                                            <path d="M768 226L1134 658" stroke="rgba(21,44,64,0.78)" stroke-width="8" stroke-linecap="round"/>
+                                                            <g fill="none" stroke="rgba(223,243,255,0.74)" stroke-width="6" stroke-linecap="round">
+                                                                <path d="M204 196H558"/>
+                                                                <path d="M204 234H594"/>
+                                                                <path d="M204 272H542"/>
+                                                                <path d="M204 322H608"/>
+                                                                <path d="M204 360H588"/>
+                                                                <path d="M204 412H616"/>
+                                                                <path d="M854 198H1180"/>
+                                                                <path d="M854 236H1226"/>
+                                                                <path d="M854 276H1162"/>
+                                                                <path d="M854 330H1244"/>
+                                                                <path d="M854 372H1218"/>
+                                                                <path d="M854 422H1260"/>
+                                                            </g>
+                                                            <g fill="rgba(8,16,24,0.82)">
+                                                                <circle cx="192" cy="132" r="24"/>
+                                                                <circle cx="150" cy="642" r="54"/>
+                                                                <circle cx="1420" cy="174" r="34"/>
+                                                                <circle cx="1388" cy="696" r="46"/>
+                                                                <ellipse cx="1268" cy="118" rx="70" ry="24" transform="rotate(-16 1268 118)"/>
+                                                                <ellipse cx="260" cy="740" rx="92" ry="28" transform="rotate(12 260 740)"/>
+                                                            </g>
+                                                            <g fill="rgba(21,29,38,0.72)">
+                                                                <path d="M98 84c78 18 124 50 138 96-86 18-148 4-184-28 6-28 16-50 46-68Z"/>
+                                                                <path d="M1330 90c72 22 112 56 120 94-66 12-120 2-158-24 4-28 14-48 38-70Z"/>
+                                                                <path d="M1328 760c68-14 140-10 206 28-34 36-86 52-148 56-32-12-48-40-58-84Z"/>
+                                                            </g>
+                                                        </svg>
+                                                            </span>
+                                                            <span class="pm-storyboard-shot-corner" aria-hidden="true">
+                                                                <svg viewBox="0 0 24 24" fill="none">
+                                                                    <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M20 16v4h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                                                                 </svg>
-                                                            </button>
-                                                        </div>
+                                                            </span>
+                                                        </span>
                                                     </div>
-                                                    <div class="pm-storyboard-side">
-                                                        <span class="pm-storyboard-side-label">主体列表:</span>
-                                                        <div class="pm-storyboard-thumbs">
-                                                            <div class="pm-storyboard-thumb">
-                                                                <div class="pm-art-card is-scene">
-                                                                    <span class="pm-art-holo"></span>
-                                                                </div>
+                                                    <div class="pm-storyboard-shot-info">
+                                                        <div class="pm-storyboard-shot-info-head">
+                                                            <div>
+                                                                <span class="pm-storyboard-shot-kicker">分镜提示词</span>
+                                                                <span class="pm-storyboard-shot-info-title">镜头构图与文字说明</span>
                                                             </div>
-                                                            <div class="pm-storyboard-thumb">
-                                                                <div class="pm-art-card is-character">
-                                                                    <span class="pm-art-figure"></span>
-                                                                    <span class="pm-art-blade"></span>
-                                                                </div>
-                                                            </div>
+                                                            <span class="pm-storyboard-shot-info-tag">点击卡片可放大</span>
+                                                        </div>
+                                                        <div class="pm-storyboard-shot-sections" data-storyboard-shot-sections></div>
+                                                        <div class="pm-storyboard-shot-specs" data-storyboard-shot-specs></div>
+                                                        <div class="pm-storyboard-shot-actions">
+                                                            <button type="button" class="pm-storyboard-shot-action is-ghost" data-storyboard-shot-action="delete">删除</button>
+                                                            <button type="button" class="pm-storyboard-shot-action is-primary" data-storyboard-shot-action="confirm">确认</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </section>
-                                            <section class="pm-storyboard-card">
-                                                <span class="pm-storyboard-index">2</span>
-                                                <div class="pm-storyboard-grid">
-                                                    <div class="pm-storyboard-main">
-                                                        <div class="pm-storyboard-block">
-                                                            <span class="pm-storyboard-label">剧本内容:</span>
-                                                            <p class="pm-storyboard-text is-script">莉安 · 夜坚定胆迈出脚步，准备行动，提示黑夜</p>
-                                                        </div>
-                                                        <div class="pm-storyboard-block">
-                                                            <span class="pm-storyboard-label">镜头描述:</span>
-                                                            <p class="pm-storyboard-text">镜头由远及近，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>从天台走入灯火繁华的街道。<span class="pm-storyboard-mark">@赛博都市夜幕</span>中，装甲的亮蓝能量线闪耀着寒芒。她眼神坚定，夜风吹下头发更显灵动，人群在她身旁流动，广告飞舰在远方巡航。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>轻声说：“是时候了。”然后她一脚踏入人潮，霓虹武士刀的反光在斑斓夜色里掠过。</p>
-                                                        </div>
-                                                        <div class="pm-storyboard-block">
-                                                            <div class="pm-storyboard-duration">
-                                                                <span>视频时长:</span>
-                                                                <span class="pm-storyboard-duration-badge">00:08</span>
-                                                            </div>
-                                                        </div>
-                                                        <div class="pm-storyboard-actions">
-                                                            <button type="button" class="pm-storyboard-edit" aria-label="编辑分镜2（原型按钮）" data-pm-toast="已触发「编辑分镜2」(原型演示)">编辑</button>
-                                                            <button type="button" class="pm-storyboard-trash" aria-label="删除分镜2（原型按钮）" data-pm-toast="已触发「删除分镜2」(原型演示)">
-                                                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                                                                    <path d="M9 3h6l1 2h5v2H3V5h5l1-2z" fill="currentColor" opacity="0.55"/>
-                                                                    <path d="M6 7h12l-1 14H7L6 7z" stroke="currentColor" stroke-width="1.6" opacity="0.65"/>
-                                                                    <path d="M10 11v7M14 11v7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity="0.75"/>
+                                                <span class="hidden" data-storyboard-shot-prompt>[画面构图：第一人称主观视角特写] + [主体空间：充满复古代码与文档的刺眼电脑屏幕填满整个画面] + [环境元素：屏幕边缘出现严重的扭曲与色散] + [光影几何与大气效果：刺目的蓝白光晕，四周快速向中心收束的黑暗边缘（晕影）] + [视觉风格 / 质感：失焦拉伸的眩晕感，赛博朋克般的失控质感] + [技术参数：微距镜头模拟人眼失焦，深度动态模糊]</span>
+                                            </article>
+
+                                            <article class="pm-storyboard-shot-card" data-storyboard-shot data-storyboard-shot-title="分镜 #3" data-storyboard-shot-resolution="2752 × 1536" data-storyboard-shot-model="LAIPIC 3.0" data-storyboard-shot-duration="8 秒" data-storyboard-shot-ratio="16:9" tabindex="0" role="button" aria-label="查看分镜 #3 的构图详情">
+                                                <span class="pm-storyboard-shot-head">
+                                                    <span class="pm-storyboard-shot-label">
+                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                            <path d="M4 7h16M4 12h12M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                                        </svg>
+                                                        <span>分镜 #3</span>
+                                                    </span>
+                                                    <span class="pm-storyboard-shot-meta">2752 × 1536</span>
+                                                </span>
+                                                <div class="pm-storyboard-shot-layout">
+                                                    <div class="pm-storyboard-shot-visual">
+                                                        <span class="pm-storyboard-shot-frame">
+                                                            <span class="pm-storyboard-shot-art" data-storyboard-shot-art aria-hidden="true">
+                                                        <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+                                                            <defs>
+                                                                <linearGradient id="sbHallBg" x1="0" y1="0" x2="0" y2="1">
+                                                                    <stop offset="0%" stop-color="#f3e9d2"/>
+                                                                    <stop offset="100%" stop-color="#dfc596"/>
+                                                                </linearGradient>
+                                                                <linearGradient id="sbHallFloor" x1="0" y1="0" x2="0" y2="1">
+                                                                    <stop offset="0%" stop-color="#d9d7d3"/>
+                                                                    <stop offset="100%" stop-color="#98a4b2"/>
+                                                                </linearGradient>
+                                                            </defs>
+                                                            <rect width="1600" height="900" fill="#f4ead2"/>
+                                                            <rect x="18" y="18" width="1564" height="864" rx="20" fill="url(#sbHallBg)"/>
+                                                            <path d="M198 84H1402V278H198Z" fill="#8a6638"/>
+                                                            <path d="M162 88H1438V194H162Z" fill="#c2a36d"/>
+                                                            <path d="M198 194H1402V286H198Z" fill="#8d6b3e"/>
+                                                            <path d="M298 286H1302L1188 840H412Z" fill="url(#sbHallFloor)"/>
+                                                            <path d="M300 286H1300L1194 838H406Z" fill="none" stroke="rgba(119,120,124,0.42)" stroke-width="6"/>
+                                                            <g fill="#a84f38">
+                                                                <rect x="214" y="122" width="44" height="646" rx="10"/>
+                                                                <rect x="360" y="122" width="40" height="646" rx="10"/>
+                                                                <rect x="1200" y="122" width="40" height="646" rx="10"/>
+                                                                <rect x="1344" y="122" width="44" height="646" rx="10"/>
+                                                            </g>
+                                                            <g fill="#6b2e21" opacity=".76">
+                                                                <rect x="262" y="122" width="22" height="646"/>
+                                                                <rect x="406" y="122" width="22" height="646"/>
+                                                                <rect x="1172" y="122" width="22" height="646"/>
+                                                                <rect x="1318" y="122" width="22" height="646"/>
+                                                            </g>
+                                                            <path d="M478 160H1122V378H478Z" fill="rgba(232,212,166,0.92)"/>
+                                                            <path d="M584 244H1016V482H584Z" fill="#c39a46"/>
+                                                            <path d="M648 284H952V456H648Z" fill="#f2d98e"/>
+                                                            <path d="M332 324L474 818" stroke="rgba(255,255,255,0.60)" stroke-width="24" stroke-linecap="round"/>
+                                                            <path d="M468 302L564 816" stroke="rgba(255,255,255,0.34)" stroke-width="16" stroke-linecap="round"/>
+                                                            <path d="M1262 320L1128 820" stroke="rgba(255,255,255,0.54)" stroke-width="20" stroke-linecap="round"/>
+                                                            <path d="M1138 300L1044 818" stroke="rgba(255,255,255,0.28)" stroke-width="14" stroke-linecap="round"/>
+                                                            <g fill="#9f5240">
+                                                                <ellipse cx="220" cy="694" rx="38" ry="70"/>
+                                                                <ellipse cx="278" cy="714" rx="40" ry="74"/>
+                                                                <ellipse cx="1322" cy="694" rx="38" ry="70"/>
+                                                                <ellipse cx="1264" cy="714" rx="40" ry="74"/>
+                                                            </g>
+                                                            <g fill="#80554d" opacity=".78">
+                                                                <ellipse cx="344" cy="746" rx="34" ry="62"/>
+                                                                <ellipse cx="396" cy="764" rx="34" ry="62"/>
+                                                                <ellipse cx="1198" cy="746" rx="34" ry="62"/>
+                                                                <ellipse cx="1148" cy="764" rx="34" ry="62"/>
+                                                            </g>
+                                                            <path d="M0 0h1600v900" fill="none"/>
+                                                            <path d="M46 68c52 28 90 94 72 164-34 40-74 46-120 42-4-74 8-142 48-206Z" fill="rgba(24,24,24,0.18)"/>
+                                                            <path d="M1510 94c46 34 66 88 62 142-26 20-56 26-94 30-16-70-8-126 32-172Z" fill="rgba(24,24,24,0.22)"/>
+                                                        </svg>
+                                                            </span>
+                                                            <span class="pm-storyboard-shot-corner" aria-hidden="true">
+                                                                <svg viewBox="0 0 24 24" fill="none">
+                                                                    <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M20 16v4h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
                                                                 </svg>
-                                                            </button>
-                                                        </div>
+                                                            </span>
+                                                        </span>
                                                     </div>
-                                                    <div class="pm-storyboard-side">
-                                                        <span class="pm-storyboard-side-label">主体列表:</span>
-                                                        <div class="pm-storyboard-thumbs">
-                                                            <div class="pm-storyboard-thumb">
-                                                                <div class="pm-art-card is-character">
-                                                                    <span class="pm-art-figure"></span>
-                                                                    <span class="pm-art-blade"></span>
-                                                                </div>
+                                                    <div class="pm-storyboard-shot-info">
+                                                        <div class="pm-storyboard-shot-info-head">
+                                                            <div>
+                                                                <span class="pm-storyboard-shot-kicker">分镜提示词</span>
+                                                                <span class="pm-storyboard-shot-info-title">镜头构图与文字说明</span>
                                                             </div>
-                                                            <div class="pm-storyboard-thumb">
-                                                                <div class="pm-art-card is-scene">
-                                                                    <span class="pm-art-holo"></span>
-                                                                </div>
-                                                            </div>
+                                                            <span class="pm-storyboard-shot-info-tag">点击卡片可放大</span>
+                                                        </div>
+                                                        <div class="pm-storyboard-shot-sections" data-storyboard-shot-sections></div>
+                                                        <div class="pm-storyboard-shot-specs" data-storyboard-shot-specs></div>
+                                                        <div class="pm-storyboard-shot-actions">
+                                                            <button type="button" class="pm-storyboard-shot-action is-ghost" data-storyboard-shot-action="delete">删除</button>
+                                                            <button type="button" class="pm-storyboard-shot-action is-primary" data-storyboard-shot-action="confirm">确认</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </section>
+                                                <span class="hidden" data-storyboard-shot-prompt>[画面构图：中轴对称纵深全景] + [主体空间：金色王座位于尽头，成列红袍人物分立两侧的古殿长廊] + [环境元素：高耸梁柱、雕花穹顶、反光石面与仪式队列] + [光影几何与大气效果：斜向天光穿过殿宇，尘埃与冷暖光带交错] + [视觉风格 / 质感：水墨晕染结合古风插画，保留纸张肌理与泼墨边缘] + [技术参数：24mm 广角镜头，强调纵深透视与礼制秩序]</span>
+                                            </article>
+
+                                            <article class="pm-storyboard-shot-card" data-storyboard-shot data-storyboard-shot-title="分镜 #4" data-storyboard-shot-resolution="2752 × 1536" data-storyboard-shot-model="LAIPIC 3.0" data-storyboard-shot-duration="8 秒" data-storyboard-shot-ratio="16:9" tabindex="0" role="button" aria-label="查看分镜 #4 的构图详情">
+                                                <span class="pm-storyboard-shot-head">
+                                                    <span class="pm-storyboard-shot-label">
+                                                        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                                            <path d="M4 7h16M4 12h12M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+                                                        </svg>
+                                                        <span>分镜 #4</span>
+                                                    </span>
+                                                    <span class="pm-storyboard-shot-meta">2752 × 1536</span>
+                                                </span>
+                                                <div class="pm-storyboard-shot-layout">
+                                                    <div class="pm-storyboard-shot-visual">
+                                                        <span class="pm-storyboard-shot-frame">
+                                                            <span class="pm-storyboard-shot-art" data-storyboard-shot-art aria-hidden="true">
+                                                        <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+                                                            <defs>
+                                                                <linearGradient id="sbActionBg" x1="0" y1="0" x2="1" y2="1">
+                                                                    <stop offset="0%" stop-color="#ecf0e1"/>
+                                                                    <stop offset="42%" stop-color="#b7d7c2"/>
+                                                                    <stop offset="100%" stop-color="#6d8d83"/>
+                                                                </linearGradient>
+                                                            </defs>
+                                                            <rect width="1600" height="900" fill="url(#sbActionBg)"/>
+                                                            <path d="M0 768c194-74 394-92 592-28 158 52 286 62 470 22 168-36 340-16 538 34V900H0Z" fill="rgba(231,222,181,0.90)"/>
+                                                            <path d="M210 126c-24 170-52 340-88 510" stroke="rgba(70,88,97,0.46)" stroke-width="72" stroke-linecap="round"/>
+                                                            <path d="M1378 112c-78 152-136 322-174 506" stroke="rgba(78,88,96,0.44)" stroke-width="82" stroke-linecap="round"/>
+                                                            <path d="M860 204c-68 110-96 236-96 388" stroke="rgba(32,52,52,0.22)" stroke-width="210" stroke-linecap="round"/>
+                                                            <path d="M648 238c58-34 112-38 162-10 34 18 58 52 82 96-10 110-52 206-116 286-54 10-106 2-154-18-30-64-38-126-28-196 12-68 30-118 54-158Z" fill="#7bc1b4"/>
+                                                            <path d="M704 236c54-12 110-2 158 28-8 24-30 42-58 56-42 20-94 24-150 12 2-40 18-70 50-96Z" fill="#0e141f"/>
+                                                            <path d="M598 374c-24 64-42 142-44 222 54 28 114 36 180 26 68-104 98-210 84-322-60 6-114 28-154 74-20 22-46 52-66 100Z" fill="#7ed2c0"/>
+                                                            <path d="M760 422c20 0 38 16 38 36s-18 36-38 36-38-16-38-36 18-36 38-36Z" fill="#f7fff6"/>
+                                                            <path d="M744 432c9 0 16 7 16 16s-7 16-16 16-16-7-16-16 7-16 16-16Z" fill="#1d2837"/>
+                                                            <path d="M810 612l72 88" stroke="#243449" stroke-width="24" stroke-linecap="round"/>
+                                                            <path d="M882 700l112 126" stroke="#314255" stroke-width="30" stroke-linecap="round"/>
+                                                            <path d="M552 560c44 64 116 120 206 160" stroke="rgba(45,68,74,0.16)" stroke-width="44" stroke-linecap="round"/>
+                                                            <path d="M268 324l226 106" stroke="#c4a55e" stroke-width="36" stroke-linecap="round"/>
+                                                            <path d="M416 284l222 102" stroke="#dbc46e" stroke-width="26" stroke-linecap="round"/>
+                                                            <path d="M1118 236l236 120" stroke="rgba(38,52,57,0.42)" stroke-width="20" stroke-linecap="round"/>
+                                                            <path d="M96 168c36 10 82 42 122 94-40 34-82 54-126 64-18-56-16-106 4-158Z" fill="rgba(32,37,43,0.22)"/>
+                                                            <path d="M1448 184c54 20 94 64 118 126-36 30-74 48-114 58-26-70-28-126-4-184Z" fill="rgba(32,37,43,0.18)"/>
+                                                            <circle cx="686" cy="350" r="18" fill="#133244"/>
+                                                            <circle cx="798" cy="354" r="18" fill="#133244"/>
+                                                        </svg>
+                                                            </span>
+                                                            <span class="pm-storyboard-shot-corner" aria-hidden="true">
+                                                                <svg viewBox="0 0 24 24" fill="none">
+                                                                    <path d="M8 4H4v4M16 4h4v4M8 20H4v-4M20 16v4h-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                                                                </svg>
+                                                            </span>
+                                                        </span>
+                                                    </div>
+                                                    <div class="pm-storyboard-shot-info">
+                                                        <div class="pm-storyboard-shot-info-head">
+                                                            <div>
+                                                                <span class="pm-storyboard-shot-kicker">分镜提示词</span>
+                                                                <span class="pm-storyboard-shot-info-title">镜头构图与文字说明</span>
+                                                            </div>
+                                                            <span class="pm-storyboard-shot-info-tag">点击卡片可放大</span>
+                                                        </div>
+                                                        <div class="pm-storyboard-shot-sections" data-storyboard-shot-sections></div>
+                                                        <div class="pm-storyboard-shot-specs" data-storyboard-shot-specs></div>
+                                                        <div class="pm-storyboard-shot-actions">
+                                                            <button type="button" class="pm-storyboard-shot-action is-ghost" data-storyboard-shot-action="delete">删除</button>
+                                                            <button type="button" class="pm-storyboard-shot-action is-primary" data-storyboard-shot-action="confirm">确认</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <span class="hidden" data-storyboard-shot-prompt>[画面构图：俯冲式近景动作镜头] + [主体空间：青衣少年在兵刃夹击之间向前跃冲，画面重心朝下压迫观者] + [环境元素：两侧长枪形成夹角，衣摆与碎墨飞溅强化速度线] + [光影几何与大气效果：高亮天光从上方压下，背后烟尘被拉成动态模糊] + [视觉风格 / 质感：国风水彩与漫画线稿混合，笔触边缘保留湿墨扩散感] + [技术参数：高速快门凝固主体面部，背景使用运动模糊制造追击张力]</span>
+                                            </article>
                                         </div>
                                     </div>
                                 </div>
@@ -10955,6 +11723,229 @@
             });
         }
 
+        function initStoryboardGallery(){
+            const modal = document.getElementById('storyboard-detail-modal');
+            if (!modal) return;
+
+            const art = modal.querySelector('[data-storyboard-detail-art]');
+            const title = modal.querySelector('[data-storyboard-detail-title]');
+            const brandTitle = modal.querySelector('[data-storyboard-detail-brand-title]');
+            const resolution = modal.querySelector('[data-storyboard-detail-resolution]');
+            const copy = modal.querySelector('[data-storyboard-detail-copy]');
+            const avatar = modal.querySelector('[data-storyboard-detail-avatar]');
+            const shots = Array.from(document.querySelectorAll('[data-storyboard-shot]'));
+
+            const parsePromptSections = (rawText) => {
+                const sections = [];
+                const text = String(rawText || '').trim();
+                const regex = /\[([^：\]]+?)：([\s\S]*?)\](?:\s*\+\s*|$)/g;
+                let match = regex.exec(text);
+                while (match) {
+                    sections.push({
+                        label: match[1].trim(),
+                        value: match[2].trim()
+                    });
+                    match = regex.exec(text);
+                }
+                if (!sections.length && text) {
+                    sections.push({
+                        label: '提示词',
+                        value: text.replace(/\s*\+\s*/g, ' ')
+                    });
+                }
+                return sections;
+            };
+
+            const renderShotSections = (shot) => {
+                if (!(shot instanceof Element)) return;
+                const rawPrompt = shot.querySelector('[data-storyboard-shot-prompt]')?.textContent?.trim() || '';
+                const sectionHost = shot.querySelector('[data-storyboard-shot-sections]');
+                const specHost = shot.querySelector('[data-storyboard-shot-specs]');
+                const sections = parsePromptSections(rawPrompt);
+
+                if (sectionHost) {
+                    sectionHost.replaceChildren();
+                    sections.forEach(({ label, value }) => {
+                        const item = document.createElement('div');
+                        item.className = 'pm-storyboard-shot-section';
+
+                        const sectionLabel = document.createElement('div');
+                        sectionLabel.className = 'pm-storyboard-shot-section-label';
+                        sectionLabel.textContent = label;
+
+                        const sectionDesc = document.createElement('div');
+                        sectionDesc.className = 'pm-storyboard-shot-section-desc';
+                        sectionDesc.textContent = value;
+
+                        item.append(sectionLabel, sectionDesc);
+                        sectionHost.appendChild(item);
+                    });
+                }
+
+                if (specHost) {
+                    specHost.replaceChildren();
+                    const specs = [
+                        { label: '模型', value: shot.getAttribute('data-storyboard-shot-model') || 'LAIPIC 3.0' },
+                        { label: '时长', value: shot.getAttribute('data-storyboard-shot-duration') || '8 秒' },
+                        { label: '比例', value: shot.getAttribute('data-storyboard-shot-ratio') || '16:9' },
+                        { label: '分辨率', value: shot.getAttribute('data-storyboard-shot-resolution') || '2752 × 1536' }
+                    ];
+
+                    specs.forEach(({ label, value }) => {
+                        const item = document.createElement('div');
+                        item.className = 'pm-storyboard-shot-spec';
+
+                        const specLabel = document.createElement('div');
+                        specLabel.className = 'pm-storyboard-shot-spec-label';
+                        specLabel.textContent = label;
+
+                        const specValue = document.createElement('div');
+                        specValue.className = 'pm-storyboard-shot-spec-value';
+                        specValue.textContent = value;
+
+                        item.append(specLabel, specValue);
+                        specHost.appendChild(item);
+                    });
+                }
+            };
+
+            const close = () => {
+                modal.classList.add('hidden');
+                modal.setAttribute('aria-hidden', 'true');
+                const restore = document.body.dataset.storyboardModalOverflow || '';
+                document.body.style.overflow = restore;
+                delete document.body.dataset.storyboardModalOverflow;
+            };
+
+            const open = (shot) => {
+                if (!(shot instanceof Element)) return;
+                const shotArt = shot.querySelector('[data-storyboard-shot-art]');
+                const shotPrompt = shot.querySelector('[data-storyboard-shot-prompt]')?.textContent?.trim() || '';
+                const shotTitle = shot.getAttribute('data-storyboard-shot-title') || '分镜详情';
+                const shotResolution = shot.getAttribute('data-storyboard-shot-resolution') || '2752 × 1536';
+                const shotIndex = shotTitle.replace(/\D/g, '') || '1';
+
+                shots.forEach((item) => {
+                    item.classList.toggle('is-active', item === shot);
+                });
+
+                if (art) art.innerHTML = shotArt ? shotArt.innerHTML : '';
+                if (title) title.textContent = shotTitle;
+                if (brandTitle) brandTitle.textContent = shotTitle;
+                if (resolution) resolution.textContent = shotResolution;
+                if (copy) copy.textContent = shotPrompt;
+                if (avatar) avatar.textContent = shotIndex;
+
+                modal.classList.remove('hidden');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.dataset.storyboardModalOverflow = document.body.style.overflow || '';
+                document.body.style.overflow = 'hidden';
+            };
+
+            shots.forEach((shot) => {
+                renderShotSections(shot);
+
+                shot.addEventListener('click', (e) => {
+                    const target = e.target;
+                    if (target instanceof Element && target.closest('[data-storyboard-shot-action]')) return;
+                    e.preventDefault();
+                    open(shot);
+                });
+
+                shot.addEventListener('keydown', (e) => {
+                    if (e.key !== 'Enter' && e.key !== ' ') return;
+                    const target = e.target;
+                    if (target instanceof Element && target.closest('[data-storyboard-shot-action]')) return;
+                    e.preventDefault();
+                    open(shot);
+                });
+
+                shot.querySelectorAll('[data-storyboard-shot-action]').forEach((btn) => {
+                    btn.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const action = btn.getAttribute('data-storyboard-shot-action');
+                        const shotTitle = shot.getAttribute('data-storyboard-shot-title') || '当前分镜';
+
+                        if (action === 'delete') {
+                            showUxToast({
+                                title: '已记录删除操作',
+                                message: `${shotTitle} 当前仅做原型演示，未真正移除。`,
+                                variant: 'info',
+                                duration: 2200
+                            });
+                            return;
+                        }
+
+                        showUxToast({
+                            title: '分镜已确认',
+                            message: `${shotTitle} 已确认，可继续进入视频预览。`,
+                            variant: 'success',
+                            duration: 2200
+                        });
+                    });
+                });
+            });
+
+            modal.querySelectorAll('[data-storyboard-detail-close]').forEach((node) => {
+                node.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    close();
+                });
+            });
+
+            const markBtn = modal.querySelector('[data-storyboard-detail-mark]');
+            if (markBtn) {
+                markBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showUxToast({
+                        title: '已标记',
+                        message: '当前分镜已加入重点跟进列表。',
+                        variant: 'success',
+                        duration: 2200
+                    });
+                });
+            }
+
+            const focusBtn = modal.querySelector('[data-storyboard-detail-focus]');
+            if (focusBtn) {
+                focusBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showUxToast({
+                        title: '已聚焦',
+                        message: '当前分镜提示词已切换到聚焦查看状态。',
+                        variant: 'info',
+                        duration: 2200
+                    });
+                });
+            }
+
+            const expandBtn = modal.querySelector('[data-storyboard-detail-expand]');
+            if (expandBtn) {
+                expandBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showUxToast({
+                        title: '已进入大图查看',
+                        message: '当前为原型演示，已保持当前分镜高亮。',
+                        variant: 'info',
+                        duration: 2200
+                    });
+                });
+            }
+
+            modal.addEventListener('click', (e) => {
+                const target = e.target;
+                if (!(target instanceof Element)) return;
+                if (target.classList.contains('pm-storyboard-detail-backdrop')) close();
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key !== 'Escape') return;
+                if (!modal.classList.contains('hidden')) close();
+            });
+        }
+
         function initAssetsView(){
             const proGrid = document.getElementById('assets-grid-pro');
             const quickGrid = document.getElementById('assets-grid-quick');
@@ -11329,6 +12320,7 @@
             initInspirationSquare();
             initWorkbenchPromptHelperActions();
             initProPreviewDemo();
+            initStoryboardGallery();
             initAssetsView();
             initSubjectsView();
             initVoicesView();
@@ -12950,6 +13942,60 @@
             </div>
         </div>
     </div>
+    <div id="storyboard-detail-modal" class="pm-storyboard-detail-modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="pm-storyboard-detail-backdrop" data-storyboard-detail-close></div>
+        <div class="pm-storyboard-detail-dialog" role="document">
+            <div class="pm-storyboard-detail-stage">
+                <div class="pm-storyboard-detail-art" data-storyboard-detail-art></div>
+                <div class="pm-storyboard-detail-topline" aria-hidden="true">
+                    <span class="pm-storyboard-detail-badge" data-storyboard-detail-title>分镜 #2</span>
+                    <span class="pm-storyboard-detail-badge is-meta" data-storyboard-detail-resolution>2752 × 1536</span>
+                </div>
+                <button type="button" class="pm-storyboard-detail-close" aria-label="关闭分镜详情" data-storyboard-detail-close>
+                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+                <div class="pm-storyboard-detail-prompt-wrap">
+                    <div class="pm-storyboard-detail-prompt-card">
+                        <div class="pm-storyboard-detail-prompt-head">
+                            <div class="pm-storyboard-detail-brand">
+                                <span class="pm-storyboard-detail-avatar" data-storyboard-detail-avatar>2</span>
+                                <span>
+                                    <span class="pm-storyboard-detail-brand-title" data-storyboard-detail-brand-title>分镜 #2</span>
+                                    <span class="pm-storyboard-detail-brand-sub">分镜构图与提示词详情</span>
+                                </span>
+                            </div>
+                            <div class="pm-storyboard-detail-head-actions">
+                                <button type="button" class="pm-storyboard-detail-chip-btn" data-storyboard-detail-mark>标记</button>
+                                <button type="button" class="pm-storyboard-detail-chip-btn" data-storyboard-detail-focus>聚焦</button>
+                                <button type="button" class="pm-storyboard-detail-expand" aria-label="聚焦查看" data-storyboard-detail-expand>
+                                    <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                        <path d="M8 16 16 8M10 8h6v6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="pm-storyboard-detail-copy" data-storyboard-detail-copy>[画面构图：第一人称主观视角特写] + [主体空间：充满复古代码与文档的刺眼电脑屏幕填满整个画面]</div>
+                        <div class="pm-storyboard-detail-toolbar">
+                            <span class="pm-storyboard-detail-tool">Lib Nano Pro</span>
+                            <span class="pm-storyboard-detail-tool">16:9</span>
+                            <span class="pm-storyboard-detail-tool">2K</span>
+                            <span class="pm-storyboard-detail-tool">摄像机</span>
+                            <span class="pm-storyboard-detail-tool">全景</span>
+                            <span class="pm-storyboard-detail-tool">1张</span>
+                            <span class="pm-storyboard-detail-tool is-count">14</span>
+                            <button type="button" class="pm-storyboard-detail-send" aria-label="收起分镜详情" data-storyboard-detail-close>
+                                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                                    <path d="M12 6v12M12 6l-5 5M12 6l5 5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <input id="studio-script-file" type="file" hidden accept=".txt,.md,.docx" />
     <input id="studio-image-file" type="file" hidden accept="image/*" multiple />
 
@@ -12984,15 +14030,6 @@
             }
         })();
 
-        (function(){
-            const storyboardCopies = document.querySelectorAll('#pro-content-storyboard .pm-storyboard-text:not(.is-script)');
-            if (storyboardCopies[0]) {
-                storyboardCopies[0].innerHTML = '<span class="pm-storyboard-mark">@赛博都市夜幕</span>中的场景中，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>站在高楼天台边缘，银黑装甲反射着霓虹灯光。她五彩斑斓的短发在风中微微飘动，眼神锐利而深邃。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>右手持霓虹武士刀，将其轻轻靠在肩上。背后的广告屏幕和城市车流把她的身影映衬得更加醒目。';
-            }
-            if (storyboardCopies[1]) {
-                storyboardCopies[1].innerHTML = '镜头由远及近，<span class="pm-storyboard-mark">@莉安 · 夜刃</span>从天台走入灯火繁华的街道。<span class="pm-storyboard-mark">@赛博都市夜幕</span>中，装甲的亮蓝能量线闪耀着寒芒。她眼神坚定，夜风吹下头发更显灵动，人群在她身旁流动，广告飞舰在远方巡航。<span class="pm-storyboard-mark">@莉安 · 夜刃</span>轻声说：“是时候了。”然后她一脚踏入人潮，霓虹武士刀的反光在斑斓夜色里掠过。';
-            }
-        })();
     </script>
 
     <!-- 旧的全屏遮罩进度面板已移除：当前使用左侧面板内替换展示进度 -->
